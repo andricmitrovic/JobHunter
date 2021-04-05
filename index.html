@@ -21,15 +21,13 @@
 
 <body>
     <form method="" action="" id="f" class="container" novalidate>
-        <!−− Element u okviru kojeg ce biti upisane informacije o eventualnim greskama −−>
+        <!−− Element u okviru kojeg ce biti upisane informacije o eventualnim greskama  −−>
             <div class="greska" id="greska"> </div>
             <fieldset class="form−group">
                 <legend> Lični podaci </legend>
                 <div class="form−group">
-                    <label for="ime_prezime"> Ime i prezime*
-                        : </label>
-                    <input id="ime_prezime" type="text" placeholder="Pera Peric" maxlength="30" name="ime_prezime"
-                        required class="form−control">
+                    <label for="ime_prezime"> Ime i prezime*: </label>
+                    <input id="ime_prezime" type="text" placeholder="Pera Peric" maxlength="30" name="ime_prezime" required class="form−control">
                 </div>
                 <div class="form−group">
                     <label for="datum_rodjenja"> Datum rodjenja: </label>
@@ -44,13 +42,11 @@
                     <input id="veb_adresa" name="veb_adresa" autocomplete="off" type="url" class="form−control">
                 </div>
                 <div class="form−group">
-                    <label for="username"> Korisnicko ime*
-                        : </label>
+                    <label for="username"> Korisnicko ime*: </label>
                     <input id="username" type="text" name="korisnicko_ime" required class="form−control">
                 </div>
                 <div class="form−group">
-                    <label for="password"> Sifra*
-                        : </label>
+                    <label for="password"> Sifra*: </label>
                     <input id="password" name="sifra" required type="password" class="form−control">
                 </div>
             </fieldset>
@@ -58,7 +54,7 @@
                 <legend> Obrazovanje </legend>
                 <div class="form−group row">
                     <div class="col−md−6">
-                        <label for="fakultet" class="control−label"> Fakultet: </ label>
+                        <label for="fakultet" class="control−label"> Fakultet: </label>
                             <select name="fakultet" id="fakultet" class="form−control">
                                 <option value=""> −−−−−−− </option>
                                 <optgroup label="tehnički fakulteti">
@@ -75,10 +71,8 @@
                             </select>
                     </div>
                     <div class="col−md−6">
-                        <label for="univerzitet" class="control−label"> Univerzitet
-                            : </label>
-                        <input list="svi_univerziteti" id="univerzitet" name="
-                            univerzitet" type="text" class="form−control">
+                        <label for="univerzitet" class="control−label"> Univerzitet: </label>
+                        <input list="svi_univerziteti" id="univerzitet" name="univerzitet" type="text" class="form−control">
                         <datalist id="svi_univerziteti">
                             <option value="UBG"> Univerzitet u Beogradu </option>
                             <option value="UNS"> Univerzitet u Novom Sadu </option>
@@ -109,21 +103,16 @@
                 <div class="form−group">
                     Lista interesovanja:
                     <div class="form−check">
-                        <input name="veb" id="veb" type="checkbox" checked class="
-                        form−check−input">
-                        <label for="veb" class="form−check−label">veb
-                            programiranje</label>
+                        <input name="veb" id="veb" type="checkbox" checked class="form−check−input">
+                        <label for="veb" class="form−check−label">veb programiranje</label>
                     </div>
                     <div class="form−check">
                         <input name="paradigme" id="paradigme" type="checkbox" class="form−check−input">
-                        <label for="paradigme" class="form−check−label">programske
-                            paradigme</label>
+                        <label for="paradigme" class="form−check−label">programske paradigme</label>
                     </div>
                     <div class="form−check">
-                        <input name="grafika" id="grafika" type="checkbox" class="
-                        form−check−input">
-                        <label for="grafika" class="form−check−label">računarska
-                            grafika</label>
+                        <input name="grafika" id="grafika" type="checkbox" class="form−check−input">
+                        <label for="grafika" class="form−check−label">računarska grafika</label>
                     </div>
                     <div class="form−check">
                         <input name="algoritmi" id="algoritmi" type="checkbox" class="form−check−input">
@@ -136,7 +125,7 @@
                 <input value="obrisi podatke" type="reset" class="btn btn−danger">
             </div>
     </form>
-    <script type="text/javascript" src="01_formulari_obrada.js"></script>
+    <script type="text/javascript" src=""></script>
 </body>
 
 </html>
