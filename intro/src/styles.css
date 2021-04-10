@@ -30109,4 +30109,21 @@ a.text-dark:hover, a.text-dark:focus {
     border-color: #dee2e6;
   }
 }
-/*# sourceMappingURL=bootstrap.css.map */
+
+html,
+body{
+ height: 100%;
+}
+
+#cover, #headerCover {
+  background: #222 url('') center center no-repeat;
+  background-size: cover;
+  color: white;
+  height: 100%;
+  text-align: center;
+  display: flex;
+  align-items: center;
+}
+#cover-caption {
+  width: 100%;
+}
