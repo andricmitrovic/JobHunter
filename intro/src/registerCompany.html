@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>JobHunter Register</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <style type="text/css">
+        .greska {
+            color: red;
+            font-size: 14px;
+            margin-top: 25px;
+            margin-bottom: 25px;
+        }
+
+        fieldset legend {
+            color: orange;
+        }
+    </style>
+</head>
+
+<body>
+    <section id="cover">
+    <form action="" id="f" class="container" novalidate>
+        <!-- Element u okviru kojeg ce biti upisane informacije o eventualnim greskama  -->
+            <div class="greska" id="greska"> </div>
+            <fieldset class="form-group">
+                <h1 class="display-3"> Company information </h1>
+
+                <div class="row justify-content-center">
+                <div class="form-group col-4">
+                    <label for="ime_prezime"> Name*: </label>
+                    <input id="ime_prezime" type="text" maxlength="30" name="ime_prezime" required class="form-control">
+                </div>
+                </div>
+
+                <div class="row justify-content-center">
+                <div class="form-group col-4">
+                    <label for="shortBio">Company bio:</label>
+                    <textarea class="form-control" id="shortBio" rows="3"></textarea>
+                </div>
+                </div>
+
+                <div class="row justify-content-center">
+                    <div class="form-group col-4">
+                    <label for="email"> Email: </label>
+                    <input id="email" name="email" type="email" class="form-control">
+                </div>
+                </div>
+
+                <div class="row justify-content-center">
+                    <div class="form-group col-4">
+                    <label for="veb_adresa"> Web adress: </label>
+                    <input id="veb_adresa" name="veb_adresa" autocomplete="off" type="url" class="form-control">
+                </div>
+                </div>
+
+                <div class="row justify-content-center">
+                    <div class="form-group col-4">
+                    <label for="password"> Password*: </label>
+                    <input id="password" name="sifra" required type="password" class="form-control">
+                </div>
+                </div>
+
+            </fieldset>
+            <fieldset class="form-group">
+                <h1 class="display-3"> Open positions </h1>
+
+                <div class="form-group row justify-content-center">
+
+                    <div class="col-2">
+                        <label for="jobField" class="control-label"> Job field: </label>
+                            <select name="jobField" id="jobField" class="form-control">
+                                <option value=""> ------ </option>
+                                <option value="si"> Software engineer </option>
+                                <option value="hr"> Human resources </option>
+                                <option value="mm"> Management </option>
+                                <option value="ac"> Accounting </option>
+                            </select>
+                    </div>
+
+                    <div class="col-2">
+                        <label for="explvl" class="control-label"> Experience level: </label>
+                        <select name="explvl" id="explvl" class="form-control">
+                            <option value=""> ------ </option>
+                            <option value="int"> Internship </option>
+                            <option value="jun"> Junior </option>
+                            <option value="sen"> Senior </option>
+                            <option value="con"> Contractor </option>
+                        </select>
+                    </div>
+
+                    <div class="form-group col-3">
+                        <label for="yearOfStudy">Required techonologies:</label>
+                        <select multiple class="form-control" id="yearOfStudy">
+                            <option>Python</option>
+                            <option>C++</option>
+                            <option>C#</option>
+                            <option>JS</option>
+                            <option>Java</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group col-4">
+                        <label for="shortBio">Position description:</label>
+                        <textarea class="form-control" id="shortBio" rows="4"></textarea>
+                    </div>
+
+                </div>
+                
+                <div class="form-group text-center">
+                    <input value="Add more positions" type="submit" class="btn btn-dark">
+                </div>
+
+            </fieldset>
+            <div class="form-group text-center">
+                <input value="Submit" type="submit" class="btn btn-dark">
+                <input value="Delete" type="reset" class="btn btn-dark btn-outline-danger">
+            </div>
+    </form>
+</section>
+    <script type="text/javascript" src=""></script>
+</body>
+
+</html>
