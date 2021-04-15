@@ -30117,11 +30117,9 @@ body{
 
 #cover, #headerCover {
   background: #222 url('') center center no-repeat;
-  background-size: cover;
+  background-size: 1400px 700px;
   color: white;
-  height: 100%;
   text-align: center;
-  display: flex;
   align-items: center;
 }
 #cover-caption {
