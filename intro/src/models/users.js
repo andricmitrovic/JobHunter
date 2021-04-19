@@ -50,10 +50,8 @@ const userSchema = new mongoose.Schema({
     },
 
     // default: "nesto"
-
-    // age: mongoose.Schema.Types.Number           ovo sam zaboravio svuda dodaj posle
-
     experience: [
+        {
         company: {
             type: mongoose.Schema.Types.String,
             required: true  
@@ -65,7 +63,8 @@ const userSchema = new mongoose.Schema({
         length: {
             type: mongoose.Schema.Types.String,             
             required: true  
-        },
+        }
+        }
     ],
 
     techologies: [mongoose.Schema.Types.String],
