@@ -4,48 +4,48 @@ const userSchema = new mongoose.Schema({
     _id: mongoose.Schema.Types.ObjectId,
     username: {
         type: mongoose.Schema.Types.String,
-        required: true  
+        required: true
     },
 
     personalInfo: {
         fullName: {
             type: mongoose.Schema.Types.String,
-            required: true  
+            required: true
         },
         adress: {
             type: mongoose.Schema.Types.String,
-            required: true  
+            required: true
         },
         email: {
             type: mongoose.Schema.Types.String,
-            required: true  
+            required: true
         },
         gender: {
             type: mongoose.Schema.Types.String,
-            required: true  
+            required: true
         },
         password: {
             type: mongoose.Schema.Types.String,
-            required: true  
+            required: true
         },
         dateOfBirth: {
             type: mongoose.Schema.Types.String,
-            required: true 
+            required: true
         }
     },
 
     education: {
         university: {
             type: mongoose.Schema.Types.String,
-            required: true  
+            required: true
         },
         faculty: {
             type: mongoose.Schema.Types.String,
-            required: true  
+            required: true
         },
         gpa: {
             type: mongoose.Schema.Types.String,             // mongoose.Schema.Types.Number
-            required: true  
+            required: true
         },
     },
 
@@ -54,15 +54,15 @@ const userSchema = new mongoose.Schema({
         {
         company: {
             type: mongoose.Schema.Types.String,
-            required: true  
+            required: true
         },
         position: {
             type: mongoose.Schema.Types.String,
-            required: true  
+            required: true
         },
         length: {
-            type: mongoose.Schema.Types.String,             
-            required: true  
+            type: mongoose.Schema.Types.String,
+            required: true
         }
         }
     ],
@@ -73,17 +73,17 @@ const userSchema = new mongoose.Schema({
     portfolio: {
         gitHub: {
             type: mongoose.Schema.Types.String,
-            required: true  
+            required: true
         },
         linkedin: {
             type: mongoose.Schema.Types.String,
-            required: true  
+            required: true
         },
     },
-    
+
     about: [mongoose.Schema.Types.String]       // mozda bez zagrada ovde jer je jedan element a ne niz elemenata sa tim tipom
 });
 
-const User = mongoose.model('User', userSchema);
 
-module.exports = User;
+
+module.exports = userSchema;
