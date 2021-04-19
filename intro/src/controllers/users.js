@@ -1,4 +1,4 @@
-const users = require('../users/users');
+const users = require('../services/users');
 const validator = require('validator');
 
 const getAllUsers = (req, res) => {
@@ -33,6 +33,7 @@ const addNewUser = (req, res) => {
     !personalInfo.adress ||
     !personalInfo.email ||
     !personalInfo.gender ||
+    !personalInfo.dateOfBirth ||
     !personalInfo.password ||
 
     !education.university ||
@@ -61,45 +62,45 @@ const addNewUser = (req, res) => {
   }
 };
 
-// const changeUserPassword = (req, res) => {
-//   const { username, oldPassword, newPassword } = req.body;
+const changeUserPassword = (req, res) => {
+  const { username, oldPassword, newPassword } = req.body;
 
-//   if (!username || !oldPassword || !newPassword) {
-//     res.status(400).json();
-//   } else {
-//     const isChanged = users.changeUserPassword(
-//       username,
-//       oldPassword,
-//       newPassword
-//     );
-//     if (isChanged) {
-//       const user = users.getUserByUsername(username);
-//       res.status(200).json(user);
-//     } else {
-//       res.status(404).json();
-//     }
-//   }
-// };
+  if (!username || !oldPassword || !newPassword) {
+    res.status(400).json();
+  } else {
+    const isChanged = users.changeUserPassword(
+      username,
+      oldPassword,
+      newPassword
+    );
+    if (isChanged) {
+      const user = users.getUserByUsername(username);
+      res.status(200).json(user);
+    } else {
+      res.status(404).json();
+    }
+  }
+};
 
-// const deleteUser = (req, res) => {
-//   const username = req.params.username;
+const deleteUser = (req, res) => {
+  const username = req.params.username;
 
-//   if (!username) {
-//     res.status(400).json();
-//   } else {
-//     const isDeleted = users.deleteUser(username);
-//     if (isDeleted) {
-//       res.status(200).json();
-//     } else {
-//       res.status(404).json();
-//     }
-//   }
-// };
+  if (!username) {
+    res.status(400).json();
+  } else {
+    const isDeleted = users.deleteUser(username);
+    if (isDeleted) {
+      res.status(200).json();
+    } else {
+      res.status(404).json();
+    }
+  }
+};
 
 module.exports = {
   getUserByUsername,
   getAllUsers,
   addNewUser,
-  //changeUserPassword,
-  //deleteUser,
+  changeUserPassword,
+  deleteUser,
 };

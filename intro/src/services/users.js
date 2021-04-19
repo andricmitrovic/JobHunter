@@ -10,7 +10,8 @@ const users = [
         adress: 'Beograd',
         email: 'john@matf.bg.ac.rs',
         gender: 'male',
-        password: 'john123',
+        dateOfBirth: '01.01.1998.',
+        password: 'john123'
     },
 
     education: {
@@ -45,8 +46,8 @@ const users = [
         adress: 'Nis',
         email: 'pavle@gmail.com',
         gender: 'male',
-        password: 'pavle123',
-
+        dateOfBirth: '01.01.1998.',
+        password: 'pavle123'
     },
 
     education: {
@@ -80,7 +81,8 @@ const users = [
         adress: 'Novi Sad',
         email: 'maja@gmail.com',
         gender: 'female',
-        password: 'maja123',
+        dateOfBirth: '01.01.1998.',
+        password: 'maja123'
     },
 
     education: {
@@ -115,7 +117,8 @@ const users = [
         adress: 'Kragujevac',
         email: 'klara@gmail.com',
         gender: 'female',
-        password: 'klara123',
+        dateOfBirth: '01.01.1998.',
+        password: 'klara123'
     },
 
     education: {
