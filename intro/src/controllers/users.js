@@ -55,7 +55,6 @@ const addNewUser = (req, res) => {
     if (isAdded) {
       const user = users.getUserByUsername(username);
       res.status(201).json(user);
-      console.log(user.json) // USER MI JE NULL
     } else {
       res.status(403).json();
     }

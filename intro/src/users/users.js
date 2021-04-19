@@ -146,11 +146,6 @@ const getAllUsers = () => {
   return users;
 };
 
-// const getUserById = (id) => {
-//   const findUsers = users.filter((user) => user.id == id);
-//   return findUsers.length > 0 ? findUsers[0] : null;
-// };
-
 const getUserByUsername = (username) => {
   const findUsers = users.filter((user) => user.username == username);
   return findUsers.length > 0 ? findUsers[0] : null;
@@ -163,6 +158,7 @@ const addNewUser = (username, personalInfo, education, experience,
 
   const newUser = {
     id: uuid.v4(),
+    username,
     personalInfo,
     education,
     experience,
