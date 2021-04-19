@@ -1,22 +1,30 @@
-const http = require('http');
-const app = require('./app.js');
+// const http = require('http');
+// const app = require('./app.js');
 
-const port = process.env.PORT || 3000;
+// const port = process.env.PORT || 3000;
 
-try{
+// try{
 
-  const server = http.createServer(app);
+//   const server = http.createServer(app);
 
-  server.listen(port, () => {
-    console.log(`Aplikacija je aktivna na adresi http://localhost:${port}`);
-  });
-}
-catch(error)
-{
-  console.log('Server neuspesno pokrenut')
-  console.error(error);
-}
+//   server.listen(port, () => {
+//     console.log(`Aplikacija je aktivna na adresi http://localhost:${port}`);
+//   });
+// }
+// catch(error)
+// {
+//   console.log('Server neuspesno pokrenut')
+//   console.error(error);
+// }
 
+const MongoClient = require('mongodb').MongoClient;
+const uri = "mongodb+srv://pzveb:<password>@cluster0.r6adq.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
+const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
+client.connect(err => {
+  const collection = client.db("test").collection("devices");
+  // perform actions on the collection object
+  client.close();
+});
 
 
 

@@ -47,8 +47,8 @@ const addNewUser = (req, res) => {
     // !portfolio ||
     // !about ||
 
-    !validator.isEmail(personalInfo.email)
-    // !validator.isAplphanumeric(username)         // not a function ??
+    !validator.isEmail(personalInfo.email) ||
+    !validator.isAlphanumeric(username)         // not a function ??
   ) {
     res.status(400).json();
   } else {
