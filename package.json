@@ -1,0 +1,28 @@
+{
+  "name": "05-JobHunter",
+  "version": "1.0.0",
+  "description": "Platforma koju će koristiti poslodavci da pronađu adekvatne radnike i nezaposleni da pronađu poslove/prakse shodno svojim afinitetetima.",
+  "main": "index.js",
+  "dependencies": {
+    "express": "^4.17.1",
+    "nodemon": "^2.0.7",
+    "uuid": "^8.3.2",
+    "validator": "^13.5.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "nodemon": "nodemon intro/src/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://gitlab.com/matfpveb/projekti/2020-2021/05-JobHunter.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://gitlab.com/matfpveb/projekti/2020-2021/05-JobHunter/issues"
+  },
+  "homepage": "https://gitlab.com/matfpveb/projekti/2020-2021/05-JobHunter#readme"
+}
