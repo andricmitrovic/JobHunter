@@ -1,0 +1,139 @@
+[
+  {
+    username: 'john',
+
+    personalInfo: {
+        fullName: 'John Johnson',
+        adress: 'Beograd',
+        email: 'john@matf.bg.ac.rs',
+        gender: 'male',
+        dateOfBirth: '01.01.1998.',
+        password: 'john123'
+    },
+
+    education: {
+        university: 'University of Belgrade',
+        faculty: 'Matematicki fakultet',
+        gpa: '9.0'
+    },
+
+    experience: [
+        { company: 'Google', position: 'clound internship', length: '3 months'},
+        { company: 'Facebook', position: 'backend internship', length: '3 months'}
+    ],
+
+    techologies: ['js', 'java', 'c#'],
+    languages: ['english', 'japanese'],
+
+    portfolio: {
+        gitHub: 'https://github.com/andricmitrovic',
+        linkedin: 'https://www.linkedin.com/in/nikola-a-b03a6412a/'
+    },
+
+    about: 'Errare humanum est, stultum est in errore perseverare'
+    
+  },
+
+  {
+    username: 'pavle',
+
+    personalInfo: {
+        fullName: 'Pavle Pavlic',
+        adress: 'Nis',
+        email: 'pavle@gmail.com',
+        gender: 'male',
+        dateOfBirth: '01.01.1998.',
+        password: 'pavle123'
+    },
+
+    education: {
+        university: 'University of Belgrade',
+        faculty: 'Matematicki fakultet',
+        gpa: '9.0'
+    },
+
+    experience: [
+        { company: 'Google', position: 'clound internship', length: '3 months'},
+        { company: 'Facebook', position: 'backend internship', length: '3 months'}
+    ],
+
+    techologies: ['js', 'java', 'c#'],
+    languages: ['english', 'japanese'],
+
+    portfolio: {
+        gitHub: 'https://github.com/andricmitrovic',
+        linkedin: 'https://www.linkedin.com/in/nikola-a-b03a6412a/'
+    },
+
+    about: 'Errare humanum est, stultum est in errore perseverare'    
+  },
+
+  {
+    username: 'maja',
+
+    personalInfo: {
+        fullName: 'Maja Majic',
+        adress: 'Novi Sad',
+        email: 'maja@gmail.com',
+        gender: 'female',
+        dateOfBirth: '01.01.1998.',
+        password: 'maja123'
+    },
+
+    education: {
+        university: 'University of Belgrade',
+        faculty: 'Matematicki fakultet',
+        gpa: '9.0'
+    },
+
+    experience: [
+        { company: 'Google', position: 'clound internship', length: '3 months'},
+        { company: 'Facebook', position: 'backend internship', length: '3 months'}
+    ],
+
+    techologies: ['js', 'java', 'c#'],
+    languages: ['english', 'japanese'],
+
+    portfolio: {
+        gitHub: 'https://github.com/andricmitrovic',
+        linkedin: 'https://www.linkedin.com/in/nikola-a-b03a6412a/'
+    },
+
+    about: 'Errare humanum est, stultum est in errore perseverare'
+    
+  },
+
+  {
+    username: 'klara',
+
+    personalInfo: {
+        fullName: 'Klara Klaric',
+        adress: 'Kragujevac',
+        email: 'klara@gmail.com',
+        gender: 'female',
+        dateOfBirth: '01.01.1998.',
+        password: 'klara123'
+    },
+
+    education: {
+        university: 'University of Belgrade',
+        faculty: 'Matematicki fakultet',
+        gpa: '9.0'
+    },
+
+    experience: [
+        { company: 'Google', position: 'clound internship', length: '3 months'},
+        { company: 'Facebook', position: 'backend internship', length: '3 months'}
+    ],
+
+    techologies: ['js', 'java', 'c#'],
+    languages: ['english', 'japanese'],
+
+    portfolio: {
+        gitHub: 'https://github.com/andricmitrovic',
+        linkedin: 'https://www.linkedin.com/in/nikola-a-b03a6412a/'
+    },
+
+    about: 'Errare humanum est, stultum est in errore perseverare'
+    
+}]

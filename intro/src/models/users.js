@@ -81,9 +81,9 @@ const userSchema = new mongoose.Schema({
         },
     },
 
-    about: [mongoose.Schema.Types.String]       // mozda bez zagrada ovde jer je jedan element a ne niz elemenata sa tim tipom
+    about: mongoose.Schema.Types.String
 });
 
+const User = mongoose.model('User', userSchema, 'students');
 
-
-module.exports = userSchema;
+module.exports = User;

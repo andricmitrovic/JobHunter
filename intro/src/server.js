@@ -1,7 +1,5 @@
 const http = require('http');
-const { mainModule } = require('node:process');
-const app = require('./app.js');
-const User = require('./database.js')
+const app = require('./app');
 
 const port = process.env.PORT || 3000;
 

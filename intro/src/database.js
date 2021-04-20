@@ -1,7 +1,5 @@
 const mongoose = require('mongoose')
-const userSchema = require('./models/users.js')
-
-const User = mongoose.model('Student', userSchema, 'students')
+const User = require('./models/users.js')
 
 
 async function listAllUsers() {
@@ -18,8 +16,8 @@ const uri = "mongodb+srv://pzveb:pzveb@cluster0.r6adq.mongodb.net/JobHunter?retr
   const connector = mongoose.connect(uri, { useUnifiedTopology: true ,useNewUrlParser: true})
 
   let user = await connector.then(async () => {
-      return findUserById({ _id: "607df6b9ed53f737a02af8a0"});
-  })
+    return listAllUsers({});
+})
 
 
   console.log(user)
