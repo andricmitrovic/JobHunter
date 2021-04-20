@@ -1,45 +1,47 @@
 const mongoose = require('mongoose');
 const User = require('../models/users');
 
+
 const getAllUsers = async () => {
   const users = await User.find({}).exec();
   return users;
 };
-// const getAllUsers = () => {
-//   return users;
-// };
 
-// const getUserByUsername = (username) => {
-//   const findUsers = users.filter((user) => user.username == username);
-//   return findUsers.length > 0 ? findUsers[0] : null;
-// };
+const getUserByUsername = async (username) => {
+  const user = await User.findOne({ username: username }).exec();
+  return user;
+};
 
-// const addNewUser = (username, personalInfo, education, experience,
-//                     techologies, languages, portfolio, about) => {
+const addNewUser = async (username, personalInfo, education, experience,
+                    techologies, languages, portfolio, about) => {
 
-//   let isAdded = false;
+  // let isAdded = false;
 
-//   const newUser = {
-//     id: uuid.v4(),
-//     username,
-//     personalInfo,
-//     education,
-//     experience,
-//     techologies,
-//     languages,
-//     portfolio,
-//     about
-//   };
+  const newUser = new User({
+    _id: new mongoose.Types.ObjectId(),
+    username,
+    personalInfo,
+    education,
+    experience,
+    techologies,
+    languages,
+    portfolio,
+    about
+  });
 
-//   const user = getUserByUsername(username);
+  // const user = getUserByUsername(username);
 
-//   if (user == null) {
-//     users.push(newUser);
-//     isAdded = true;
-//   }
+  // if (user == null) {
+  //   await newUser.save();
+  //   isAdded = true;
+  // }
 
-//   return isAdded;
-// };
+  // return isAdded;
+
+  await newUser.save();
+  return newUser;
+
+};
 
 // const changeUserPassword = (username, oldPassword, newPassword) => {
 //   const foundUser = users.find(user => user.username == username && user.password == oldPassword);
@@ -62,9 +64,9 @@ const getAllUsers = async () => {
 // };
 
 module.exports = {
-  getAllUsers
-  // getUserByUsername,
-  // addNewUser,
+  getAllUsers,
+  getUserByUsername,
+  addNewUser,
   // changeUserPassword,
   // deleteUser,
 };

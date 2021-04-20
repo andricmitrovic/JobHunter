@@ -2,7 +2,6 @@ const usersService = require('../services/users');
 const validator = require('validator');
 
 
-
 const getAllUsers = async (req, res, next) => {
   try {
     const allUsers = await usersService.getAllUsers();
@@ -11,68 +10,77 @@ const getAllUsers = async (req, res, next) => {
     next(error);
   }
 };
-// const getAllUsers = (req, res) => {
-//   const allUsers = users.getAllUsers();
-//   res.status(200).json(allUsers);
-// };
 
+const getUserByUsername = async (req, res, next) => {
+  const username = req.params.username;
 
+  try {
+    if (username == undefined) {
+      const error = new Error('Nedostaje korisnicko ime!');
+      error.status = 400;
+      throw error;
+    }
 
-// const getUserByUsername = (req, res) => {
-//   const username = req.params.username;
-//   console.log(username);
+    const user = await usersService.getUserByUsername(username);
+    if (user == null) {
+      res.status(404).json();
+    } else {
+      res.status(200).json(user);
+    }
+  } catch (error) {
+    next(error);
+  }
+};
 
-//   if (username == undefined) {
-//     res.status(400).json();
-//   } else {
-//     const user = users.getUserByUsername(username);
-//     if (user == null) {
-//       res.status(404).json();
-//     } else {
-//       res.status(200).json(user);
-//     }
-//   }
-// };
+const addNewUser = async (req, res, next) => {
+  const { username, personalInfo, education, experience,
+    techologies, languages, portfolio, about } = req.body;
+  
+  try
+  {
+    if (
+      !username ||
 
-// const addNewUser = (req, res) => {
-//   const { username, personalInfo, education, experience,
-//     techologies, languages, portfolio, about } = req.body;
+      !personalInfo.fullName ||
+      !personalInfo.adress ||
+      !personalInfo.email ||
+      !personalInfo.gender ||
+      !personalInfo.dateOfBirth ||
+      !personalInfo.password ||
 
-//   if (
-//     !username ||
+      !education.university ||
+      !education.faculty ||
+      !education.gpa ||
+      
+      !experience ||
+      !techologies ||
+      !languages ||
 
-//     !personalInfo.fullName ||
-//     !personalInfo.adress ||
-//     !personalInfo.email ||
-//     !personalInfo.gender ||
-//     !personalInfo.dateOfBirth ||
-//     !personalInfo.password ||
+      // !portfolio ||
+      // !about ||
 
-//     !education.university ||
-//     !education.faculty ||
-//     !education.gpa ||
+      !validator.isEmail(personalInfo.email) ||
+      !validator.isAlphanumeric(username)      
+    ) 
+    {
+      res.status(400).json('Proverite prosledjene podatke!');
+    }
+
+    const exists = await usersService.getUserByUsername(username);
+    if (exists) 
+    {
+      res.status(403).json('Proverite prosledjene podatke!');
+    }
+
+    const newUser = await usersService.addNewUser(username, personalInfo, education, experience, techologies, languages, portfolio, about);
+    res.status(201).json(newUser);
+
+  } catch(error)
+  {
+    next(error);
+  }
     
-//     !experience ||
-//     !techologies ||
-//     !languages ||
-
-//     // !portfolio ||
-//     // !about ||
-
-//     !validator.isEmail(personalInfo.email) ||
-//     !validator.isAlphanumeric(username)         // not a function ??
-//   ) {
-//     res.status(400).json();
-//   } else {
-//     const isAdded = users.addNewUser(username, personalInfo, education, experience, techologies, languages, portfolio, about);
-//     if (isAdded) {
-//       const user = users.getUserByUsername(username);
-//       res.status(201).json(user);
-//     } else {
-//       res.status(403).json();
-//     }
-//   }
-// };
+};
 
 // const changeUserPassword = (req, res) => {
 //   const { username, oldPassword, newPassword } = req.body;
@@ -110,9 +118,9 @@ const getAllUsers = async (req, res, next) => {
 // };
 
 module.exports = {
-  //getUserByUsername,
-  getAllUsers
-  // addNewUser,
+  getUserByUsername,
+  getAllUsers,
+  addNewUser,
   // changeUserPassword,
   // deleteUser,
 };
