@@ -31,6 +31,7 @@ app.use(json());
 app.use(urlencoded({ extended: false }));
 
 app.use('/api/students', studentsRouter);
+app.use('/api/companies', companiesRouter);
 
 app.use(function (req, res, next) {
     const error = new Error('Zahtev nije podrzan!');
