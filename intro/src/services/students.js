@@ -2,22 +2,22 @@ const mongoose = require('mongoose');
 const Student = require('../models/students');
 
 
-const getAllUsers = async () => {
-  const users = await Student.find({}).exec();
-  return users;
+const getAllStudents = async () => {
+  const students = await Student.find({}).exec();
+  return students;
 };
 
-const getUserByUsername = async (username) => {
-  const user = await Student.findOne({ username: username }).exec();
-  return user;
+const getStudentByUsername = async (username) => {
+  const student = await Student.findOne({ username: username }).exec();
+  return student;
 };
 
-const addNewUser = async (username, personalInfo, education, experience,
+const addNewStudent = async (username, personalInfo, education, experience,
                     techologies, languages, portfolio, about) => {
 
   // let isAdded = false;
 
-  const newUser = new Student({
+  const newStudent = new Student({
     _id: new mongoose.Types.ObjectId(),
     username,
     personalInfo,
@@ -38,8 +38,8 @@ const addNewUser = async (username, personalInfo, education, experience,
 
   // return isAdded;
 
-  await newUser.save();
-  return newUser;
+  await newStudent.save();
+  return newStudent;
 
 };
 
@@ -64,9 +64,9 @@ const addNewUser = async (username, personalInfo, education, experience,
 // };
 
 module.exports = {
-  getAllUsers,
-  getUserByUsername,
-  addNewUser,
+  getAllStudents,
+  getStudentByUsername,
+  addNewStudent,
   // changeUserPassword,
   // deleteUser,
 };

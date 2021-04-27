@@ -1,5 +1,6 @@
 const express = require('express');
-const usersRouter = require('./routes/api/users');
+const studentsRouter = require('./routes/api/students');
+const companiesRouter = require('./routes/api/companies');
 const { urlencoded, json } = require('body-parser');
 const mongoose = require('mongoose');
 
@@ -29,7 +30,7 @@ mongoose.connection.on('error', (error) => {
 app.use(json());
 app.use(urlencoded({ extended: false }));
 
-app.use('/api/users', usersRouter);
+app.use('/api/students', studentsRouter);
 
 app.use(function (req, res, next) {
     const error = new Error('Zahtev nije podrzan!');

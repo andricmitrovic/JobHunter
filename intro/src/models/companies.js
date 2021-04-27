@@ -20,10 +20,6 @@ const userSchema = new mongoose.Schema({
             type: mongoose.Schema.Types.String,
             required: true
         },
-        location: {
-            type: mongoose.Schema.Types.String,
-            required: true
-        },
         password: {
             type: mongoose.Schema.Types.String,
             required: true
@@ -36,7 +32,7 @@ const userSchema = new mongoose.Schema({
             type: mongoose.Schema.Types.String,
             required: true
         },
-        positionTeam: {
+        positionExp: {
             type: mongoose.Schema.Types.String,
             required: true
         },

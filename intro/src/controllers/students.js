@@ -1,17 +1,17 @@
-const usersService = require('../services/users');
+const studentsService = require('../services/students');
 const validator = require('validator');
 
 
-const getAllUsers = async (req, res, next) => {
+const getAllStudents = async (req, res, next) => {
   try {
-    const allUsers = await usersService.getAllUsers();
-    res.status(200).json(allUsers);
+    const allStudents = await studentsService.getAllStudents();
+    res.status(200).json(allStudents);
   } catch (error) {
     next(error);
   }
 };
 
-const getUserByUsername = async (req, res, next) => {
+const getStudentByUsername = async (req, res, next) => {
   const username = req.params.username;
 
   try {
@@ -21,18 +21,18 @@ const getUserByUsername = async (req, res, next) => {
       throw error;
     }
 
-    const user = await usersService.getUserByUsername(username);
-    if (user == null) {
+    const student = await studentsService.getStudentByUsername(username);
+    if (student == null) {
       res.status(404).json();
     } else {
-      res.status(200).json(user);
+      res.status(200).json(student);
     }
   } catch (error) {
     next(error);
   }
 };
 
-const addNewUser = async (req, res, next) => {
+const addNewStudent = async (req, res, next) => {
   const { username, personalInfo, education, experience,
     techologies, languages, portfolio, about } = req.body;
   
@@ -66,14 +66,14 @@ const addNewUser = async (req, res, next) => {
       res.status(400).json('Proverite prosledjene podatke!');
     }
 
-    const exists = await usersService.getUserByUsername(username);
+    const exists = await studentsService.getStudentByUsername(username);
     if (exists) 
     {
       res.status(403).json('Proverite prosledjene podatke!');
     }
 
-    const newUser = await usersService.addNewUser(username, personalInfo, education, experience, techologies, languages, portfolio, about);
-    res.status(201).json(newUser);
+    const newStudent = await studentsService.addNewStudent(username, personalInfo, education, experience, techologies, languages, portfolio, about);
+    res.status(201).json(newStudent);
 
   } catch(error)
   {
@@ -118,9 +118,9 @@ const addNewUser = async (req, res, next) => {
 // };
 
 module.exports = {
-  getUserByUsername,
-  getAllUsers,
-  addNewUser,
+  getStudentByUsername,
+  getAllStudents,
+  addNewStudent,
   // changeUserPassword,
   // deleteUser,
 };
