@@ -20,70 +20,38 @@ const userSchema = new mongoose.Schema({
             type: mongoose.Schema.Types.String,
             required: true
         },
-        gender: {
+        location: {
             type: mongoose.Schema.Types.String,
             required: true
         },
         password: {
             type: mongoose.Schema.Types.String,
             required: true
-        },
-        dateOfBirth: {
-            type: mongoose.Schema.Types.String,
-            required: true
         }
     },
 
-    education: {
-        university: {
-            type: mongoose.Schema.Types.String,
-            required: true
-        },
-        faculty: {
-            type: mongoose.Schema.Types.String,
-            required: true
-        },
-        gpa: {
-            type: mongoose.Schema.Types.String,             // mongoose.Schema.Types.Number
-            required: true
-        },
-    },
-
-    // default: "nesto"
-    experience: [
+    positions: [
         {
-        company: {
+        positionName: {
             type: mongoose.Schema.Types.String,
             required: true
         },
-        position: {
+        positionTeam: {
             type: mongoose.Schema.Types.String,
             required: true
         },
         length: {
             type: mongoose.Schema.Types.String,
             required: true
-        }
+        },
+        techologies: [mongoose.Schema.Types.String],
+        languages: [mongoose.Schema.Types.String],
         }
     ],
-
-    techologies: [mongoose.Schema.Types.String],
-    languages: [mongoose.Schema.Types.String],
-
-    portfolio: {
-        gitHub: {
-            type: mongoose.Schema.Types.String,
-            required: true
-        },
-        linkedin: {
-            type: mongoose.Schema.Types.String,
-            required: true
-        },
-    },
 
     about: mongoose.Schema.Types.String
 });
 
-const User = mongoose.model('User', userSchema, 'students');
+const Company = mongoose.model('Company', userSchema, 'companies');
 
-module.exports = User;
+module.exports = Company;
