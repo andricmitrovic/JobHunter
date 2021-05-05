@@ -102,25 +102,35 @@ const addNewStudent = async (req, res, next) => {
 //   }
 // };
 
-// const deleteUser = (req, res) => {
-//   const username = req.params.username;
+const deleteStudent = async (req, res, next) => {
+  const username = req.params.username;
 
-//   if (!username) {
-//     res.status(400).json();
-//   } else {
-//     const isDeleted = users.deleteUser(username);
-//     if (isDeleted) {
-//       res.status(200).json();
-//     } else {
-//       res.status(404).json();
-//     }
-//   }
-// };
+  try {
+    if (!username) {
+      const error = new Error('Nedostaje korisnicko ime!');
+      error.status = 400;
+      throw error;
+    }
+
+    const user = await studentsService.getStudentByUsername(username);
+    if (!user) {
+      const error = new Error('Proverite korisnicko ime!');
+      error.status = 404;
+      throw error;
+    }
+
+    await studentsService.deleteStudent(username);
+    res.status(200).json();
+  } catch (error) {
+    next(error);
+  }
+};
+
 
 module.exports = {
   getStudentByUsername,
   getAllStudents,
   addNewStudent,
   // changeUserPassword,
-  // deleteUser,
+  deleteStudent
 };

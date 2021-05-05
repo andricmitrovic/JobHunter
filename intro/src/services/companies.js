@@ -48,20 +48,14 @@ const addNewCompany = async (username, personalInfo, positions, about) => {
 //   return true;
 // };
 
-// const deleteUser = (username) => {
-//   const userIndex = users.findIndex(user => user.username == username);
-//   if (userIndex == -1) {
-//     return false;
-//   }
-  
-//   users.splice(userIndex, 1);
-//   return true;
-// };
+const deleteCompany = async (username) => {
+  await Company.findOneAndDelete({ username: username }).exec();
+};
 
 module.exports = {
   getAllCompanies,
   getCompanyByUsername,
   addNewCompany,
   // changeUserPassword,
-  // deleteUser,
+  deleteCompany
 };

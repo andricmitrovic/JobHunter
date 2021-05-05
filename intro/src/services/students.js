@@ -15,8 +15,6 @@ const getStudentByUsername = async (username) => {
 const addNewStudent = async (username, personalInfo, education, experience,
                     techologies, languages, portfolio, about) => {
 
-  // let isAdded = false;
-
   const newStudent = new Student({
     _id: new mongoose.Types.ObjectId(),
     username,
@@ -28,15 +26,6 @@ const addNewStudent = async (username, personalInfo, education, experience,
     portfolio,
     about
   });
-
-  // const user = getUserByUsername(username);
-
-  // if (user == null) {
-  //   await newUser.save();
-  //   isAdded = true;
-  // }
-
-  // return isAdded;
 
   await newStudent.save();
   return newStudent;
@@ -53,20 +42,14 @@ const addNewStudent = async (username, personalInfo, education, experience,
 //   return true;
 // };
 
-// const deleteUser = (username) => {
-//   const userIndex = users.findIndex(user => user.username == username);
-//   if (userIndex == -1) {
-//     return false;
-//   }
-  
-//   users.splice(userIndex, 1);
-//   return true;
-// };
+const deleteStudent = async (username) => {
+  await Student.findOneAndDelete({ username: username }).exec();
+};
 
 module.exports = {
   getAllStudents,
   getStudentByUsername,
   addNewStudent,
   // changeUserPassword,
-  // deleteUser,
+  deleteStudent
 };
