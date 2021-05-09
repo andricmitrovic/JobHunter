@@ -1,5 +1,5 @@
 const mongoose = require('mongoose')
-const User = require('./models/users.js')
+const User = require('./models/students.js')
 
 
 async function listAllUsers() {

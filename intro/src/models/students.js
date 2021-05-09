@@ -1,32 +1,30 @@
 const mongoose = require('mongoose');
+require('mongoose-type-email');
 
 const userSchema = new mongoose.Schema({
     _id: mongoose.Schema.Types.ObjectId,
-    username: {
-        type: mongoose.Schema.Types.String,
-        required: true
+    email: {
+      type: mongoose.SchemaTypes.Email,
+      required: true,
+      unique: true
     },
 
     personalInfo: {
-        fullName: {
+        name: {
             type: mongoose.Schema.Types.String,
             required: true
         },
         adress: {
             type: mongoose.Schema.Types.String,
-            required: true
-        },
-        email: {
-            type: mongoose.Schema.Types.String,
-            required: true
+            required: false
         },
         gender: {
             type: mongoose.Schema.Types.String,
-            required: true
+            required: false
         },
         dateOfBirth: {
-            type: mongoose.Schema.Types.String,
-            required: true
+            type: mongoose.Schema.Types.Date,
+            required: false
         },
         password: {
             type: mongoose.Schema.Types.String,
@@ -37,15 +35,15 @@ const userSchema = new mongoose.Schema({
     education: {
         university: {
             type: mongoose.Schema.Types.String,
-            required: true
+            required: false
         },
         faculty: {
             type: mongoose.Schema.Types.String,
-            required: true
+            required: false
         },
         gpa: {
             type: mongoose.Schema.Types.String,             // mongoose.Schema.Types.Number
-            required: true
+            required: false
         },
     },
 
@@ -54,15 +52,15 @@ const userSchema = new mongoose.Schema({
         {
         company: {
             type: mongoose.Schema.Types.String,
-            required: true
+            required: false
         },
         position: {
             type: mongoose.Schema.Types.String,
-            required: true
+            required: false
         },
         length: {
             type: mongoose.Schema.Types.String,
-            required: true
+            required: false
         }
         }
     ],
@@ -73,17 +71,23 @@ const userSchema = new mongoose.Schema({
     portfolio: {
         gitHub: {
             type: mongoose.Schema.Types.String,
-            required: true
+            required: false
         },
         linkedin: {
             type: mongoose.Schema.Types.String,
-            required: true
+            required: false
         },
+    },
+    img:
+    {
+        data: mongoose.Schema.Types.Buffer,
+        contentType: mongoose.Schema.Types.String
     },
 
     about: mongoose.Schema.Types.String
 });
 
 const Student = mongoose.model('Student', userSchema, 'students');
+
 
 module.exports = Student;
