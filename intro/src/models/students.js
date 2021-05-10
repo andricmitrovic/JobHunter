@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 require('mongoose-type-email');
+const mongoosePaginate = require('mongoose-paginate-v2');
 
 const userSchema = new mongoose.Schema({
     _id: mongoose.Schema.Types.ObjectId,
@@ -87,7 +88,8 @@ const userSchema = new mongoose.Schema({
     about: mongoose.Schema.Types.String
 });
 
-const Student = mongoose.model('Student', userSchema, 'students');
+userSchema.plugin(mongoosePaginate);
 
+const Student = mongoose.model('Student', userSchema, 'students');
 
 module.exports = Student;

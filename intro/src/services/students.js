@@ -7,6 +7,11 @@ const getAllStudents = async () => {
   return students;
 };
 
+async function paginateThroughStudents(page = 1, limit = 10) {
+  return await Student.paginate({}, { page, limit, populate: 'owner', sort: 'timestamp', projection: '-timestamp' });
+}
+
+
 const getStudentByUsername = async (username) => {
   const student = await Student.findOne({ username: username }).exec();
   return student;
@@ -47,6 +52,7 @@ const deleteStudent = async (username) => {
 };
 
 module.exports = {
+  paginateThroughStudents,
   getAllStudents,
   getStudentByUsername,
   addNewStudent,

@@ -4,7 +4,7 @@ const validator = require('validator');
 
 const getAllStudents = async (req, res, next) => {
   try {
-    const allStudents = await studentsService.getAllStudents();
+    const allStudents = await studentsService.paginateThroughStudents();
     res.status(200).json(allStudents);
   } catch (error) {
     next(error);
