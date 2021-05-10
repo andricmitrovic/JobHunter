@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { Student } from '../models/student';
 
 @Component({
   selector: 'app-student-info',
@@ -7,9 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class StudentInfoComponent implements OnInit {
 
-  constructor() { }
+  @Input()
+  student!: Student;
+
+  constructor() { 
+  }
 
   ngOnInit(): void {
+    console.log(this.student)
   }
 
 }

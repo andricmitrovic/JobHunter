@@ -14,7 +14,6 @@ export class StudentListComponent implements OnInit {
   
   constructor(private studentServices: StudentService) {
     this.students = this.studentServices.getStudents();
-    console.log(this.students)
   }
 
 

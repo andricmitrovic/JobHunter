@@ -1,1 +1,22 @@
-<p>student-info works!</p>
+<div class="image">
+  <img src='./image.png' alt="Picture goes here"/>
+</div>
+<div class="content">
+  <a class="header"> {{ student.personalInfo.fullName }} </a>
+  <div class="meta">
+    <span>Adress: {{ student.personalInfo.adress }} </span>
+  </div>
+  <div class="meta">
+    <span>Education: {{ student.education.university }} </span>
+    <span>GPA: {{ student.education.gpa }} </span>
+  </div>
+  <!-- <div class="meta">
+    <span>Work experience: {{ student.personalInfo.name }} </span>
+    <span>Company: {{ student.personalInfo.name }} </span>
+    <span>Position: {{ student.personalInfo.name }} </span>
+    <span>Length: {{ student.personalInfo.name }} </span>
+  </div> -->
+  <div class="description">
+    <p> {{ student.about }} </p>
+  </div>
+</div>

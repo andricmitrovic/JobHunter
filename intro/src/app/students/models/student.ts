@@ -6,7 +6,8 @@ export class Student {
   constructor(
     public _id: string,
     public email: string,
-    public personalInfo: {name:string, adress:string, gender:string, dateOfBirth:string, password:string},
+    public personalInfo: {fullName:string, adress:string, gender:string, dateOfBirth:string, password:string},
+    public username: string,
     public education: {university:string, faculty:string, gpa:string},
     public experience: [{company:string, position:string, length:string}],
     public languages: string,
