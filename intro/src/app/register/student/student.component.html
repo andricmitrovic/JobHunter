@@ -11,7 +11,6 @@
     </div>
 
     <div class="ui form field">
-
       <label class="ui label"> Date of birth </label>
       <input type="date" placeholder="Enter date of your birth" formControlName = "date">
     </div>
@@ -31,11 +30,11 @@
     <div class="ui form field">
       <label class="ui label"> Password </label>
       <input type="password" placeholder="Password" formControlName = "password">
-      <div class="ui pointing red basic label " *ngIf="name!=null &&  name.touched && name.errors?.required">
+      <div class="ui pointing red basic label " *ngIf="password!=null &&  password.touched && password.errors?.required">
         Please enter your password!
       </div>
     </div>
-    <button type="submit" class="ui primary button" [disabled]="registerForm.valid">Register</button>
+    <button type="submit" class="ui primary button" [disabled]="!registerForm.valid">Register</button>
 </form>
 
 <div *ngIf="showLogin">
