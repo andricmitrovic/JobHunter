@@ -15,38 +15,38 @@ export class StudentComponent implements OnInit {
   showLogin: boolean;
   constructor(private fb: FormBuilder) {
     this.registerForm = this.fb.group({
-      ime : ['',[]],
-      datum: ['', []],
-      email: ['',[]],
-      lozinka: [''],
+      name : ['',[Validators.required]],
+      date: [''],
+      email: ['',[Validators.required, Validators.email]],
+      password: ['', [Validators.required]],
       url: ['']
     });
     this.showForm = true;
     this.showLogin = false;
+
    }
 
   onRegisterClick(){
-    this.student = new Student(this.ime?.value, new Date(this.datum?.value), this.email?.value, this.sifra?.value, "");
+    this.student = new Student(this.name?.value, new Date(this.date?.value), this.email?.value, this.password?.value, "");
     console.log(this.student);
     this.showForm = false;
     this.showLogin = true;
   }
   ngOnInit(): void {
   }
-  public get ime(){
-    return this.registerForm.get('ime');
+
+  public get name(){
+    return this.registerForm.get('name');
   }
-  public get prezime(){
-    return this.registerForm.get('prezime');
-  }
-  public get datum(){
-    return this.registerForm.get('datum');
+
+  public get date(){
+    return this.registerForm.get('date');
   }
   public get email(){
     return this.registerForm.get('email');
   }
-  public get sifra(){
-    return this.registerForm.get('sifra');
+  public get password(){
+    return this.registerForm.get('password');
   }
   public get urlImg(){
     return this.registerForm.get('url');

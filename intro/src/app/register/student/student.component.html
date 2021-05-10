@@ -1,30 +1,41 @@
 <form class="ui form" (ngSubmit)="onRegisterClick()" [formGroup]="registerForm" *ngIf="showForm">
 
-  Values {{registerForm.value | json}}
     <h1 class="ui h1"> Personal information</h1>
     <div class="ui form field">
 
       <label class="ui label"> Full name </label>
-      <input type="text" placeholder="Enter your name" formControlName = "ime">
+      <input type="text" placeholder="Enter your name" formControlName = "name">
+      <div class="ui pointing red basic label " *ngIf="name!=null &&  name.touched && name.errors?.required">
+        Please enter your full name!
+      </div>
     </div>
 
     <div class="ui form field">
 
-      <label class="ui label"> Time of birth </label>
-      <input type="date" placeholder="Enter date of your birth" formControlName = "datum">
+      <label class="ui label"> Date of birth </label>
+      <input type="date" placeholder="Enter date of your birth" formControlName = "date">
     </div>
 
     <div class="ui form field">
 
       <label class="ui label"> Email </label>
       <input type="email" placeholder="Email..." formControlName = "email">
+      <div class="ui pointing red basic label " *ngIf="email!=null &&  email.touched && email.errors?.required">
+        Please enter email!
+      </div>
+      <div class="ui pointing red basic label " *ngIf="email != null && email.touched && email.invalid">
+        Invalid email!
+      </div>
     </div>
 
     <div class="ui form field">
       <label class="ui label"> Password </label>
-      <input type="password" placeholder="Password" formControlName = "lozinka">
+      <input type="password" placeholder="Password" formControlName = "password">
+      <div class="ui pointing red basic label " *ngIf="name!=null &&  name.touched && name.errors?.required">
+        Please enter your password!
+      </div>
     </div>
-    <button type="submit" class="ui primary button" >Register</button>
+    <button type="submit" class="ui primary button" [disabled]="registerForm.valid">Register</button>
 </form>
 
 <div *ngIf="showLogin">
