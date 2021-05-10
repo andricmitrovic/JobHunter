@@ -1,6 +1,6 @@
 import { Component, OnInit, NgModule } from '@angular/core';
 import { connectableObservableDescriptor } from 'rxjs/internal/observable/ConnectableObservable';
-
+declare const $: any;
 
 @Component({
   selector: 'app-search',
@@ -23,6 +23,7 @@ export class SearchComponent implements OnInit {
    }
 
   ngOnInit(): void {
+    
   }
 
   onClick(){
@@ -41,4 +42,6 @@ export class SearchComponent implements OnInit {
     this.showSearch = false;
     this.showLogin = true;
   }
+
+  
 }

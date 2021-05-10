@@ -2,10 +2,11 @@
 
 <div class="ui group" *ngIf="showSearch">
 
-<button class="ui basic teal button" (click)="onRegisterClick()">Register</button>
-<button class="ui active basic green button" (click) = "onLoginClick()">Login</button>
+<button class="ui basic teal button" (click)="onRegisterClick()">Search Companies</button>
+<button class="ui active basic green button" (click) = "onLoginClick()">Search Students</button>
 </div>
 
+<!-- 
 <div class="ui group" *ngIf="showSearch">
   <h1>Welcome to JobHunter</h1>
   <div class="ui container">
@@ -16,9 +17,39 @@
     <button class="ui primary button" (click) = "onClick()">Search</button>
 
   </div>
+</div> -->
+
+<h1 class= "ui huge header blue">Welcome to JobHunter</h1>
+
+<div class="ui big right action left icon input">
+  <i class="search icon"></i>
+  <input type="text" placeholder="Search JobHunter...">
+
+  <select class="ui compact selection dropdown">
+    <option selected="" value="bg">Belgrade</option>
+    <option value="ni">Nis</option>
+    <option value="ns">Novi Sad</option>
+    <option value="kg">Kragujevac</option>
+  </select>
+
+  <select class="ui compact selection dropdown">
+    <option selected="" value="internship">Internship</option>
+    <option value="junior">Junior</option>
+    <option value="senior">Senior</option>
+  </select>
+
+  <select class="ui compact selection dropdown">
+    <option selected="" value="3m"> &lt; 3 months</option>
+    <option value="all">3 - 6 months</option>
+    <option value="products">&gt; 6 months</option>
+  </select>
+
+  <button class="ui primary button" (click) = "onClick()">Search</button>
 </div>
 
-<div class="ui" *ngIf=true>
+<p></p>
+
+<div class="ui" *ngIf=showStudents>
   <app-student-list></app-student-list>
 </div>
 

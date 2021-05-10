@@ -16,6 +16,7 @@ export class StudentInfoComponent implements OnInit {
 
   ngOnInit(): void {
     console.log(this.student)
+    //console.log(this.student.personalInfo)
   }
 
 }
