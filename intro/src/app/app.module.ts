@@ -15,7 +15,8 @@ import { StudentsComponent } from './profile/students/students.component';
 import { CompaniesComponent } from './profile/companies/companies.component';
 import { LoginComponent } from './login/login.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { StudentListComponent } from './student-list/student-list.component';
+import { StudentListComponent } from './students/student-list/student-list.component';
+import { StudentInfoComponent } from './students/student-info/student-info.component';
 
 
 @NgModule({
@@ -27,7 +28,8 @@ import { StudentListComponent } from './student-list/student-list.component';
     StudentsComponent,
     CompaniesComponent,
     LoginComponent,
-    StudentListComponent
+    StudentListComponent,
+    StudentInfoComponent
   ],
   imports: [
     BrowserModule,
