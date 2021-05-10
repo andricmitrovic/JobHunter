@@ -12,19 +12,21 @@ export class SearchComponent implements OnInit {
   showSearch : boolean;
   showRegister :boolean;
   showLogin : boolean;
+  showStudents : boolean;
 
   constructor() {
     this.inputValue = "";
     this.showSearch = true;
     this.showRegister = false;
     this.showLogin = false;
+    this.showStudents = false;
    }
 
   ngOnInit(): void {
   }
 
   onClick(){
-    console.log(this.inputValue);
+    this.showStudents = true;
   }
 
   onChangeInput(event: Event) {
