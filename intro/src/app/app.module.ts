@@ -8,7 +8,7 @@ import {HttpClientModule} from "@angular/common/http"
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { SearchComponent } from './search/search.component';
+import { SearchCompaniesComponent } from './search/search-companies/search-companies.component';
 import { StudentComponent } from './register/student/student.component';
 import { CompanyComponent } from './register/company/company.component';
 import { StudentsComponent } from './profile/students/students.component';
@@ -17,19 +17,23 @@ import { LoginComponent } from './login/login.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { StudentListComponent } from './students/student-list/student-list.component';
 import { StudentInfoComponent } from './students/student-info/student-info.component';
+import { SearchStudentsComponent } from './search/search-students/search-students.component';
+import { SearchComponent } from './search/search/search.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    SearchComponent,
+    SearchCompaniesComponent,
     StudentComponent,
     CompanyComponent,
     StudentsComponent,
     CompaniesComponent,
     LoginComponent,
     StudentListComponent,
-    StudentInfoComponent
+    StudentInfoComponent,
+    SearchStudentsComponent,
+    SearchComponent
   ],
   imports: [
     BrowserModule,

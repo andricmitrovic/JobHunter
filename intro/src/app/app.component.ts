@@ -16,7 +16,16 @@ export class AppComponent implements OnInit{
   ngOnInit() {
     // Videti: https://semantic-ui.com/modules/tab.html#/examples
     $(".menu .item").tab();
+
+    // $('.ui.dropdown').dropdown({
+    //   action: 'nothing'
+    // });
+    // $('.ui.checkbox').checkbox();
+
+    $('.ui.dropdown').dropdown();
   }
+
+  
 
 
 }

@@ -1,0 +1,9 @@
+<div class="ui group">
+    <button class="ui basic teal button" (click)="openSearchCompanies()">Search Companies</button>
+    <button class="ui active basic green button" (click)="openSearchStudents()">Search Students</button>
+</div>
+    
+<h1 class= "ui huge header blue">Welcome to JobHunter</h1>
+
+<app-search-students  *ngIf="searchStudentsOrCompanies"></app-search-students>
+<app-search-companies *ngIf="!searchStudentsOrCompanies"></app-search-companies>

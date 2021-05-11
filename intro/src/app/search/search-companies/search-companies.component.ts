@@ -3,11 +3,11 @@ import { connectableObservableDescriptor } from 'rxjs/internal/observable/Connec
 declare const $: any;
 
 @Component({
-  selector: 'app-search',
-  templateUrl: './search.component.html',
-  styleUrls: ['./search.component.css'],
+  selector: 'app-search-companies',
+  templateUrl: './search-companies.component.html',
+  styleUrls: ['./search-companies.component.css'],
 })
-export class SearchComponent implements OnInit {
+export class SearchCompaniesComponent implements OnInit {
   inputValue : string;
   showSearch : boolean;
   showRegister :boolean;

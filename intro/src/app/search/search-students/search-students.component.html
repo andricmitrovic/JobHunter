@@ -1,0 +1,92 @@
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.9/semantic.min.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.9/semantic.min.css" rel="stylesheet"/> -->
+
+<!-- <div class="ui big right action left icon input">
+    <i class="search icon"></i>
+    <input type="text" placeholder="Search JobHunter...">
+  
+    <select class="ui compact selection dropdown">
+      <option selected="" value="bg">Belgrade</option>
+      <option value="ni">Nis</option>
+      <option value="ns">Novi Sad</option>
+      <option value="kg">Kragujevac</option>
+    </select>
+  
+    <select class="ui compact selection dropdown">
+      <option selected="" value="internship">java</option>
+      <option value="junior">css</option>
+      <option value="senior">js</option>
+    </select>
+
+    
+  
+    <button class="ui primary button" (click) = "onClick()">Search</button>
+</div>
+
+<p></p> -->
+
+<div class="ui basic right labeled dropdown icon button">
+  <i class="dropdown icon"></i>
+  <span class="ui tiny header">Filter</span>
+  <div class="menu">
+    <div class="ui icon search input">
+      <i class="search icon"></i>
+      <input type="text" name="Search" placeholder="Search&hellip;">
+    </div>
+    <div class="scrolling menu">
+      <div class="ui item checkbox" data-value="item1">
+        <input type="checkbox" name="item1">
+        <label>First item</label>
+      </div>
+      <div class="ui item checkbox" data-value="item2">
+        <input type="checkbox" name="item2">
+        <label>Second item</label>
+      </div>
+      <div class="ui item checkbox" data-value="item3">
+        <input type="checkbox" name="item3">
+        <label>Third item</label>
+      </div>
+      <div class="ui item checkbox" data-value="item4">
+        <input type="checkbox" name="item4">
+        <label>Fourth item</label>
+      </div>
+      <div class="ui item checkbox" data-value="item5">
+        <input type="checkbox" name="item5">
+        <label>Fifth item</label>
+      </div>
+      <div class="ui item checkbox" data-value="item6">
+        <input type="checkbox" name="item6">
+        <label>Sixth item</label>
+      </div>
+      <div class="ui item checkbox" data-value="item7">
+        <input type="checkbox" name="item7">
+        <label>Seventh item</label>
+      </div>
+      <div class="ui item checkbox" data-value="item8">
+        <input type="checkbox" name="item8">
+        <label>Eighth item</label>
+      </div>
+    </div>
+  </div>
+</div>
+  
+<div class="ui labeled input">
+  <span class="ui label">Colour:</span>
+  <select class="ui compact dropdown" >
+    <option value="red">Red</option>
+    <option value="green">Green</option>
+    <option value="blue">Blue</option>
+  </select>
+  <span class="ui label">Display:</span>
+  <select name="display" class="ui dropdown" multiple>
+    <option value="1">Item 1</option>
+    <option value="2">Item 2</option>
+    <option value="3">Item 3</option>
+  </select>
+</div>
+
+<div class="ui" *ngIf=showStudents>
+    <app-student-list></app-student-list>
+</div> 
+  
