@@ -14,7 +14,16 @@ export class StudentService {
 
   public getStudents(page: number = 1, limit: number = 10): Observable<Student[]>
   {
-    const params: HttpParams = new HttpParams().append('page', page.toString()).append('limit', limit.toString());
+    const data = { 
+                 page: page.toString(), 
+                 limit: limit.toString(), 
+                 adress: "Beograd", 
+                 requiredTechnologies: 'java', 
+                 faculty: 'Matematicki fakultet'
+                };
+
+    const params: HttpParams = new HttpParams({fromObject: data})
+
     const obs: Observable<StudentPagination> = this.http.get<StudentPagination>("http://localhost:3000/api/students", {params});
 
     const newObs: Observable<Student[]> =  obs.pipe(

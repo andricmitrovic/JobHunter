@@ -11,7 +11,7 @@ const userSchema = new mongoose.Schema({
     },
 
     personalInfo: {
-        name: {
+        fullName: {
             type: mongoose.Schema.Types.String,
             required: true
         },
@@ -66,7 +66,7 @@ const userSchema = new mongoose.Schema({
         }
     ],
 
-    techologies: [mongoose.Schema.Types.String],
+    technologies: [mongoose.Schema.Types.String],
     languages: [mongoose.Schema.Types.String],
 
     portfolio: {

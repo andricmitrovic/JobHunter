@@ -4,7 +4,15 @@ const validator = require('validator');
 
 const getAllStudents = async (req, res, next) => {
   try {
-    const allStudents = await studentsService.paginateThroughStudents();
+    console.log(req.query);
+
+    page = req.query.page;
+    limit = req.query.limit;
+    adress = req.query.adress;
+    requiredTechnologies = req.query.requiredTechnologies;
+    faculty = req.query.faculty;
+
+    const allStudents = await studentsService.paginateThroughStudents(page, limit, adress, requiredTechnologies, faculty);
     res.status(200).json(allStudents);
   } catch (error) {
     next(error);
