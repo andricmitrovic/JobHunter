@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const mongoosePaginate = require('mongoose-paginate-v2');
 
 const userSchema = new mongoose.Schema({
     _id: mongoose.Schema.Types.ObjectId,
@@ -47,6 +48,8 @@ const userSchema = new mongoose.Schema({
 
     about: mongoose.Schema.Types.String
 });
+
+userSchema.plugin(mongoosePaginate);
 
 const Company = mongoose.model('Company', userSchema, 'companies');
 

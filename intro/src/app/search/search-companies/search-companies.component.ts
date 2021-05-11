@@ -9,17 +9,11 @@ declare const $: any;
 })
 export class SearchCompaniesComponent implements OnInit {
   inputValue : string;
-  showSearch : boolean;
-  showRegister :boolean;
-  showLogin : boolean;
-  showStudents : boolean;
+  showCompanies : boolean;
 
   constructor() {
     this.inputValue = "";
-    this.showSearch = true;
-    this.showRegister = false;
-    this.showLogin = false;
-    this.showStudents = false;
+    this.showCompanies = false;
    }
 
   ngOnInit(): void {
@@ -27,21 +21,12 @@ export class SearchCompaniesComponent implements OnInit {
   }
 
   onClick(){
-    this.showStudents = true;
+    this.showCompanies = true;
   }
 
   onChangeInput(event: Event) {
     const newInput: string = (event.target as HTMLInputElement).value;
     this.inputValue = newInput;
   }
-  onRegisterClick(){
-      this.showSearch = false;
-      this.showRegister = true;
-  }
-  onLoginClick(){
-    this.showSearch = false;
-    this.showLogin = true;
-  }
-
   
 }

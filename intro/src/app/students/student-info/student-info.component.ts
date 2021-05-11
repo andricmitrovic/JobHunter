@@ -8,15 +8,13 @@ import { Student } from '../models/student';
 })
 export class StudentInfoComponent implements OnInit {
 
-  @Input()
-  student!: Student;
+  @Input() student!: Student;
 
   constructor() { 
   }
 
   ngOnInit(): void {
     console.log(this.student)
-    //console.log(this.student.personalInfo)
   }
 
 }

@@ -19,6 +19,8 @@ import { StudentListComponent } from './students/student-list/student-list.compo
 import { StudentInfoComponent } from './students/student-info/student-info.component';
 import { SearchStudentsComponent } from './search/search-students/search-students.component';
 import { SearchComponent } from './search/search/search.component';
+import { CompanyListComponent } from './companies/company-list/company-list.component';
+import { CompanyInfoComponent } from './companies/company-info/company-info.component';
 
 
 @NgModule({
@@ -33,7 +35,9 @@ import { SearchComponent } from './search/search/search.component';
     StudentListComponent,
     StudentInfoComponent,
     SearchStudentsComponent,
-    SearchComponent
+    SearchComponent,
+    CompanyListComponent,
+    CompanyInfoComponent
   ],
   imports: [
     BrowserModule,

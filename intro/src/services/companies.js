@@ -7,6 +7,10 @@ const getAllCompanies = async () => {
   return companies;
 };
 
+async function paginateThroughCompanies(page = 1, limit = 10) {
+  return await Company.paginate({}, { page, limit, populate: 'owner', sort: 'timestamp', projection: '-timestamp' });
+}
+
 const getCompanyByUsername = async (username) => {
   const company = await Company.findOne({ username: username }).exec();
   return company;
@@ -53,6 +57,7 @@ const deleteCompany = async (username) => {
 };
 
 module.exports = {
+  paginateThroughCompanies,
   getAllCompanies,
   getCompanyByUsername,
   addNewCompany,

@@ -4,7 +4,7 @@ const validator = require('validator');
 
 const getAllCompanies = async (req, res, next) => {
   try {
-    const allCompanies = await companiesService.getAllCompanies();
+    const allCompanies = await companiesService.paginateThroughCompanies();
     res.status(200).json(allCompanies);
   } catch (error) {
     next(error);
