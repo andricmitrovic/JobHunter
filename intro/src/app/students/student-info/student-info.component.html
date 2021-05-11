@@ -3,15 +3,15 @@
 </div>
 <div class="content">
   <a class="header"> {{ student.personalInfo.fullName }} </a>
-  <div class="meta">
+  <div class="meta" *ngIf=" student.personalInfo.adress !== undefined ">
     <span>Adress: {{ student.personalInfo.adress }} </span>
   </div>
-  <div class="meta">
+  <div class="meta" *ngIf=" student.education !== undefined ">
     <span>Education: {{ student.education.university }}, </span>
     <span> {{ student.education.faculty }}, </span>
     <span> GPA: {{ student.education.gpa }} </span>
   </div>
-  <div class="meta">
+  <div class="meta" *ngIf=" student.technologies !== undefined ">
     <span>Technologies: </span>
     <span *ngFor="let tech of student.technologies"> {{ tech }} </span>
   </div>
@@ -21,7 +21,7 @@
     <span>Position: {{ student.personalInfo.name }} </span>
     <span>Length: {{ student.personalInfo.name }} </span>
   </div> -->
-  <div class="description">
+  <div class="description" *ngIf=" student.about !== undefined ">
     <p> {{ student.about }} </p>
   </div>
 </div>
