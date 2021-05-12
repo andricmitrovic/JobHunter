@@ -7,15 +7,15 @@ const getAllCompanies = async () => {
   return companies;
 };
 
-async function paginateThroughCompanies(page = 1, limit = 10, adress = undefined, positionSeniority = undefined, length = undefined) {
+async function paginateThroughCompanies(page = 1, limit = 10, adress = "all", positionSeniority = "all", length = "all") {
 
   const query = Company.find()  // radi i sa findOne ???
   
-  if ( adress!== undefined )
+  if ( adress!== "all" )
   {
     query.where('personalInfo.adress').equals(adress);
   }
-  if ( positionSeniority!== undefined )
+  if ( positionSeniority!== "all" )
   {
     query.where('positions.positionExp').in(positionSeniority);
   }

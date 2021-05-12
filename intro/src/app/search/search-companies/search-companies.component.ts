@@ -21,9 +21,9 @@ export class SearchCompaniesComponent implements OnInit {
 
     this.checkoutForm = this.formBuilder.group({
       searchString: [''],
-      adress: ['Beograd'],
-      positionSeniority: ['Internship'],
-      length: ['lt 3']
+      adress: ['all'],
+      positionSeniority: ['all'],
+      length: ['all']
       });
     
     this.query = this.checkoutForm.value;
