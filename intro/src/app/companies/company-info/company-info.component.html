@@ -4,11 +4,11 @@
   <div class="content">
     <a class="header"> {{ company.personalInfo.fullName }} </a>
     <div class="meta">
-      <span>Email: {{ company.personalInfo.email }} </span>
+      <span> {{ company.personalInfo.adress }} </span>
     </div>
     <div>
-      <p>Open positions: </p>
-      <p *ngFor="let position of company.positions"> {{ position.positionName }} </p>
+      <h5 lass="header">Open positions: </h5>
+      <p *ngFor="let position of company.positions"> <span>{{ position.positionName }}, </span> <span>{{ position.positionExp}}</span> </p>
     </div>
     <div class="meta">
       <p> {{ company.about }} </p>

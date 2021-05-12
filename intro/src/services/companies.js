@@ -7,8 +7,27 @@ const getAllCompanies = async () => {
   return companies;
 };
 
-async function paginateThroughCompanies(page = 1, limit = 10) {
-  return await Company.paginate({}, { page, limit, populate: 'owner', sort: 'timestamp', projection: '-timestamp' });
+async function paginateThroughCompanies(page = 1, limit = 10, adress = undefined, positionSeniority = undefined, length = undefined) {
+
+  const query = Company.find()  // radi i sa findOne ???
+  
+  if ( adress!== undefined )
+  {
+    query.where('personalInfo.adress').equals(adress);
+  }
+  if ( positionSeniority!== undefined )
+  {
+    query.where('positions.positionExp').in(positionSeniority);
+  }
+
+  // TODO porediti mesece
+
+  // if ( length!== undefined )
+  // {
+  //   query.where('education.faculty').equals(faculty);
+  // }
+
+  return await Company.paginate(query, { page, limit, populate: 'owner', sort: 'timestamp', projection: '-timestamp' });
 }
 
 const getCompanyByUsername = async (username) => {

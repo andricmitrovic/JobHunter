@@ -4,7 +4,7 @@ const validator = require('validator');
 
 const getAllStudents = async (req, res, next) => {
   try {
-    console.log(req.query);
+    //console.log(req.query);
 
     page = req.query.page;
     limit = req.query.limit;

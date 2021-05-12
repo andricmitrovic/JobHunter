@@ -4,7 +4,14 @@ const validator = require('validator');
 
 const getAllCompanies = async (req, res, next) => {
   try {
-    const allCompanies = await companiesService.paginateThroughCompanies();
+
+    page = req.query.page;
+    limit = req.query.limit;
+    adress = req.query.adress;
+    positionSeniority = req.query.positionSeniority;
+    length = req.query.length;
+
+    const allCompanies = await companiesService.paginateThroughCompanies(page, limit, adress, positionSeniority, length);
     res.status(200).json(allCompanies);
   } catch (error) {
     next(error);
