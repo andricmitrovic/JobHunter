@@ -1,40 +1,50 @@
-<div class="ui big right action left icon input">
-  <i class="search icon"></i>
-  <input type="text" placeholder="Search JobHunter...">
 
-  <div class="ui compact labeled input">
+<form class="form" [formGroup]="checkoutForm" (ngSubmit)="submitSearchForm()">
+  <div class="ui big right action left icon input">
+    <i class="search icon"></i>
 
-    <span class="ui compact label">City:</span>
-    <select class="ui compact selection dropdown" >
-      <option selected="" value="bg">Belgrade</option>
-      <option value="ni">Nis</option>
-      <option value="ns">Novi Sad</option>
-      <option value="kg">Kragujevac</option>
-    </select>
+    <input type="text" placeholder="Search JobHunter..." formControlName="searchString">
+  
+    <div class="ui compact labeled input">
 
+      <span class="ui compact label">City:</span>
+      <div class="form−group">
+        <select class="ui compact selection dropdown" formControlName="adress">
+          <option selected="" value="Beograd" >Beograd</option>
+          <option value="Nis" >Nis</option>
+          <option value="Novi Sad" >Novi Sad</option>
+          <option value="Kragujevac" >Kragujevac</option>
+        </select>
+      </div>
 
-    <span class="ui compact label">Experience:</span>
-    <select class="ui compact selection dropdown" >
-      <option selected="" value="internship">Internship</option>
-      <option value="junior">Junior</option>
-      <option value="senior">Senior</option>
-    </select>
+      
+      <span class="ui compact label">Experience:</span>
+      <div class="form−group">
+        <select class="ui compact selection dropdown" formControlName="positionSeniority">
+          <option selected="" value="Internship">Internship</option>
+          <option value="Junior">Junior</option>
+          <option value="Senior">Senior</option>
+        </select>
+      </div>
 
-    <span class="ui compact label">Length:</span>
-    <select class="ui compact selection dropdown" >
-      <option selected="" value="3m"> &lt; 3 months</option>
-      <option value="all">3 - 6 months</option>
-      <option value="products">&gt; 6 months</option>
-    </select>
+      <span class="ui compact label">Length:</span>
+      <div class="form−group">
+        <select class="ui compact selection dropdown" formControlName="length">
+          <option selected="" value="lt 3"> &lt; 3 months</option>
+          <option value="3-6">3 - 6 months</option>
+          <option value="gt 6">&gt; 6 months</option>
+        </select>
+      </div>
 
+    </div>
+
+    <button class="ui primary button" >Search</button>
   </div>
-
-  <button class="ui primary button" (click) = "onClick()">Search</button>
-</div>
+</form>
 
 <p></p>
 
 <div class="ui" *ngIf=showCompanies>
-  <app-company-list></app-company-list>
+  <app-company-list [query]="query"></app-company-list>
 </div>
 

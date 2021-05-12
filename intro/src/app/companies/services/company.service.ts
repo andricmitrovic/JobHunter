@@ -12,14 +12,17 @@ export class CompanyService {
 
   constructor(private http: HttpClient) { }
 
-  public getCompanies(page: number = 1, limit: number = 10): Observable<Company[]>
+  public getCompanies(query: any, page: number = 1, limit: number = 10): Observable<Company[]>
   {
+    console.log("From get request");
+    console.log(query);
+
     const data = { 
       page: page.toString(), 
       limit: limit.toString(),
-      adress: "Beograd",
-      positionSeniority: "Internship",      // ovo treba enum da bude kasnije
-      length: "lt 3"                        // isto neki enum
+      adress: query.adress,
+      positionSeniority: query.positionSeniority,      // ovo treba enum da bude kasnije
+      length: query.length                        // isto neki enum
      };
 
 

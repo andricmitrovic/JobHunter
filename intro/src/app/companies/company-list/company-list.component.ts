@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Company } from '../models/company';
 import { CompanyService } from '../services/company.service';
@@ -10,14 +10,17 @@ import { CompanyService } from '../services/company.service';
 })
 export class CompanyListComponent implements OnInit {
 
-  companies: Observable<Company[]>;
+  @Input() query!: any;
+
+  companies!: Observable<Company[]>;
 
   constructor(private companyServices: CompanyService) { 
-    this.companies = this.companyServices.getCompanies();
-    //console.log(this.companies)
   }
 
   ngOnInit(): void {
+    //console.log(this.query);
+
+    this.companies = this.companyServices.getCompanies(this.query);  // TODO mora ovde jer se nakon inita query inicijalizuje, ali get mora da se poziva svaki put kad se klikne ne samo jednom
   }
 
 }
