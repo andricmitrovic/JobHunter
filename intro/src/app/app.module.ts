@@ -21,6 +21,8 @@ import { SearchStudentsComponent } from './search/search-students/search-student
 import { SearchComponent } from './search/search/search.component';
 import { CompanyListComponent } from './companies/company-list/company-list.component';
 import { CompanyInfoComponent } from './companies/company-info/company-info.component';
+import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
+
 
 
 @NgModule({
@@ -37,7 +39,7 @@ import { CompanyInfoComponent } from './companies/company-info/company-info.comp
     SearchStudentsComponent,
     SearchComponent,
     CompanyListComponent,
-    CompanyInfoComponent
+    CompanyInfoComponent,
   ],
   imports: [
     BrowserModule,
@@ -45,7 +47,8 @@ import { CompanyInfoComponent } from './companies/company-info/company-info.comp
     ReactiveFormsModule,
     BrowserAnimationsModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    NgMultiSelectDropDownModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
