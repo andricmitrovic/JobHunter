@@ -1,11 +1,14 @@
-<div class="image">
+<div class="image" *ngIf="!showProfile">
   <img src='../../../assets/image.png' alt="Picture goes here"/>
 </div>
+
 <div class="content">
-  <a class="header"> {{ student.personalInfo.fullName }} </a>
+  <a class="header" (click)= "onNameClick()" > {{ student.personalInfo.fullName }} </a>
+  <div *ngIf="!showProfile">
   <div class="meta" *ngIf=" student.personalInfo.adress !== undefined ">
     <span>Adress: {{ student.personalInfo.adress }} </span>
   </div>
+
   <div class="meta" *ngIf=" student.education !== undefined ">
     <span>Education: {{ student.education.university }}, </span>
     <span> {{ student.education.faculty }}, </span>
@@ -21,7 +24,12 @@
     <span>Position: {{ student.personalInfo.name }} </span>
     <span>Length: {{ student.personalInfo.name }} </span>
   </div> -->
-  <div class="description" *ngIf=" student.about !== undefined ">
-    <p> {{ student.about }} </p>
+    <div class="description" *ngIf=" student.about !== undefined ">
+      <p> {{ student.about }} </p>
+    </div>
   </div>
+  </div>
+<div>
+  <app-students *ngIf="showProfile"></app-students>
 </div>
+

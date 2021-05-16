@@ -9,12 +9,19 @@ import { Student } from '../models/student';
 export class StudentInfoComponent implements OnInit {
 
   @Input() student!: Student;
-
-  constructor() { 
+  showProfile : boolean;
+  constructor() {
+    this.showProfile = false;
   }
 
   ngOnInit(): void {
     console.log(this.student)
+  }
+  onNameClick(){
+    console.log("On name clicked ");
+    console.log(this.showProfile);
+    this.showProfile = !this.showProfile;
+
   }
 
 }

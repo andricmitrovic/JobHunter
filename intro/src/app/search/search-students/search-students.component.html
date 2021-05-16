@@ -2,10 +2,13 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.9/semantic.min.js"></script>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.9/semantic.min.css" rel="stylesheet"/> -->
 
-<div class="ui big right action left icon input">
 
-  <i class="search icon"></i>
-    <input type="text" placeholder="Search JobHunter...">
+  <div class="ui big action left icon input">
+
+    <i class="search icon"></i>
+      <input type="text" placeholder="Search JobHunter..." autocomplete="on" [(ngModel)]= "searchText">
+
+
 
     <div class="ui compact labeled input">
 
@@ -17,7 +20,7 @@
         <option value="kg">Kragujevac</option>
       </select>
     </div>
-
+    <div class = "ui big left action">
     <div class="ui compact labeled input">
 
       <span class="ui compact label">Faculty:</span>
@@ -39,75 +42,77 @@
             {{selectedItems[id].item_text}}
           </label>
         </div>
-       </ng-template>
-       <ng-template #optionSelectedTemplate let-option="option"  let-id="id">
+        </ng-template>
+
+        <ng-template #optionSelectedTemplate let-option="option"  let-id="id">
 
 
-        <div>
-           <img [src]="selectedItems[id].image" style="width: 18px; margin-right: 2px;" />
-          {{option}}
-         </div>
+          <div>
+            <img [src]="selectedItems[id].image" style="width: 18px; margin-right: 2px;" />
+            {{option}}
+          </div>
 
-       </ng-template>
+      </ng-template>
+
     </form>
+    </div>
+
+<div class="ui compact labeled input">
+
+<span class="ui compact label">Technologies:</span>
+
+<form [formGroup]="facultyDropdownForm">
+  <ng-multiselect-dropdown
+      name="Technologies"
+      [placeholder]="'Technologies'"
+      formControlName="technologies"
+      [disabled]="disabled"
+      [settings]="dropdownSettings"
+      (onSelect)="onItemSelect($event)"
+      [data]="technologies"></ng-multiselect-dropdown>
+
+  <ng-template #optionsTemplate let-item let-option="option" let-id="id" let-isSelected="isSelected">
+  <div style="padding:1px 10px;margin-right:10px;right:2px;top:-2px">
+    <img [src]="selectedTechnologies[1].image" style="width: 18px; margin: 0 20px;" />
+    <label style="color: #333;min-width: 130px;" [ngStyle]="{}">
+      {{selectedTechnologies[id].item_text}}
+    </label>
+  </div>
+ </ng-template>
+ <ng-template #optionSelectedTemplate let-option="option"  let-id="id">
+
+
+  <div>
+     <img [src]="selectedItems[id].image" style="width: 18px; margin-right: 2px;" />
+    {{option}}
    </div>
 
-   <div class="ui compact labeled input">
+ </ng-template>
+</form>
+</div>
 
-    <span class="ui compact label">Technologies:</span>
-
-    <form [formGroup]="facultyDropdownForm">
-      <ng-multiselect-dropdown
-          name="Technologies"
-          [placeholder]="'Technologies'"
-          formControlName="technologies"
-          [disabled]="disabled"
-          [settings]="dropdownSettings"
-          (onSelect)="onItemSelect($event)"
-          [data]="technologies"></ng-multiselect-dropdown>
-
-      <ng-template #optionsTemplate let-item let-option="option" let-id="id" let-isSelected="isSelected">
-      <div style="padding:1px 10px;margin-right:10px;right:2px;top:-2px">
-        <img [src]="selectedTechnologies[1].image" style="width: 18px; margin: 0 20px;" />
-        <label style="color: #333;min-width: 130px;" [ngStyle]="{}">
-          {{selectedTechnologies[id].item_text}}
-        </label>
-      </div>
-     </ng-template>
-     <ng-template #optionSelectedTemplate let-option="option"  let-id="id">
-
-
-      <div>
-         <img [src]="selectedItems[id].image" style="width: 18px; margin-right: 2px;" />
-        {{option}}
-       </div>
-
-     </ng-template>
-  </form>
- </div>
-
-
+</div>
 
 <!--
-      <span class="ui compact label">Technologies:</span>
-      <select class="ui compact selection dropdown" multiple>
-        <option selected="" value="cpp">cpp</option>
-        <option value="java">java</option>
-        <option value="css">css</option>
-        <option value="js">js</option>
-        <option value="python">python</option>
-        <option value="matlab">matlab</option>
-        <option value="r">R</option>
-        <option value="torch">torch</option>
-      </select>
+  <span class="ui compact label">Technologies:</span>
+  <select class="ui compact selection dropdown" multiple>
+    <option selected="" value="cpp">cpp</option>
+    <option value="java">java</option>
+    <option value="css">css</option>
+    <option value="js">js</option>
+    <option value="python">python</option>
+    <option value="matlab">matlab</option>
+    <option value="r">R</option>
+    <option value="torch">torch</option>
+  </select>
 
-    </div>
+</div>
 
-  -->
-  </div>
-    <button class="ui primary button" (click) = "onClick()">Search</button>
+-->
+</div>
+<button class="ui primary button" (click) = "onClick()">Search</button>
 
 
-    <div class="ui" *ngIf=showStudents>
-        <app-student-list></app-student-list>
-    </div>
+<div class="ui" *ngIf=showStudents>
+    <app-student-list></app-student-list>
+</div>

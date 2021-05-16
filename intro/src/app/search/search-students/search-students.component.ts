@@ -15,6 +15,7 @@ export class SearchStudentsComponent implements OnInit {
   inputValue : string;
   showSearch : boolean;
   showStudents : boolean;
+  searchText : string;
 
   facultyDropdownForm! : FormGroup;
   disabled = false;
@@ -38,6 +39,7 @@ export class SearchStudentsComponent implements OnInit {
     this.selectedItems = [];
     this.technologies = [];
     this.selectedTechnologies = [];
+    this.searchText = ""
    }
 
   ngOnInit(): void {
@@ -78,8 +80,24 @@ export class SearchStudentsComponent implements OnInit {
     this.technologies = [{
       item_id : 1,
       item_text : "Python",
+      image : "https://upload.wikimedia.org/wikipedia/commons/c/c3/Python-logo-notext.svg"
+    },
+    {
+      item_id : 2,
+      item_text : "C/C++",
       image : "http://www.sciencekids.co.nz/images/pictures/flags96/India.jpg"
-    }]
+    },
+    {
+      item_id : 3,
+      item_text : "Java",
+      image : "http://www.sciencekids.co.nz/images/pictures/flags96/India.jpg"
+    },
+    {
+      item_id : 4,
+      item_text : "HTML",
+      image : "http://www.sciencekids.co.nz/images/pictures/flags96/India.jpg"
+    }
+  ];
     this.dropdownSettings = {
       "singleSelection": false,
       "defaultOpen": false,
