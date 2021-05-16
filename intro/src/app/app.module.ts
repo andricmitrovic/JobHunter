@@ -22,6 +22,7 @@ import { SearchComponent } from './search/search/search.component';
 import { CompanyListComponent } from './companies/company-list/company-list.component';
 import { CompanyInfoComponent } from './companies/company-info/company-info.component';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
+import { HomeComponent } from './home/containers/home/home.component';
 
 
 
@@ -40,6 +41,7 @@ import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
     SearchComponent,
     CompanyListComponent,
     CompanyInfoComponent,
+    HomeComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,3 +1,4 @@
+import { StudentService } from './../../students/services/student.service';
 import { Student } from './../../students/models/student';
 import { Component, OnInit, Input } from '@angular/core';
 
@@ -10,7 +11,8 @@ export class StudentsComponent implements OnInit {
 
   @Input() student!: Student;
 
-  constructor() { }
+  constructor(private sS: StudentService) {
+   }
 
   ngOnInit(): void {
   }

@@ -5,6 +5,8 @@ body {
   /* color: white; */
   text-align: center;
   align-items: center;
+  background-image: url(/intro/src/assets/home.png);
+
 }
 
 html, body { height: 100%; }

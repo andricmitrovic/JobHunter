@@ -18,8 +18,7 @@ export class StudentInfoComponent implements OnInit {
     console.log(this.student)
   }
   onNameClick(){
-    console.log("On name clicked ");
-    console.log(this.showProfile);
+
     this.showProfile = !this.showProfile;
 
   }
