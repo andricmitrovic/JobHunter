@@ -7,29 +7,22 @@ const getAllStudents = async () => {
   return students;
 };
 
-async function paginateThroughStudents(page = 1, limit = 10, adress = undefined, requiredTechnologies = undefined, faculty = undefined) {
+async function paginateThroughStudents(page = 1, limit = 10, adress = "all", requiredTechnologies = "all", faculty = "all") {
 
   const query = Student.find()  // radi i sa findOne ???
   
-  if ( adress!== undefined )
+  if ( adress !== "all" )
   {
     query.where('personalInfo.adress').equals(adress);
   }
-  if ( requiredTechnologies!== undefined )
+  if ( requiredTechnologies.length !== 0 )
   {
     query.where('technologies').in(requiredTechnologies);
   }
-  if ( faculty!== undefined )
+  if ( faculty.length !== 0 )
   {
-    query.where('education.faculty').equals(faculty);
+    query.where('education.faculty').in(faculty);
   }
-
-  // // Test query here
-  // query.exec(function (err, person) {
-  //   if (err) return handleError(err);
-  //   // Prints "Space Ghost is a talk show host."
-  //   console.log('%s is from %s.', person.personalInfo.fullName, person.personalInfo.adress);
-  // });
 
   return await Student.paginate(query, { page, limit, populate: 'owner', sort: 'timestamp', projection: '-timestamp' });
 }

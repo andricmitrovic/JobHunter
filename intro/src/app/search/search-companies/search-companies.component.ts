@@ -10,7 +10,6 @@ declare const $: any;
   styleUrls: ['./search-companies.component.css'],
 })
 export class SearchCompaniesComponent implements OnInit {
-  inputValue : string;
 
   public checkoutForm: FormGroup;
   query: any;
@@ -18,7 +17,6 @@ export class SearchCompaniesComponent implements OnInit {
   eventsSubject: Subject<any> = new Subject<any>();
 
   constructor(private formBuilder: FormBuilder) {
-    this.inputValue = "";
 
     this.checkoutForm = this.formBuilder.group({
       searchString: [''],
@@ -28,18 +26,9 @@ export class SearchCompaniesComponent implements OnInit {
       });
     
     this.query = this.checkoutForm.value;
-
-    console.log(this.checkoutForm)
-
    }
 
   ngOnInit(): void {
-    
-  }
-
-  onChangeInput(event: Event) {
-    const newInput: string = (event.target as HTMLInputElement).value;
-    this.inputValue = newInput;
   }
 
   public submitSearchForm(){

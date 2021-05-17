@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Component, Input, OnInit } from '@angular/core';
+import { Observable, Subscription } from 'rxjs';
 import { Student } from '../models/student';
 import { StudentService } from '../services/student.service';
 
@@ -10,14 +10,20 @@ import { StudentService } from '../services/student.service';
 })
 export class StudentListComponent implements OnInit {
   
-  students: Observable<Student[]>;
+  private eventsSubscription!: Subscription;
+  @Input() events!: Observable<any>;
+
+  students!: Observable<Student[]>;
   
   constructor(private studentServices: StudentService) {
-    this.students = this.studentServices.getStudents();
   }
 
-
   ngOnInit(): void {
+    this.eventsSubscription = this.events.subscribe((query) => this.students = this.studentServices.getStudents(query));
+  }
+
+  ngOnDestroy() {
+    this.eventsSubscription.unsubscribe();
   }
 
 }

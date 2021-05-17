@@ -12,14 +12,17 @@ export class StudentService {
 
   constructor(private http: HttpClient) { }
 
-  public getStudents(page: number = 1, limit: number = 10): Observable<Student[]>
+  public getStudents(query: any, page: number = 1, limit: number = 10): Observable<Student[]>
   {
+    console.log("From get request");
+    console.log(query);
+
     const data = { 
                  page: page.toString(), 
                  limit: limit.toString(), 
-                 adress: "Beograd", 
-                 requiredTechnologies: 'java', 
-                 faculty: 'Matematicki fakultet'
+                 adress: query.adress, 
+                 requiredTechnologies: query.technologies, 
+                 faculty: query.faculty
                 };
 
     const params: HttpParams = new HttpParams({fromObject: data})

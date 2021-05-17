@@ -1,6 +1,8 @@
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { IDropdownSettings } from 'ng-multiselect-dropdown';
+import { map } from 'rxjs/operators';
+import { Subject } from 'rxjs';
 declare const $: any;
 
 @Component({
@@ -11,6 +13,8 @@ declare const $: any;
 
 
 export class SearchStudentsComponent implements OnInit {
+
+  eventsSubject: Subject<any> = new Subject<any>();
 
   inputValue : string;
   showSearch : boolean;
@@ -63,7 +67,7 @@ export class SearchStudentsComponent implements OnInit {
       },
       {
         item_id: 4,
-        item_text: "Fakultet organizacionih nauka",
+        item_text: "Fakultet Organizacionih nauka",
         image:
           "http://www.sciencekids.co.nz/images/pictures/flags96/Canada.jpg",
       }
@@ -79,22 +83,22 @@ export class SearchStudentsComponent implements OnInit {
 
     this.technologies = [{
       item_id : 1,
-      item_text : "Python",
+      item_text : "python",
       image : "https://upload.wikimedia.org/wikipedia/commons/c/c3/Python-logo-notext.svg"
     },
     {
       item_id : 2,
-      item_text : "C/C++",
+      item_text : "c#",
       image : "http://www.sciencekids.co.nz/images/pictures/flags96/India.jpg"
     },
     {
       item_id : 3,
-      item_text : "Java",
+      item_text : "java",
       image : "http://www.sciencekids.co.nz/images/pictures/flags96/India.jpg"
     },
     {
       item_id : 4,
-      item_text : "HTML",
+      item_text : "html",
       image : "http://www.sciencekids.co.nz/images/pictures/flags96/India.jpg"
     }
   ];
@@ -111,6 +115,8 @@ export class SearchStudentsComponent implements OnInit {
       "limitSelection": -1
     };
     this.facultyDropdownForm = this.fb.group({
+      searchString: [''],
+      adress: ['all'],
       faculty: [this.selectedItems],
       technologies :[this.selectedTechnologies]
   });
@@ -119,7 +125,27 @@ export class SearchStudentsComponent implements OnInit {
 
   onClick(){
     this.showStudents = true;
-    console.log(this.facultyDropdownForm.value);
+
+    // preprocess query
+
+    const tmp =  this.facultyDropdownForm.value
+
+    const query = {
+      searchString: tmp.searchString,
+      adress: tmp.adress,
+      faculty: Array(),
+      technologies: Array()
+    }
+
+    for (const val of tmp.faculty) {
+      query.faculty.push(val.item_text)
+    }
+
+    for (const val of tmp.technologies) {
+      query.technologies.push(val.item_text)
+    }
+
+    this.eventsSubject.next(query);
   }
 
   onChangeInput(event: Event) {
@@ -128,10 +154,10 @@ export class SearchStudentsComponent implements OnInit {
   }
 
   onItemSelect(item: any) {
-    console.log('onItemSelect', item);
+    //console.log('onItemSelect', item);
   }
   onSelectAll(items: any) {
-      console.log('onSelectAll', items);
+      //console.log('onSelectAll', items);
   }
   toogleShowFilter() {
       this.ShowFilter = !this.ShowFilter;

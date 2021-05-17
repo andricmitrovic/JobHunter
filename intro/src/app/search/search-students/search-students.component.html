@@ -2,30 +2,33 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.9/semantic.min.js"></script>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.9/semantic.min.css" rel="stylesheet"/> -->
 
-
+<form [formGroup]="facultyDropdownForm">
   <div class="ui big action left icon input">
 
     <i class="search icon"></i>
-      <input type="text" placeholder="Search JobHunter..." autocomplete="on" [(ngModel)]= "searchText">
+      <input type="text" placeholder="Search JobHunter..." autocomplete="on" [(ngModel)]= "searchText" formControlName="searchString">
 
 
-
-    <div class="ui compact labeled input">
-
-      <span class="ui compact label">City:</span>
-      <select class="ui compact selection dropdown" >
-        <option selected="" value="bg">Belgrade</option>
-        <option value="ni">Nis</option>
-        <option value="ns">Novi Sad</option>
-        <option value="kg">Kragujevac</option>
+    
+    <span class="ui compact label">City:</span>
+    <div class="form−group">
+      <select class="ui compact selection dropdown" formControlName="adress">
+        <option selected="" value="all" > --- </option>
+        <option value="Beograd" >Beograd</option>
+        <option value="Nis" >Nis</option>
+        <option value="Novi Sad" >Novi Sad</option>
+        <option value="Kragujevac" >Kragujevac</option>
       </select>
     </div>
+    
+    
+
     <div class = "ui big left action">
     <div class="ui compact labeled input">
 
       <span class="ui compact label">Faculty:</span>
 
-      <form [formGroup]="facultyDropdownForm">
+      
         <ng-multiselect-dropdown
             name="Faculty"
             [placeholder]="'Select Faculty'"
@@ -54,14 +57,14 @@
 
       </ng-template>
 
-    </form>
+    
     </div>
 
 <div class="ui compact labeled input">
 
 <span class="ui compact label">Technologies:</span>
 
-<form [formGroup]="facultyDropdownForm">
+
   <ng-multiselect-dropdown
       name="Technologies"
       [placeholder]="'Technologies'"
@@ -88,7 +91,7 @@
    </div>
 
  </ng-template>
-</form>
+
 </div>
 
 </div>
@@ -111,8 +114,8 @@
 -->
 </div>
 <button class="ui primary button" (click) = "onClick()">Search</button>
+</form>
 
-
-<div class="ui" *ngIf=showStudents>
-    <app-student-list></app-student-list>
+<div class="ui">
+    <app-student-list [events]="eventsSubject.asObservable()"></app-student-list>
 </div>
