@@ -166,7 +166,13 @@
                     </div>
                   </div>
                 </div>
-
               </div>
             </div>
           </div>
+    <!-- Dugme koje vidi samo korisik sa ulogom student -->
+    <div class="container" id="content" #content>  
+  <p>testtesttests</p>
+        <!-- @ViewChild('content') content:ElementRef;   -->
+      </div>
+    <input type="button" value="Generate CV" class="btn btn-success" (click)="SavePDF()" >  
+             
