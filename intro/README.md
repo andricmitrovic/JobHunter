@@ -4,10 +4,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 # To enable PDF downloader
 
-Instal jspdf:
-npm install jspdf --save    
-<br>
-npm install @types/jspdf --save-dev”
+Run 'npm install jspdf --save' and 'npm install @types/jspdf --save-dev”'.
 
 
 ## Development server
