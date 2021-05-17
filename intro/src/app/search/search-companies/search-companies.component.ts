@@ -1,5 +1,6 @@
 import { Component, OnInit, NgModule } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Subject } from 'rxjs';
 import { connectableObservableDescriptor } from 'rxjs/internal/observable/ConnectableObservable';
 declare const $: any;
 
@@ -10,14 +11,14 @@ declare const $: any;
 })
 export class SearchCompaniesComponent implements OnInit {
   inputValue : string;
-  showCompanies : boolean;
 
   public checkoutForm: FormGroup;
   query: any;
 
+  eventsSubject: Subject<any> = new Subject<any>();
+
   constructor(private formBuilder: FormBuilder) {
     this.inputValue = "";
-    this.showCompanies = false;
 
     this.checkoutForm = this.formBuilder.group({
       searchString: [''],
@@ -36,10 +37,6 @@ export class SearchCompaniesComponent implements OnInit {
     
   }
 
-  displayCompanies(){
-    this.showCompanies = true;
-  }
-
   onChangeInput(event: Event) {
     const newInput: string = (event.target as HTMLInputElement).value;
     this.inputValue = newInput;
@@ -48,10 +45,7 @@ export class SearchCompaniesComponent implements OnInit {
   public submitSearchForm(){
     this.query = this.checkoutForm.value;
 
-    console.log("From submit form");
-    console.log(this.query);
-
-    this.displayCompanies();
+    this.eventsSubject.next(this.query);
   }
   
 }

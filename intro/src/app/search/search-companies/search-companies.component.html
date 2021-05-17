@@ -47,7 +47,7 @@
 
 <p></p>
 
-<div class="ui" *ngIf=showCompanies>
-  <app-company-list [query]="query"></app-company-list>
+<div class="ui">
+  <app-company-list [events]="eventsSubject.asObservable()"></app-company-list>
 </div>
 
