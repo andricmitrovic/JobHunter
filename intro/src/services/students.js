@@ -7,19 +7,19 @@ const getAllStudents = async () => {
   return students;
 };
 
-async function paginateThroughStudents(page = 1, limit = 10, adress = "all", requiredTechnologies = "all", faculty = "all") {
+async function paginateThroughStudents(page = 1, limit = 10, adress, requiredTechnologies, faculty) {
 
   const query = Student.find()  // radi i sa findOne ???
-  
+
   if ( adress !== "all" )
   {
     query.where('personalInfo.adress').equals(adress);
   }
-  if ( requiredTechnologies.length !== 0 )
+  if ( requiredTechnologies !== undefined )
   {
     query.where('technologies').in(requiredTechnologies);
   }
-  if ( faculty.length !== 0 )
+  if ( faculty !== undefined )
   {
     query.where('education.faculty').in(faculty);
   }
