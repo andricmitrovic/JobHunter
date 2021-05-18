@@ -41,53 +41,55 @@ const getStudentByUsername = async (req, res, next) => {
 };
 
 const addNewStudent = async (req, res, next) => {
-  const { username, personalInfo, education, experience,
+  const { email, personalInfo, education, experience,
     techologies, languages, portfolio, about } = req.body;
-  
+
+
   try
   {
     if (
-      !username ||
+    //  !username ||
 
-      !personalInfo.fullName ||
-      !personalInfo.adress ||
-      !personalInfo.email ||
-      !personalInfo.gender ||
-      !personalInfo.dateOfBirth ||
-      !personalInfo.password ||
+        !personalInfo.fullName ||
+      //!personalInfo.adress ||
+        !email ||
+     // !personalInfo.gender ||
+     // !personalInfo.dateOfBirth ||
+        !personalInfo.password ||
 
-      !education.university ||
-      !education.faculty ||
-      !education.gpa ||
-      
-      !experience ||
-      !techologies ||
-      !languages ||
+     // !education.university ||
+     // !education.faculty ||
+     // !education.gpa ||
+
+     // !experience ||
+     // !techologies ||
+     // !languages ||
 
       // !portfolio ||
       // !about ||
 
-      !validator.isEmail(personalInfo.email) ||
-      !validator.isAlphanumeric(username)      
-    ) 
+       !validator.isEmail(email)
+     // !validator.isAlphanumeric(username)
+
+    )
     {
-      res.status(400).json('Proverite prosledjene podatke!');
+      res.status(400).json('Proverite prosledjene podatke1! ' + email);
     }
 
-    const exists = await studentsService.getStudentByUsername(username);
-    if (exists) 
+    const exists = await studentsService.getStudentByEmail(email);
+    if (exists)
     {
       res.status(403).json('Proverite prosledjene podatke!');
     }
 
-    const newStudent = await studentsService.addNewStudent(username, personalInfo, education, experience, techologies, languages, portfolio, about);
+    const newStudent = await studentsService.addNewStudent(email, personalInfo, education, experience, techologies, languages, portfolio, about);
     res.status(201).json(newStudent);
 
   } catch(error)
   {
     next(error);
   }
-    
+
 };
 
 // const changeUserPassword = (req, res) => {

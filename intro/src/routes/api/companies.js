@@ -7,7 +7,7 @@ const router = express.Router();
 router.get('/', controller.getAllCompanies);
 router.get('/:username', controller.getCompanyByUsername);
 
-router.post('/', verifyToken, controller.addNewCompany);
+router.post('/', controller.addNewCompany);
 // router.put('/', controller.changeUserPassword);
 
 router.delete('/:username', verifyToken, controller.deleteCompany);

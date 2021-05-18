@@ -14,11 +14,11 @@ export class StudentService {
 
   public getStudents(page: number = 1, limit: number = 10): Observable<Student[]>
   {
-    const data = { 
-                 page: page.toString(), 
-                 limit: limit.toString(), 
-                 adress: "Beograd", 
-                 requiredTechnologies: 'java', 
+    const data = {
+                 page: page.toString(),
+                 limit: limit.toString(),
+                 adress: "Beograd",
+                 requiredTechnologies: 'java',
                  faculty: 'Matematicki fakultet'
                 };
 
@@ -35,11 +35,10 @@ export class StudentService {
 
   public postStudent(student: Student): Observable<Student>
   {
-    const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9. \
-    eyJhZG1pblVzZXJuYW1lIjoiYWRtaW4iLCJhZG1pblBhc3N3b3JkIjoiYWRtaW5wYXNzIiwiaWF0IjoxNjE3NzM4NzEzLCJleHAiOjE2MjAzMzA3MTN9. \
-    h-H96EdSvm_q6PFrKrjPoi-c5akNVgDynrrq1bTblIw"
+    const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhZG1pblVzZXJuYW1lIjoiYWRtaW4iLCJhZG1pblBhc3N3b3JkIjoiYWRtaW5wYXNzIn0.LeAxoSHdgvR5coB2vzg0kYKI6DAdXhyOF4fzuzaQ_BU"
 
     const headers: HttpHeaders = new HttpHeaders().append('x-access-token', token)
+    console.log(student);
     const obs: Observable<Student> = this.http.post<Student>("http://localhost:3000/api/students", student, {headers});
 
     return obs;

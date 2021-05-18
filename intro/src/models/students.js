@@ -46,6 +46,7 @@ const userSchema = new mongoose.Schema({
             type: mongoose.Schema.Types.String,             // mongoose.Schema.Types.Number
             required: false
         },
+        required : false
     },
 
     // default: "nesto"

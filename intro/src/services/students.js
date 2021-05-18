@@ -10,7 +10,7 @@ const getAllStudents = async () => {
 async function paginateThroughStudents(page = 1, limit = 10, adress = undefined, requiredTechnologies = undefined, faculty = undefined) {
 
   const query = Student.find()  // radi i sa findOne ???
-  
+
   if ( adress!== undefined )
   {
     query.where('personalInfo.adress').equals(adress);
@@ -35,17 +35,17 @@ async function paginateThroughStudents(page = 1, limit = 10, adress = undefined,
 }
 
 
-const getStudentByUsername = async (username) => {
-  const student = await Student.findOne({ username: username }).exec();
+const getStudentByEmail = async (email) => {
+  const student = await Student.findOne({ email: email }).exec();
   return student;
 };
 
-const addNewStudent = async (username, personalInfo, education, experience,
+const addNewStudent = async (email, personalInfo, education, experience,
                     techologies, languages, portfolio, about) => {
 
   const newStudent = new Student({
     _id: new mongoose.Types.ObjectId(),
-    username,
+    email,
     personalInfo,
     education,
     experience,
@@ -77,7 +77,7 @@ const deleteStudent = async (username) => {
 module.exports = {
   paginateThroughStudents,
   getAllStudents,
-  getStudentByUsername,
+  getStudentByEmail,
   addNewStudent,
   // changeUserPassword,
   deleteStudent

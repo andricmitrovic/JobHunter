@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {FormGroup, FormBuilder, Validators} from '@angular/forms'
 import { Student } from './../../students/models/student';
 import { StudentService } from '../../students/services/student.service';
-
+import { Subscription } from 'rxjs';
 @Component({
   selector: 'app-student',
   templateUrl: './student.component.html',
@@ -12,9 +12,12 @@ export class StudentComponent implements OnInit {
 
   student!:Student;
   registerForm: FormGroup;
+
+
   showForm : boolean;
   showLogin: boolean;
-  constructor(private fb: FormBuilder, private studentServices: StudentService) {
+
+  constructor(private fb: FormBuilder, private authService: StudentService) {
     this.registerForm = this.fb.group({
       name : ['',[Validators.required]],
       date: [''],
@@ -29,6 +32,7 @@ export class StudentComponent implements OnInit {
 
   onRegisterClick(){
 
+
     // const email: string = this.email?.value;
     // const personalInfo = {
     //   fullName: this.name?.value,
@@ -37,7 +41,7 @@ export class StudentComponent implements OnInit {
     // }
 
     this.student = new Student(
-      this.email?.value, 
+      this.email?.value,
       {
       fullName: this.name?.value,
       dateOfBirth: new Date(this.date?.value),
@@ -46,8 +50,8 @@ export class StudentComponent implements OnInit {
 
     console.log(this.student);
 
-    console.log(this.studentServices.postStudent(this.student));
-
+    console.log(this.authService.postStudent(this.student).subscribe());
+    //this.authService.registerStudent(this.student.email, this.student.personalInfo).subscribe();
     this.showForm = false;
     this.showLogin = true;
   }

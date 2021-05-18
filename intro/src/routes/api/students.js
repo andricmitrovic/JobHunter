@@ -7,7 +7,7 @@ const router = express.Router();
 router.get('/', controller.getAllStudents);
 router.get('/:username', controller.getStudentByUsername);
 
-router.post('/', verifyToken, controller.addNewStudent);
+router.post('/', controller.addNewStudent);
 // router.put('/', controller.changeUserPassword);
 
 router.delete('/:username', verifyToken, controller.deleteStudent);
