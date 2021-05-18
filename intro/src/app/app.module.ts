@@ -23,8 +23,7 @@ import { CompanyListComponent } from './companies/company-list/company-list.comp
 import { CompanyInfoComponent } from './companies/company-info/company-info.component';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { HomeComponent } from './home/containers/home/home.component';
-
-
+import { InterestingFactsComponent } from './interesting-facts/interesting-facts.component';
 
 @NgModule({
   declarations: [
@@ -42,6 +41,7 @@ import { HomeComponent } from './home/containers/home/home.component';
     CompanyListComponent,
     CompanyInfoComponent,
     HomeComponent,
+    InterestingFactsComponent,
   ],
   imports: [
     BrowserModule,

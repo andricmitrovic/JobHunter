@@ -16,11 +16,10 @@ export class CompanyListComponent implements OnInit {
   companies!: Observable<Company[]>;
 
   constructor(private companyServices: CompanyService) { 
-    
   }
 
   ngOnInit(): void {
-    this.eventsSubscription = this.events.subscribe((data) => this.companies = this.companyServices.getCompanies(data));
+    this.eventsSubscription = this.events.subscribe((query) => this.companies = this.companyServices.getCompanies(query));
   }
 
   ngOnDestroy() {

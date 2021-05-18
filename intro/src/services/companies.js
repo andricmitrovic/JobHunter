@@ -11,11 +11,11 @@ async function paginateThroughCompanies(page = 1, limit = 10, adress = "all", po
 
   const query = Company.find()  // radi i sa findOne ???
   
-  if ( adress!== "all" )
+  if ( adress !== "all" )
   {
     query.where('personalInfo.adress').equals(adress);
   }
-  if ( positionSeniority!== "all" )
+  if ( positionSeniority !== "all" )
   {
     query.where('positions.positionExp').in(positionSeniority);
   }
