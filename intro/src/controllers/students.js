@@ -78,7 +78,7 @@ const addNewStudent = async (req, res, next) => {
     const exists = await studentsService.getStudentByEmail(email);
     if (exists)
     {
-      res.status(403).json('Proverite prosledjene podatke!');
+      res.status(403).json('Korisnik sa ovim emailom je vec registrovan!');
     }
 
     const newStudent = await studentsService.addNewStudent(email, personalInfo, education, experience, techologies, languages, portfolio, about);
