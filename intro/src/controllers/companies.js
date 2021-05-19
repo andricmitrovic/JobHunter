@@ -10,8 +10,9 @@ const getAllCompanies = async (req, res, next) => {
     adress = req.query.adress;
     positionSeniority = req.query.positionSeniority;
     length = req.query.length;
+    searchString = req.query.searchString;
 
-    const allCompanies = await companiesService.paginateThroughCompanies(page, limit, adress, positionSeniority, length);
+    const allCompanies = await companiesService.paginateThroughCompanies(page, limit, adress, positionSeniority, length, searchString);
     res.status(200).json(allCompanies);
   } catch (error) {
     next(error);

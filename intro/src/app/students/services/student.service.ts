@@ -22,7 +22,8 @@ export class StudentService {
                  limit: limit.toString(),
                  adress: query.adress,
                  requiredTechnologies: query.technologies,
-                 faculty: query.faculty
+                 faculty: query.faculty,
+                 searchString: query.searchString
                 };
 
     const params: HttpParams = new HttpParams({fromObject: data})

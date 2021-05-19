@@ -7,7 +7,7 @@ const getAllCompanies = async () => {
   return companies;
 };
 
-async function paginateThroughCompanies(page = 1, limit = 10, adress = "all", positionSeniority = "all", length = "all") {
+async function paginateThroughCompanies(page = 1, limit = 10, adress = "all", positionSeniority = "all", length = "all", searchString = "all") {
 
   const query = Company.find()  // radi i sa findOne ???
   
@@ -20,11 +20,17 @@ async function paginateThroughCompanies(page = 1, limit = 10, adress = "all", po
     query.where('positions.positionExp').in(positionSeniority);
   }
 
-  // TODO porediti mesece
+  if ( searchString !== "all" )
+  {
+    query.find({ "personalInfo.fullName": { "$regex": searchString, "$options": "i" } });
+  }
 
-  // if ( length!== undefined )
+  // Todo 
+
+  // if ( length !== undefined )
   // {
-  //   query.where('education.faculty').equals(faculty);
+  //   length = 3;
+  //   query.where(parseInt('positions.length'.split(' ')[0])).equals(lenght);
   // }
 
   return await Company.paginate(query, { page, limit, populate: 'owner', sort: 'timestamp', projection: '-timestamp' });
