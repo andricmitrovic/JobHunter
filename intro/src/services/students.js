@@ -7,21 +7,28 @@ const getAllStudents = async () => {
   return students;
 };
 
-async function paginateThroughStudents(page = 1, limit = 10, adress, requiredTechnologies, faculty) {
+async function paginateThroughStudents(page = 1, limit = 10, adress = "all", requiredTechnologies = undefined, faculty = undefined, searchString = "all") {
 
   const query = Student.find()  // radi i sa findOne ???
 
-  if ( adress!== undefined )
+  if ( adress !== "all" )
   {
     query.where('personalInfo.adress').equals(adress);
   }
+
   if ( requiredTechnologies !== undefined )
   {
     query.where('technologies').in(requiredTechnologies);
   }
+
   if ( faculty !== undefined )
   {
     query.where('education.faculty').in(faculty);
+  }
+
+  if ( searchString !== "all" )
+  {
+    query.find({ "personalInfo.fullName": { "$regex": searchString, "$options": "i" } });
   }
 
   return await Student.paginate(query, { page, limit, populate: 'owner', sort: 'timestamp', projection: '-timestamp' });

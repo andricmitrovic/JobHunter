@@ -22,7 +22,8 @@ export class CompanyService {
       limit: limit.toString(),
       adress: query.adress,
       positionSeniority: query.positionSeniority,      // ovo treba enum da bude kasnije
-      length: query.length                        // isto neki enum
+      length: query.length,                        // isto neki enum
+      searchString: query.searchString
      };
 
 

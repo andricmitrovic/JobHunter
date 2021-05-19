@@ -10,8 +10,9 @@ const getAllStudents = async (req, res, next) => {
     adress = req.query.adress;
     requiredTechnologies = req.query.requiredTechnologies;
     faculty = req.query.faculty;
+    searchString = req.query.searchString;
 
-    const allStudents = await studentsService.paginateThroughStudents(page, limit, adress, requiredTechnologies, faculty);
+    const allStudents = await studentsService.paginateThroughStudents(page, limit, adress, requiredTechnologies, faculty, searchString);
     res.status(200).json(allStudents);
   } catch (error) {
     next(error);
