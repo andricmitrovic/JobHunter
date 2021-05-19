@@ -30,6 +30,16 @@
     color: crimson;
   }
 
+#richestPeople {
+    width: 400px;
+    border: 13px solid lightskyblue;
+    padding: 50px;
+    margin: auto;
+    margin-top: 40px;
+    width: 800px;
+    text-align: left;
+  }
+
 #facts {
     width: 800px;
     border: 13px solid lightskyblue;
@@ -37,26 +47,21 @@
     margin: auto;
     margin-top: 40px;
     background-image: url("../../assets/computer.jpeg");
-  }
-
-#richestPeople {
-    width: 400px;
-    border: 13px solid lightskyblue;
-    padding: 50px;
-    margin: auto;
-    margin-top: 40px;
-    
+    float: right;
+    text-shadow: 2px 2px 5px white;
+    text-align: left;
   }
 
 li {
   font-size: large;
 }
 
-div {
+#news, #richestPeople {
   text-align: left;
+  float: left;
 }
 
-#newsHeader {
+#newsHeader, #funFactsHeader, #richPeopleHeader {
   font-family: Georgia, sans-serif;
   font-size: 3em;
   letter-spacing: -2px;
@@ -67,5 +72,27 @@ div {
 #first, #second, #third {
   border-style: dotted;
   border-width: 2px;
+  padding: 30px;
   
+}
+
+#news {
+  text-align: left;
+  margin-top: 20px;
+}
+
+a:link {
+  color: blue;
+}
+
+a:visited {
+  color: purple;
+}
+
+a:hover {
+  color: hotpink;
+}
+
+a:active {
+  color: red;
 }
