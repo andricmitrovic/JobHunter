@@ -1,7 +1,9 @@
 .topnav {
   background-color: #333;
   overflow: hidden;
-  width: auto;
+  width: 1098px;
+  top: 0px;
+  position: fixed;
 }
 
 .topnav a {
@@ -35,7 +37,7 @@
     border: 13px solid lightskyblue;
     padding: 50px;
     margin: auto;
-    margin-top: 40px;
+    margin-top: 80px;
     width: 800px;
     text-align: left;
   }
@@ -95,4 +97,12 @@ a:hover {
 
 a:active {
   color: red;
+}
+
+#mostPopularLanguages {
+  float: right;
+  background-color: black;
+  width: 200px;
+  height: 400px;
+  margin-top: 40px;
 }
