@@ -1,0 +1,7 @@
+<div *ngIf="!showLogin">
+<button class = "ui button" (click)= "Logout()">Logout</button>
+<button class = "ui button" >Change information</button>
+
+<app-students *ngIf="student" [student]="student"></app-students>
+</div>
+<app-login *ngIf = "showLogin"></app-login>

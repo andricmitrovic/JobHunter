@@ -5,9 +5,10 @@ const verifyToken = require('./../../utils/authentication');
 const router = express.Router();
 
 router.get('/', controller.getAllStudents);
-router.get('/:username', controller.getStudentByUsername);
+router.get('/:email', controller.getStudentByEmail);
 
-router.post('/', controller.addNewStudent);
+router.post('/', controller.Login)
+router.post('/', verifyToken, controller.addNewStudent);
 // router.put('/', controller.changeUserPassword);
 
 router.delete('/:username', verifyToken, controller.deleteStudent);

@@ -1,7 +1,7 @@
 import { StudentService } from './../../students/services/student.service';
 import { Student } from './../../students/models/student';
 import { Component, OnInit, Input } from '@angular/core';
-import jspdf from 'jspdf';
+//import jspdf from 'jspdf';
 
 @Component({
   selector: 'app-students',
@@ -16,13 +16,14 @@ export class StudentsComponent implements OnInit {
    }
 
   ngOnInit(): void {
+
   }
 
-  public SavePDF():void{    
-    let doc = new jspdf();    
-    doc.text("Some informations about students.",10,20);  
-    doc.save('CV.pdf');  
-  }  
+  public SavePDF():void{
+    /*let doc = new jspdf();
+    doc.text("Some informations about students.",10,20);
+    doc.save('CV.pdf');*/
+  }
 
 }
 

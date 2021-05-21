@@ -1,5 +1,9 @@
 const studentsService = require('../services/students');
 const validator = require('validator');
+const jwt = require('jsonwebtoken');
+const { json } = require('body-parser');
+const Jwtsecret = process.env.JWT_SECRET || 'masasavic'
+
 
 
 const getAllStudents = async (req, res, next) => {
@@ -19,17 +23,17 @@ const getAllStudents = async (req, res, next) => {
   }
 };
 
-const getStudentByUsername = async (req, res, next) => {
-  const username = req.params.username;
+const getStudentByEmail = async (req, res, next) => {
+  const email = req.params.email;
 
   try {
-    if (username == undefined) {
-      const error = new Error('Nedostaje korisnicko ime!');
+    if (email == undefined) {
+      const error = new Error('Nedostaje email ime!');
       error.status = 400;
       throw error;
     }
 
-    const student = await studentsService.getStudentByUsername(username);
+    const student = await studentsService.getStudentByEmail(email);
     if (student == null) {
       res.status(404).json();
     } else {
@@ -82,8 +86,10 @@ const addNewStudent = async (req, res, next) => {
       res.status(403).json('Korisnik sa ovim emailom je vec registrovan!');
     }
 
-    const newStudent = await studentsService.addNewStudent(email, personalInfo, education, experience, techologies, languages, portfolio, about);
-    res.status(201).json(newStudent);
+    const jwt = await studentsService.addNewStudent(email, personalInfo, education, experience, techologies, languages, portfolio, about);
+    res.status(201).json({
+      user
+    });
 
   } catch(error)
   {
@@ -135,12 +141,44 @@ const deleteStudent = async (req, res, next) => {
     next(error);
   }
 };
+const Login = async (req, res, next) => {
+
+  const email = req.body.email;
+  const password = req.body.password;
+  try {
+    if (!email) {
+      const error = new Error('Nedostaje email!');
+      error.status = 400;
+      throw error;
+    }
+
+    const user = await studentsService.getStudentByEmail(email);
+    if (!user) {
+      const error = new Error('Proverite email!');
+      error.status = 404;
+      throw error;
+    }
+
+    if (user.personalInfo.password != password){
+      const error = new Error('Pogresna lozinka!');
+      error.status = 400;
+      throw error;
+    }
+
+    res.status(200).json({
+      token: jwt.sign(user.toJSON("utf8"), Jwtsecret)
+    });
+  } catch (error) {
+    next(error);
+  }
+};
 
 
 module.exports = {
-  getStudentByUsername,
+  getStudentByEmail,
   getAllStudents,
   addNewStudent,
+  Login,
   // changeUserPassword,
   deleteStudent
 };

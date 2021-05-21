@@ -1,41 +1,45 @@
+<div *ngIf="login">
+  <form [formGroup]="form" class="ui form" (ngSubmit)="onSubmit()" *ngIf="showLogInForm">
 
-<form [formGroup]="form" class="ui form" (ngSubmit)="onSubmit()" *ngIf="showLogInForm">
-  Value: {{form.value | json}}
+    <h1 class="ui h1">Login to JobHunter</h1>
+    <hr>
+    <div class="ui form field">
+      <label class="ui label">Email</label>
+      <input type="email" formControlName="email" placeholder="Email..." />
+      <div class="ui pointing red basic label " *ngIf="email!=null &&  email.touched && email.errors?.required">
+        Please enter a value!
+      </div>
+      <div class="ui pointing red basic label " *ngIf="email != null && email.touched && email.invalid">
+        Invalid email address!
+      </div>
+    </div>
 
-  <h1 class="ui h1">Login to JobHunter</h1>
-  <hr>
-  <div class="ui form field">
-    <label class="ui label">Email</label>
-    <input type="email" formControlName="email" placeholder="Email..." />
-    <div class="ui pointing red basic label " *ngIf="email!=null &&  email.touched && email.errors?.required">
+
+    <div class="ui form field">
+      <label class="ui label" for="password">Password</label>
+      <input type="password" formControlName="password" id ="password" placeholder="Password" >
+    </div>
+
+    <div class="ui pointing red basic label " *ngIf="password!=null &&  password.touched && password.errors?.required">
       Please enter a value!
     </div>
-    <div class="ui pointing red basic label " *ngIf="email != null && email.touched && email.invalid">
-      Invalid email address!
+    <div class="ui pointing red basic label " *ngIf=" password != null && password.touched && password.invalid">
+      Invalid password address!
     </div>
+    <button class="ui primary button" type="submit" [disabled]="!form.valid"> Login </button>
+  </form>
+
+  <hr>
+
+  <div class="ui group" *ngIf="showLogInForm">
+  <h1 class="ui h1">Join JobHunter now! </h1>
+  <button class="ui primary button" type="text"  (click)= "onCompanyClick()"> Company </button>
+  <button class="ui primary button" type="text" (click)= "onStudentClick"> Student </button>
   </div>
-
-
-  <div class="ui form field">
-    <label class="ui label" for="password">Password</label>
-    <input type="password" formControlName="password" id ="password" placeholder="Password" >
-  </div>
-
-  <div class="ui pointing red basic label " *ngIf="password!=null &&  password.touched && password.errors?.required">
-    Please enter a value!
-  </div>
-  <div class="ui pointing red basic label " *ngIf=" password != null && password.touched && password.invalid">
-    Invalid password address!
-  </div>
-  <button class="ui primary button" type="submit" [disabled]="!form.valid"> Login </button>
-</form>
-
-<hr>
-
-<div class="ui group" *ngIf="showLogInForm">
-<h1 class="ui h1">Join JobHunter now! </h1>
-<button class="ui primary button" type="text"  (click)= "onCompanyClick()"> Company </button>
-<button class="ui primary button" type="text" (click)= "onStudentClick"> Student </button>
+  <app-company *ngIf="showRegisterCompany"></app-company>
+  <app-student *ngIf="showRegisterStudent"></app-student>
 </div>
-<app-company *ngIf="showRegisterCompany"></app-company>
-<app-student *ngIf="showRegisterStudent"></app-student>
+
+<div *ngIf="student && !login">
+<app-student-profile [student] = "student"></app-student-profile>
+</div>
