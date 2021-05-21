@@ -1,31 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-declare const $: any;
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit{
-  title = 'JobHunter';
-
-
-  constructor() {
-  }
-
-  ngOnInit() {
-    // Videti: https://semantic-ui.com/modules/tab.html#/examples
-    $(".menu .item").tab();
-
-    // $('.ui.dropdown').dropdown({
-    //   action: 'nothing'
-    // });
-    // $('.ui.checkbox').checkbox();
-
-    $('.ui.dropdown').dropdown();
-  }
-
-  
-
-
+export class AppComponent {
+  title = 'argon-dashboard-angular';
 }
