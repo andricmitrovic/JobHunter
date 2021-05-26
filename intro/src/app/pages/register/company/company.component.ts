@@ -15,8 +15,6 @@ export class CompanyComponent implements OnInit {
   constructor(private fb: FormBuilder) {
 
     this.showLogin = false;
-
-
     this.formRegisterCompany = this.fb.group({
       name : ['',[Validators.required, Validators.minLength(10)]],
       email: ['', [Validators.required, Validators.email]],
@@ -29,7 +27,7 @@ export class CompanyComponent implements OnInit {
 
    onSubmit(){
       console.log(this.formRegisterCompany.value)
-        this.showLogin = true;
+        // this.showLogin = true;
     }
 
   ngOnInit(): void {

@@ -1,5 +1,5 @@
-<form class="ui form" *ngIf="!showLogin" [formGroup] = "formRegisterCompany" (ngSubmit)= "onSubmit()" >
-</form>
+<!-- <form class="ui form" *ngIf="!showLogin" [formGroup] = "formRegisterCompany" (ngSubmit)= "onSubmit()" >
+</form> -->
 
   <form [formGroup]="formRegisterCompany" class="ui form" id="company" (ngSubmit)="onSubmit()" >
     <h1 class="ui h1"> Company information</h1>
@@ -23,7 +23,7 @@
         <div class="input-group-prepend">
           <span class="input-group-text"><i class="ni ni-email-83"></i></span>
         </div>
-        <input class="form-control" placeholder="Email" type="email" formControlname="email">
+        <input class="form-control" placeholder="Email" type="email" formControlName = "email">
       </div>
       <div class="ui pointing red basic label " *ngIf="email!=null &&  email.touched && email.errors?.required">
         Please enter email!
@@ -54,14 +54,28 @@
         </div>
     </div>    
     
-    
+    <div class="form-group">
+        <div class="input-group input-group-alternative">
+            <div class="input-group-prepend">
+            <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
+            </div>
+            <input class="form-control" placeholder="Password" type="password" formControlName="password">
+        </div>
+
+        <div class="ui pointing red basic label " *ngIf="password!=null &&  password.touched && password.errors?.required">
+            Please enter a password!
+        </div>
+        <div class="ui pointing red basic label " *ngIf="password != null && password.touched && password.invalid">
+            Invalid password!
+        </div>
+        </div>
+
     </div>
     
     <div class="text-center">
       <button type="submit" class="btn btn-primary mt-4" [disabled]="!formRegisterCompany.valid">Create account</button>
     </div>
   </form>
-
 
   <div *ngIf="showLogin">
         <h1 class="ui h1">You registration was successful!</h1>
