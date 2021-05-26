@@ -1,40 +1,67 @@
 <form class="ui form" (ngSubmit)="onRegisterClick()" [formGroup]="registerForm" *ngIf="showForm">
 
-    <h1 class="ui h1"> Personal information</h1>
-    <div class="ui form field">
+    <h1 class="ui h1"> Student information</h1>
+    <div class="form-group">
+            <div class="input-group input-group-alternative mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text"><i class="ni ni-hat-3"></i></span>
+              </div>
+              <input type="text" class="form-control" placeholder="Name" formControlName="name">
+              <div class="ui pointing red basic label " *ngIf="name!=null &&  name.touched && name.errors?.required">
+                  Please enter a name of company!
+                </div>
+                <div class="ui pointing red basic label " *ngIf="name != null && name.touched && name.invalid">
+                  Invalid name!
+                </div>
+          </div>    
+          
+          <div class="input-group input-group-alternative mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="ni ni-hat-3"></i></span>
+                </div>
+                <input type="date" class="form-control" placeholder="Date of your birth" formControlName="date">
+                <div class="ui pointing red basic label " *ngIf="name!=null &&  name.touched && name.errors?.required">
+                    Please enter a name of company!
+                  </div>
+                  <div class="ui pointing red basic label " *ngIf="name != null && name.touched && name.invalid">
+                    Invalid name!
+                  </div>
+            </div>    
+          
+            <div class="form-group">
+                    <div class="input-group input-group-alternative mb-3">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="ni ni-email-83"></i></span>
+                      </div>
+                      <input class="form-control" placeholder="Email" type="email" formControlname="email">
+                    </div>
+                    <div class="ui pointing red basic label " *ngIf="email!=null &&  email.touched && email.errors?.required">
+                      Please enter email!
+                    </div>
+                    <div class="ui pointing red basic label " *ngIf="email != null && email.touched && email.invalid">
+                      Invalid email!
+                    </div>  
+                  </div>
+              
+                  <div class="form-group">
+                        <div class="input-group input-group-alternative">
+                          <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
+                          </div>
+                          <input class="form-control" placeholder="Password" type="password" formControlName="password">
+                        </div>
+                  
+                        <div class="ui pointing red basic label " *ngIf="password!=null &&  password.touched && password.errors?.required">
+                          Please enter a password!
+                        </div>
+                        <div class="ui pointing red basic label " *ngIf="password != null && password.touched && password.invalid">
+                          Invalid password!
+                        </div>
+                      </div>
 
-      <label class="ui label"> Full name </label>
-      <input type="text" placeholder="Enter your name" formControlName = "name">
-      <div class="ui pointing red basic label " *ngIf="name!=null &&  name.touched && name.errors?.required">
-        Please enter your full name!
-      </div>
-    </div>
+</div>
 
-    <div class="ui form field">
-      <label class="ui label"> Date of birth </label>
-      <input type="date" placeholder="Enter date of your birth" formControlName = "date">
-    </div>
-
-    <div class="ui form field">
-
-      <label class="ui label"> Email </label>
-      <input type="email" placeholder="Email..." formControlName = "email">
-      <div class="ui pointing red basic label " *ngIf="email!=null &&  email.touched && email.errors?.required">
-        Please enter email!
-      </div>
-      <div class="ui pointing red basic label " *ngIf="email != null && email.touched && email.invalid">
-        Invalid email!
-      </div>
-    </div>
-
-    <div class="ui form field">
-      <label class="ui label"> Password </label>
-      <input type="password" placeholder="Password" formControlName = "password">
-      <div class="ui pointing red basic label " *ngIf="password!=null &&  password.touched && password.errors?.required">
-        Please enter your password!
-      </div>
-    </div>
-    <button type="submit" class="ui primary button" [disabled]="!registerForm.valid">Register</button>
+    <button type="submit" class="btn btn-primary mt-4" [disabled]="!registerForm.valid">Create account</button>
 </form>
 
 <div *ngIf="showLogin">

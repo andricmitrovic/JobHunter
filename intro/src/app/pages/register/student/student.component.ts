@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FormGroup, FormBuilder, Validators} from '@angular/forms'
-import { Student } from './../../students/models/student';
-import { StudentService } from '../../students/services/student.service';
+import { Student } from './../../../students/models/student';
+import { StudentService } from '../../../students/services/student.service';
 import { Subscription } from 'rxjs';
 @Component({
   selector: 'app-student',

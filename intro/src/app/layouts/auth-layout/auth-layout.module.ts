@@ -7,18 +7,23 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { LoginComponent } from '../../pages/login/login.component';
 import { RegisterComponent } from '../../pages/register/register.component';
+import { CompanyComponent } from '../../pages/register/company/company.component'
+import { StudentComponent} from '../../pages/register/student/student.component'
+
 
 @NgModule({
   imports: [
     CommonModule,
     RouterModule.forChild(AuthLayoutRoutes),
     FormsModule,
-    ReactiveFormsModule
-    // NgbModule
+    ReactiveFormsModule,
+    NgbModule
   ],
   declarations: [
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    CompanyComponent,
+    StudentComponent
   ]
 })
 export class AuthLayoutModule { }

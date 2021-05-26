@@ -1,5 +1,5 @@
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { Company } from './../../profile/models/companies.model';
+import { Company } from './../../../profile/models/companies.model';
 import { Component, OnInit } from '@angular/core';
 
 @Component({

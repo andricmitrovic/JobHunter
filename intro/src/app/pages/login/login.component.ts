@@ -4,6 +4,7 @@ import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Observable, Subject, Subscription } from 'rxjs';
 import { query } from '@angular/animations';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -19,8 +20,6 @@ export class LoginComponent implements OnInit, OnDestroy {
   student! : Student | null;
 
   form!: FormGroup;
-  showRegisterCompany: boolean;
-  showRegisterStudent: boolean;
   showLogInForm: boolean;
   login:boolean;
 
@@ -31,8 +30,6 @@ export class LoginComponent implements OnInit, OnDestroy {
   constructor(private fb: FormBuilder, private studentService: StudentService) {
 
     this.showLogInForm = true;
-    this.showRegisterCompany = false;
-    this.showRegisterStudent = false;
     this.login = true;
 
   }
@@ -58,6 +55,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   public get password(){
     return this.form.get('password');
   }
+
   onSubmit(){
     const tmp = this.form.value
 
@@ -67,17 +65,5 @@ export class LoginComponent implements OnInit, OnDestroy {
 
     this.login = false;
 
-  }
-  onStudentClick(){
-    this.showLogInForm = false;
-    this.showRegisterCompany = false;
-    this.showRegisterStudent = true;
-
-  }
-  onCompanyClick(){
-    this.showLogInForm = false;
-    this.showRegisterCompany = true;
-    this.showRegisterStudent = false;
-    console.log("in onCompany CLick")
   }
 }
