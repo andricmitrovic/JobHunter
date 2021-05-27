@@ -1,5 +1,4 @@
 import { JwtService } from './../../../services/jwt.service';
-import { query } from '@angular/animations';
 import { Student } from './../models/student';
 import { HttpClient, HttpErrorResponse, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -12,6 +11,8 @@ import { catchError, map } from "rxjs/operators";
 })
 export class StudentService {
 
+
+
   public readonly studentSubject : Subject<Student> = new Subject<Student>();
   public readonly tokenJwt = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhZG1pblVzZXJuYW1lIjoiYWRtaW4iLCJhZG1pblBhc3N3b3JkIjoiYWRtaW5wYXNzIiwiaWF0IjoxNjE3NzM4NzEzLCJleHAiOjE2MjAzMzA3MTN9.h-H96EdSvm_q6PFrKrjPoi-c5akNVgDynrrq1bTblIw";
 
@@ -21,10 +22,22 @@ export class StudentService {
 
   constructor(private http: HttpClient, private jwtService:JwtService) { }
 
+  public updateProfile(student: Student) {
+
+    const body = {student : student};
+    const headers: HttpHeaders = new HttpHeaders();
+    headers.append('Authorization', this.tokenJwt);
+    headers.append('Content-Type', 'application/json');
+
+    return this.http.post<{token : string}>("http://localhost:3000/api/profile", body, {headers}).pipe(
+      catchError((error:HttpErrorResponse) => this.handleError(error)),
+      map((response: { token: string }) => this.mapResponseToUser(response))
+    );
+
+  }
+
   public getStudents(query: any, page: number = 1, limit: number = 10): Observable<Student[]>
   {
-    console.log("From get request");
-    console.log(query);
 
     const data = {
                  page: page.toString(),
@@ -57,6 +70,40 @@ export class StudentService {
     );
   }
 
+  public changeStudentPassword(email:string, old_password: string, new_password: string): Observable< boolean| null>
+  {
+
+    const body = {email, old_password, new_password};
+
+    const headers: HttpHeaders = new HttpHeaders();
+    headers.append('Authorization', this.tokenJwt);
+    headers.append('Content-Type', 'application/json');
+
+    return this.http.post<{success : boolean}>("http://localhost:3000/api/profile" , body, {headers}).pipe(
+      catchError((error:HttpErrorResponse) => {throw Error(error.message)}),
+      map((response: { success: boolean }) => response.success));
+
+  }
+
+  public deleteStudentAccount(email:string): Observable<string | null>
+  {
+    const data = {email: email};
+    const params: HttpParams = new HttpParams({fromObject: data});
+
+    window.alert(params.toString());
+
+    const headers: HttpHeaders = new HttpHeaders();
+    headers.append('Content-Type', 'application/json');
+
+
+    return this.http.get<{success : string}>("http://localhost:3000/api/profile", {headers, params}).pipe(
+      catchError((error:HttpErrorResponse) => this.handleError(error)),
+      map((response :{success: string})=>{return response.success})
+    );
+
+  }
+
+
   public postStudent(student: Student): Observable<Student>
   {
 
@@ -69,7 +116,7 @@ export class StudentService {
 
   private handleError(error: HttpErrorResponse): Observable<{ token: string }> {
     const serverError: { message: string; status: number; stack: string } = error.error;
-    window.alert(`There was an error: ${serverError.message}. Server returned code: ${serverError.status}`);
+    console.error(`There was an error: ${serverError.message}. Server returned code: ${serverError.status}`);
     return of({ token: this.jwtService.getToken()});
   }
 

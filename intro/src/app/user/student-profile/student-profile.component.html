@@ -1,7 +1,62 @@
 <div *ngIf="!showLogin">
 <button class = "ui button" (click)= "Logout()">Logout</button>
-<button class = "ui button" >Change information</button>
+<button class = "ui button" (click)= "updateProfile()">Change information</button>
+<button class = "ui button" (click)= "changePassword()"> Change password </button>
+<button class = "ui button" (click)= "deleteAccount()"> Delete account</button>
 
+<app-user-form-update *ngIf = "showUpdateForm" [student]="student"></app-user-form-update>
+
+<div *ngIf = "showChangePassword">
+<form [formGroup]="formChangePassword" class="ui form" (ngSubmit)="submitChangePassword()" >
+  <h5 class="ui h5">Change password</h5>
+  <label *ngIf = "showSuccess">Password is succesfully changed!</label>
+  <hr>
+  <div class="ui form field">
+    <label class="ui label">Old password</label>
+    <input type="password" formControlName="old_password" placeholder="Old password..." />
+    <div class="ui pointing red basic label " *ngIf=" old_password != undefined && old_password.touched && old_password.errors?.required">
+      Please enter a value!
+    </div>
+
+  </div>
+
+  <div class="ui form field">
+    <label class="ui label" >Password</label>
+    <input type="password" formControlName="new_password" placeholder="New password" >
+  </div>
+
+  <div class="ui pointing red basic label " *ngIf="new_password!=null &&  new_password.touched && new_password.errors?.required">
+    Please enter a value!
+  </div>
+
+  <div class="ui pointing red basic label " *ngIf=" new_password!= null && new_password.touched && new_password.invalid">
+    Invalid password!
+  </div>
+
+  <div class="ui form field">
+    <label class="ui label" for="password">Password</label>
+    <input type="password" formControlName="new_password_r" placeholder="Repeat new password" >
+  </div>
+
+  <div class="ui pointing red basic label " *ngIf="new_password_r!=null &&  new_password_r.touched && new_password_r.errors?.required">
+    Please enter a value!
+  </div>
+
+  <div class="ui pointing red basic label " *ngIf=" new_password_r!= null && new_password_r.touched && new_password_r.invalid">
+    Invalid password!
+
+  </div>
+
+  <div class="ui pointing red basic label " *ngIf=" new_password_r!= null && new_password_r.touched && new_password.touched
+  && new_password != new_password_r">
+    Passwords do not match!
+  </div>
+
+  <button class="ui primary button" type="submit" [disabled]="!showSuccess && !formChangePassword.valid"> Change password </button>
+
+
+</form>
+</div>
 <app-students *ngIf="student" [student]="student"></app-students>
 </div>
 <app-login *ngIf = "showLogin"></app-login>

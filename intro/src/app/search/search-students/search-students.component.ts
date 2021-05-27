@@ -1,7 +1,5 @@
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup} from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
-import { IDropdownSettings } from 'ng-multiselect-dropdown';
-import { map } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 declare const $: any;
 
@@ -25,11 +23,11 @@ export class SearchStudentsComponent implements OnInit {
   disabled = false;
   ShowFilter = false;
   limitSelection = false;
-  faculty: Array<{item_id: Number, item_text:String, image: String}>;
-  technologies : Array<{item_id: Number, item_text:String, image: String}>;
+  faculty: Array<{item_id: Number, item_text:String}>;
+  technologies : Array<{item_id: Number, item_text:String}>;
 
-  selectedItems: Array<{item_id: Number, item_text:String, image: String}>;
-  selectedTechnologies: Array<{item_id: Number, item_text:String, image: String}>;
+  selectedItems: Array<{item_id: Number, item_text:String}>;
+  selectedTechnologies: Array<{item_id: Number, item_text:String}>;
 
   dropdownSettings: any;
 
@@ -51,55 +49,44 @@ export class SearchStudentsComponent implements OnInit {
     this.faculty = [
       {
         item_id: 1,
-        item_text: "Matematicki fakultet",
-        image: "http://www.sciencekids.co.nz/images/pictures/flags96/India.jpg",
+        item_text: "Matematicki fakultet"
       },
       {
         item_id: 2,
-        item_text: "Ekonomski fakultet",
-        image: "http://www.sciencekids.co.nz/images/pictures/flags96/Spain.jpg",
+        item_text: "Ekonomski fakultet"
       },
       {
         item_id: 3,
-        item_text: "Elektrotehnicki fakultet",
-        image:
-          "http://www.sciencekids.co.nz/images/pictures/flags96/United_Kingdom.jpg",
+        item_text: "Elektrotehnicki fakultet"
       },
       {
         item_id: 4,
         item_text: "Fakultet Organizacionih nauka",
-        image:
-          "http://www.sciencekids.co.nz/images/pictures/flags96/Canada.jpg",
       }
     ];
 
     this.selectedItems = [
       {
         item_id: 2,
-        item_text: "Ekonomski",
-        image: "http://www.sciencekids.co.nz/images/pictures/flags96/India.jpg",
+        item_text: "Ekonomski"
       },
     ];
 
     this.technologies = [{
       item_id : 1,
-      item_text : "python",
-      image : "https://upload.wikimedia.org/wikipedia/commons/c/c3/Python-logo-notext.svg"
+      item_text : "python"
     },
     {
       item_id : 2,
-      item_text : "c#",
-      image : "http://www.sciencekids.co.nz/images/pictures/flags96/India.jpg"
+      item_text : "c#"
     },
     {
       item_id : 3,
-      item_text : "java",
-      image : "http://www.sciencekids.co.nz/images/pictures/flags96/India.jpg"
+      item_text : "java"
     },
     {
       item_id : 4,
-      item_text : "html",
-      image : "http://www.sciencekids.co.nz/images/pictures/flags96/India.jpg"
+      item_text : "html"
     }
   ];
     this.dropdownSettings = {

@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 const Student = require('../models/students');
 
 
+
 const getAllStudents = async () => {
   const students = await Student.find({}).exec();
   return students;
@@ -60,18 +61,34 @@ const addNewStudent = async (email, personalInfo, education, experience,
 
 };
 
-// const changeUserPassword = (username, oldPassword, newPassword) => {
-//   const foundUser = users.find(user => user.username == username && user.password == oldPassword);
-//   if (!foundUser) {
-//     return false;
-//   }
+const changePassword = async (email, oldPassword, newPassword) => {
 
-//   foundUser.password = newPassword;
-//   return true;
-// };
+  const query = {email: email, 'personalInfo.password': oldPassword};
 
-const deleteStudent = async (username) => {
-  await Student.findOneAndDelete({ username: username }).exec();
+  await Student.findOneAndUpdate(query,
+    {$set : {'personalInfo.password' : newPassword}});
+  const stud = await Student.findOne({email:email}).exec();
+  return stud;
+ };
+
+ const updateProfile = async (email, personalInfo, portfolio, about, education
+  , technologies, experience) => {
+
+  const query = {email: email};
+
+  await Student.findOneAndUpdate(query,
+    {$set : {'personalInfo' : personalInfo,
+            'portfolio' : portfolio},
+            'about': about,
+            'education': education,
+            'technologies' : technologies,
+            'experience': experience});
+  return await Student.findOne({email:email});
+ };
+
+
+const deleteStudent = async (email) => {
+  await Student.findOneAndDelete({ email: email}).exec();
 };
 
 module.exports = {
@@ -79,6 +96,7 @@ module.exports = {
   getAllStudents,
   getStudentByEmail,
   addNewStudent,
-  // changeUserPassword,
-  deleteStudent
+  changePassword,
+  deleteStudent,
+  updateProfile
 };

@@ -3,7 +3,7 @@ import { Student } from './../students/models/student';
 import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Observable, Subject, Subscription } from 'rxjs';
-import { query } from '@angular/animations';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -25,16 +25,16 @@ export class LoginComponent implements OnInit, OnDestroy {
   login:boolean;
 
   sub! : Subscription;
-
   eventsSubject: Subject<any> = new Subject<any>();
 
+  showError: boolean;
   constructor(private fb: FormBuilder, private studentService: StudentService) {
 
     this.showLogInForm = true;
     this.showRegisterCompany = false;
     this.showRegisterStudent = false;
     this.login = true;
-
+    this.showError = false;
   }
 
     ngOnInit(): void {
@@ -65,6 +65,7 @@ export class LoginComponent implements OnInit, OnDestroy {
       this.student = student;
     });
 
+
     this.login = false;
 
   }
@@ -78,6 +79,5 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.showLogInForm = false;
     this.showRegisterCompany = true;
     this.showRegisterStudent = false;
-    console.log("in onCompany CLick")
   }
 }

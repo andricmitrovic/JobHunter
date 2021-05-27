@@ -1,6 +1,6 @@
 <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.9/semantic.min.js"></script>
-<link href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.9/semantic.min.css" rel="stylesheet"/> -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.9/semantic.min.css" rel="stylesheet"/>  -->
 
 <form [formGroup]="facultyDropdownForm">
   <div class="ui big action left icon input">
@@ -9,7 +9,7 @@
       <input type="text" placeholder="Search JobHunter..." autocomplete="on" [(ngModel)]= "searchText" formControlName="searchString">
 
 
-    
+
     <span class="ui compact label">City:</span>
     <div class="form−group">
       <select class="ui compact selection dropdown" formControlName="adress">
@@ -20,16 +20,15 @@
         <option value="Kragujevac" >Kragujevac</option>
       </select>
     </div>
-    
-    
+
+
 
     <div class = "ui big left action">
     <div class="ui compact labeled input">
 
       <span class="ui compact label">Faculty:</span>
 
-      
-        <ng-multiselect-dropdown
+      <ng-multiselect-dropdown
             name="Faculty"
             [placeholder]="'Select Faculty'"
             formControlName="faculty"
@@ -57,7 +56,7 @@
 
       </ng-template>
 
-    
+
     </div>
 
 <div class="ui compact labeled input">

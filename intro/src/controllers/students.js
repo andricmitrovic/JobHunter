@@ -2,6 +2,7 @@ const studentsService = require('../services/students');
 const validator = require('validator');
 const jwt = require('jsonwebtoken');
 const { json } = require('body-parser');
+const Student = require('../models/students');
 const Jwtsecret = process.env.JWT_SECRET || 'masasavic'
 
 
@@ -86,7 +87,7 @@ const addNewStudent = async (req, res, next) => {
       res.status(403).json('Korisnik sa ovim emailom je vec registrovan!');
     }
 
-    const jwt = await studentsService.addNewStudent(email, personalInfo, education, experience, techologies, languages, portfolio, about);
+    const user = await studentsService.addNewStudent(email, personalInfo, education, experience, techologies, languages, portfolio, about);
     res.status(201).json({
       user
     });
@@ -98,25 +99,39 @@ const addNewStudent = async (req, res, next) => {
 
 };
 
-// const changeUserPassword = (req, res) => {
-//   const { username, oldPassword, newPassword } = req.body;
+const changeUserPassword = async (req, res, next) => {
+  const email = req.params.email;
+   const { oldPassword, newPassword } = req.body;
+   try {
 
-//   if (!username || !oldPassword || !newPassword) {
-//     res.status(400).json();
-//   } else {
-//     const isChanged = users.changeUserPassword(
-//       username,
-//       oldPassword,
-//       newPassword
-//     );
-//     if (isChanged) {
-//       const user = users.getUserByUsername(username);
-//       res.status(200).json(user);
-//     } else {
-//       res.status(404).json();
-//     }
-//   }
-// };
+    if (!email || !oldPassword || !newPassword) {
+      const error = new Error('Greska u podacima!');
+      error.status = 404;
+      throw error;
+   }
+
+    const student = await studentsService.getStudentByEmail(email);
+    // Ovo nam ne treba jer se poziva samo kada je ulogovan student
+    if (!student) {
+      const error = new Error('Proverite email!');
+      error.status = 404;
+      throw error;
+    }
+    if (student.personalInfo.password != oldPassword){
+      const error = new Error('Neispravna lozinka!');
+      error.status = 403;
+      throw error;
+    }
+    const changedStudent = await this.studentsService.changePassword(email, oldPassword, newPassword);
+
+
+    res.status(200).json({
+      success: true
+    });
+  }catch(error){
+    next(error);
+  }
+};
 
 const deleteStudent = async (req, res, next) => {
   const username = req.params.username;
@@ -146,15 +161,9 @@ const Login = async (req, res, next) => {
   const email = req.body.email;
   const password = req.body.password;
   try {
-    if (!email) {
-      const error = new Error('Nedostaje email!');
-      error.status = 400;
-      throw error;
-    }
-
     const user = await studentsService.getStudentByEmail(email);
     if (!user) {
-      const error = new Error('Proverite email!');
+      const error = new Error('Pogresan mejl!');
       error.status = 404;
       throw error;
     }
@@ -166,7 +175,7 @@ const Login = async (req, res, next) => {
     }
 
     res.status(200).json({
-      token: jwt.sign(user.toJSON("utf8"), Jwtsecret)
+      token: jwt.sign(user.toJSON(), Jwtsecret)
     });
   } catch (error) {
     next(error);
@@ -178,7 +187,6 @@ module.exports = {
   getStudentByEmail,
   getAllStudents,
   addNewStudent,
-  Login,
-  // changeUserPassword,
-  deleteStudent
+  changeUserPassword,
+  Login
 };

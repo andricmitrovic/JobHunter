@@ -1,6 +1,7 @@
 const express = require('express');
 const studentsRouter = require('./routes/api/students');
 const companiesRouter = require('./routes/api/companies');
+const profileRouter = require('./routes/api/profile');
 const { urlencoded, json } = require('body-parser');
 const mongoose = require('mongoose');
 
@@ -29,6 +30,7 @@ mongoose.connection.on('error', (error) => {
 
 
 app.use(json());
+
 app.use(urlencoded({ extended: false }));
 
 app.use(function (req, res, next) {
@@ -48,7 +50,10 @@ app.use(function (req, res, next) {
 
 app.use('/api/students', studentsRouter);
 app.use('/api/companies', companiesRouter);
+app.use('/api/profile', profileRouter);
 
+console.log(profileRouter);
+console.log(companiesRouter);
 app.use(function (req, res, next) {
     const error = new Error('Zahtev nije podrzan!');
     error.status = 405;

@@ -1,4 +1,7 @@
 <div *ngIf="login">
+  <div class="ui pointing red basic label " *ngIf="showError">
+    Invalid email or password! Try again!
+  </div>
   <form [formGroup]="form" class="ui form" (ngSubmit)="onSubmit()" *ngIf="showLogInForm">
 
     <h1 class="ui h1">Login to JobHunter</h1>
@@ -27,6 +30,8 @@
       Invalid password address!
     </div>
     <button class="ui primary button" type="submit" [disabled]="!form.valid"> Login </button>
+
+
   </form>
 
   <hr>
