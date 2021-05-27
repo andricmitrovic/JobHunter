@@ -8,11 +8,8 @@ const router = express.Router();
 router.get('/', controller.getAllStudents);
 router.get('/:email', controller.getStudentByEmail);
 
-
-
-router.post('/', controller.Login)
-
-router.post('/', controller.addNewStudent);
+//router.post('/', controller.addNewStudent);
+router.post('/', controller.Login);
 
 
 

@@ -1,8 +1,11 @@
 import { StudentService } from './../../students/services/student.service';
 import { Student } from './../../students/models/student';
-import { Component, OnInit, Input } from '@angular/core';
-//import jspdf from 'jspdf';
-
+import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
+import pdfMake from 'pdfmake/build/pdfmake';
+import pdfFonts from 'pdfmake/build/vfs_fonts';
+pdfMake.vfs = pdfFonts.pdfMake.vfs;
+import htmlToPdfmake from 'html-to-pdfmake';
+import jspdf from 'jspdf';
 @Component({
   selector: 'app-students',
   templateUrl: './students.component.html',
@@ -13,16 +16,25 @@ export class StudentsComponent implements OnInit {
   @Input() student!: Student;
 
   constructor(private sS: StudentService) {
-   }
+  }
 
   ngOnInit(): void {
 
   }
+  @ViewChild('pdfTable') pdfTable: ElementRef;
 
   public SavePDF():void{
-    /*let doc = new jspdf();
-    doc.text("Some informations about students.",10,20);
-    doc.save('CV.pdf');*/
+    const pdfTable = this.pdfTable.nativeElement;
+
+    var html = htmlToPdfmake(pdfTable.innerHTML);
+
+    const documentDefinition = {  };
+    var docDefinition = {
+      pageSize: 'A5',
+      content: html,
+      pageMargins: [ 40, 60, 40, 60 ]
+    };
+    pdfMake.createPdf(documentDefinition).download("cv.pdf");
   }
 
 }

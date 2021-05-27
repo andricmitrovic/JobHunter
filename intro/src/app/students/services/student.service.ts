@@ -63,7 +63,9 @@ export class StudentService {
   {
     const body = {email, password};
     const headers: HttpHeaders = new HttpHeaders();
-    headers.append('Authorization', this.tokenJwt)
+    headers.append('Authorization', this.tokenJwt);
+    headers.append('Content-Type', 'application/json');
+
     return this.http.post<{token : string}>(this.url, body, {headers}).pipe(
       catchError((error:HttpErrorResponse) => this.handleError(error)),
       map((response: { token: string }) => this.mapResponseToUser(response))
@@ -107,7 +109,12 @@ export class StudentService {
   public postStudent(student: Student): Observable<Student>
   {
 
-    const headers: HttpHeaders = new HttpHeaders().append('x-access-token', this.tokenJwt)
+    const headers: HttpHeaders = new HttpHeaders();
+    headers.append('x-access-token', this.tokenJwt);
+    headers.append('Content-Type', 'application/json');
+    headers.append("Access-Control-Allow-Origin", "http://localhost:3000/api/registration");
+
+
     const obs: Observable<Student> = this.http.post<Student>("http://localhost:3000/api/registration", student, {headers});
 
     return obs;

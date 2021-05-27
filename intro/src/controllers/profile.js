@@ -110,8 +110,8 @@ const updateProfile = async (req, res, next) => {
     }
 
 
-    const stud = await studentsService.updateProfile(student.email, student.personalInfo, student.portfolio,
-       student.about, student.education, student.technologies, student.experience);
+    const stud = await studentsService.updateProfile(student.email, student.personalInfo,
+       student.portfolio, student.about, student.education, student.technologies, student.experience);
     res.status(200).json({
         token : jwt.sign(stud.toJSON(), Jwtsecret)
     });

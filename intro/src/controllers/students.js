@@ -29,7 +29,7 @@ const getStudentByEmail = async (req, res, next) => {
 
   try {
     if (email == undefined) {
-      const error = new Error('Nedostaje email ime!');
+      const error = new Error('Nedostaje email!');
       error.status = 400;
       throw error;
     }
@@ -133,29 +133,7 @@ const changeUserPassword = async (req, res, next) => {
   }
 };
 
-const deleteStudent = async (req, res, next) => {
-  const username = req.params.username;
 
-  try {
-    if (!username) {
-      const error = new Error('Nedostaje korisnicko ime!');
-      error.status = 400;
-      throw error;
-    }
-
-    const user = await studentsService.getStudentByUsername(username);
-    if (!user) {
-      const error = new Error('Proverite korisnicko ime!');
-      error.status = 404;
-      throw error;
-    }
-
-    await studentsService.deleteStudent(username);
-    res.status(200).json();
-  } catch (error) {
-    next(error);
-  }
-};
 const Login = async (req, res, next) => {
 
   const email = req.body.email;
@@ -186,7 +164,6 @@ const Login = async (req, res, next) => {
 module.exports = {
   getStudentByEmail,
   getAllStudents,
-  addNewStudent,
   changeUserPassword,
   Login
 };
