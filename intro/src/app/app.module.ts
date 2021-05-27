@@ -1,12 +1,3 @@
-import { StudentProfileComponent } from './user/student-profile/student-profile.component';
-import { UserProfileComponent } from './pages/user-profile/user-profile.component';
-import { StudentListComponent } from './students/student-list/student-list.component';
-import { SearchStudentsComponent } from './search/search-students/search-students.component';
-import { StudentsComponent } from './profile/students/students.component';
-import { StudentInfoComponent } from './students/student-info/student-info.component';
-import { LoginComponent } from './login/login.component';
-import { SearchComponent } from './search/search/search.component';
-
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule} from '@angular/platform-browser';
@@ -25,7 +16,6 @@ import { ComponentsModule } from './components/components.module';
 import {CommonModule} from '@angular/common';
 import { UserFormUpdateComponent } from './user/user-form-update/user-form-update.component'
 
-
 @NgModule({
   imports: [
     BrowserAnimationsModule,
@@ -42,16 +32,7 @@ import { UserFormUpdateComponent } from './user/user-form-update/user-form-updat
   declarations: [
     AppComponent,
     AdminLayoutComponent,
-    AuthLayoutComponent,
-    SearchComponent,
-    SearchStudentsComponent,
-    LoginComponent,
-    StudentsComponent,
-    StudentInfoComponent,
-    StudentListComponent,
-    UserProfileComponent,
-    StudentProfileComponent,
-    UserFormUpdateComponent
+    AuthLayoutComponent
   ],
   providers: [],
   bootstrap: [AppComponent]

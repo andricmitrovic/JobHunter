@@ -1,0 +1,84 @@
+<!-- <form class="ui form" *ngIf="!showLogin" [formGroup] = "formRegisterCompany" (ngSubmit)= "onSubmit()" >
+</form> -->
+
+  <form [formGroup]="formRegisterCompany" class="ui form" id="company" (ngSubmit)="onSubmit()" >
+    <h1 class="ui h1"> Company information</h1>
+    <div class="form-group">
+      <div class="input-group input-group-alternative mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text"><i class="ni ni-hat-3"></i></span>
+        </div>
+        <input type="text" class="form-control" placeholder="Company name" formControlName="name">
+        <div class="ui pointing red basic label " *ngIf="name!=null &&  name.touched && name.errors?.required">
+            Please enter a name of company!
+          </div>
+          <div class="ui pointing red basic label " *ngIf="name != null && name.touched && name.invalid">
+            Invalid name!
+          </div>
+    </div>
+
+
+    <div class="form-group">
+      <div class="input-group input-group-alternative mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text"><i class="ni ni-email-83"></i></span>
+        </div>
+        <input class="form-control" placeholder="Email" type="email" formControlName = "email">
+      </div>
+      <div class="ui pointing red basic label " *ngIf="email!=null &&  email.touched && email.errors?.required">
+        Please enter email!
+      </div>
+      <div class="ui pointing red basic label " *ngIf="email != null && email.touched && email.invalid">
+        Invalid email!
+      </div>  
+    </div>
+
+    
+
+    <div class="form-group">
+        <div class="input-group input-group-alternative">
+        <div class="input-group-prepend">
+          <span class="input-group-text"><i class="ni ni-world-2"></i></span>
+        </div>
+        <input class="form-control" type="url" placeholder="Website adress" formControlName = "address">
+      </div>
+    </div>
+
+
+    <div class="form-group">
+        <div class="input-group input-group-alternative">
+        <div class="input-group-prepend">
+            <span class="input-group-text"><i class="ni ni-chat-round"></i></span>
+        </div>
+            <input class="form-control" type="text" placeholder="Short bio" formControlName = "bio">
+        </div>
+    </div>    
+    
+    <div class="form-group">
+        <div class="input-group input-group-alternative">
+            <div class="input-group-prepend">
+            <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
+            </div>
+            <input class="form-control" placeholder="Password" type="password" formControlName="password">
+        </div>
+
+        <div class="ui pointing red basic label " *ngIf="password!=null &&  password.touched && password.errors?.required">
+            Please enter a password!
+        </div>
+        <div class="ui pointing red basic label " *ngIf="password != null && password.touched && password.invalid">
+            Invalid password!
+        </div>
+        </div>
+
+    </div>
+    
+    <div class="text-center">
+      <button type="submit" class="btn btn-primary mt-4" [disabled]="!formRegisterCompany.valid">Create account</button>
+    </div>
+  </form>
+
+  <div *ngIf="showLogin">
+        <h1 class="ui h1">You registration was successful!</h1>
+        <app-login></app-login>
+  </div> 
+      

@@ -1,18 +1,19 @@
 import { Component, OnInit } from '@angular/core';
 import {FormGroup, FormBuilder, Validators} from '@angular/forms'
-import { Student } from './../../students/models/student';
-import { StudentService } from '../../students/services/student.service';
+import { Student } from './../../../students/models/student';
+import { StudentService } from '../../../students/services/student.service';
 import { Subscription } from 'rxjs';
+
 @Component({
   selector: 'app-student',
   templateUrl: './student.component.html',
   styleUrls: ['./student.component.css']
 })
+
 export class StudentComponent implements OnInit {
 
   student!:Student;
   registerForm: FormGroup;
-
 
   showForm : boolean;
   showLogin: boolean;
@@ -27,11 +28,9 @@ export class StudentComponent implements OnInit {
     });
     this.showForm = true;
     this.showLogin = false;
-
    }
 
   onRegisterClick(){
-
 
     // const email: string = this.email?.value;
     // const personalInfo = {
@@ -51,7 +50,7 @@ export class StudentComponent implements OnInit {
     console.log(this.student);
 
     console.log(this.authService.postStudent(this.student).subscribe());
-    //this.authService.registerStudent(this.student.email, this.student.personalInfo).subscribe();
+    // this.authService.registerStudent(this.student.email, this.student.personalInfo).subscribe();
     this.showForm = false;
     this.showLogin = true;
   }

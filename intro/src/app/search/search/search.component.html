@@ -1,10 +1,41 @@
 <div class="ui group">
     <br/>
-    <button class="ui basic teal button" (click)="openSearchCompanies()">Search Companies</button>
-    <button class="ui active basic green button" (click)="openSearchStudents()">Search Students</button>
 </div>
 
-<h1 class= "ui huge header blue">Welcome to JobHunter</h1>
+<div class="form-group">
+<div class="card  text-center p-7">
+          
+        <h1 class= "ui huge header blue">Welcome to JobHunter</h1>
+        <b> Here you can find job or future employer. </b>
+        <br>
+        <form class="navbar-search navbar-search-dark form-inline mr-3 d-none d-md-flex ml-lg-auto">
+        <!-- <div class="form-group mb-0" [ngClass]="{ 'focused': focus === true }"> -->
+        <!-- <div class="input-group-prepend">
+        <span class="input-group-text"><i class="fas fa-search"></i></span>
+        </div> -->
+        <!-- <input class="form-control" placeholder="Search" type="text" (focus)="focus = true" 
+        (blur)="focus = false"> -->
+        <!-- </div> -->
 
-<app-search-students  *ngIf="searchStudentsOrCompanies"></app-search-students>
-<app-search-companies *ngIf="!searchStudentsOrCompanies"></app-search-companies>
+
+        </form>    
+
+      
+      <div class="form-group">
+            <div class="text-center">
+            <button type="button" class="btn btn-light" (click)="openSearchCompanies()">Search Companies</button>
+            <button type="button" class="btn btn-light" (click)="openSearchStudents()">Search Student</button>    
+            </div>
+        </div>
+
+
+
+    </div>
+    </div>
+
+    <div class="card  text-center p-2">
+
+        <app-search-students  *ngIf="searchStudentsOrCompanies"></app-search-students>
+        <app-search-companies *ngIf="!searchStudentsOrCompanies"></app-search-companies>
+
+    </div>

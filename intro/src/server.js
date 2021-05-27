@@ -24,6 +24,3 @@ try{
    console.log('Server neuspesno pokrenut')
    console.error(error);
  }
-
-
-

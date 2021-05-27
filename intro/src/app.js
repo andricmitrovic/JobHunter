@@ -2,6 +2,7 @@ const express = require('express');
 const studentsRouter = require('./routes/api/students');
 const companiesRouter = require('./routes/api/companies');
 const profileRouter = require('./routes/api/profile');
+const registerRouter = require('./routes/api/registration')
 const { urlencoded, json } = require('body-parser');
 const mongoose = require('mongoose');
 
@@ -51,9 +52,8 @@ app.use(function (req, res, next) {
 app.use('/api/students', studentsRouter);
 app.use('/api/companies', companiesRouter);
 app.use('/api/profile', profileRouter);
+app.use('/api/registration', registerRouter);
 
-console.log(profileRouter);
-console.log(companiesRouter);
 app.use(function (req, res, next) {
     const error = new Error('Zahtev nije podrzan!');
     error.status = 405;
