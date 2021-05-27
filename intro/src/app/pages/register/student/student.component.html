@@ -17,14 +17,14 @@
           
           <div class="input-group input-group-alternative mb-3">
                 <div class="input-group-prepend">
-                  <span class="input-group-text"><i class="ni ni-hat-3"></i></span>
+                  <span class="input-group-text"><i class="ni ni-calendar-grid-58"></i></span>
                 </div>
-                <input type="date" class="form-control" placeholder="Date of your birth" formControlName="date">
-                <div class="ui pointing red basic label " *ngIf="name!=null &&  name.touched && name.errors?.required">
-                    Please enter a name of company!
+                <input type="text" onmouseover="(this.type='date')" onmouseout="(this.type='text')" class="form-control" placeholder="Date of your birth" formControlName="date">
+                <div class="ui pointing red basic label " *ngIf="date!=null &&  date.touched && date.errors?.required">
+                    Please enter a date of birth!
                   </div>
-                  <div class="ui pointing red basic label " *ngIf="name != null && name.touched && name.invalid">
-                    Invalid name!
+                  <div class="ui pointing red basic label " *ngIf="date != null && date.touched && date.invalid">
+                    Invalid date!
                   </div>
             </div>    
           
@@ -33,7 +33,7 @@
                       <div class="input-group-prepend">
                         <span class="input-group-text"><i class="ni ni-email-83"></i></span>
                       </div>
-                      <input class="form-control" placeholder="Email" type="email" formControlname="email">
+                      <input class="form-control" placeholder="Email" type="email" formControlName="email">
                     </div>
                     <div class="ui pointing red basic label " *ngIf="email!=null &&  email.touched && email.errors?.required">
                       Please enter email!
@@ -67,7 +67,7 @@
 
 <div *ngIf="showLogin">
   <h1 class="ui h1">You registration was successful!</h1>
-  <app-search></app-search>
+  <!-- <app-search></app-search> -->
 </div>
 
 <!--

@@ -13,7 +13,6 @@ export class StudentComponent implements OnInit {
   student!:Student;
   registerForm: FormGroup;
 
-
   showForm : boolean;
   showLogin: boolean;
 
@@ -27,11 +26,9 @@ export class StudentComponent implements OnInit {
     });
     this.showForm = true;
     this.showLogin = false;
-
    }
 
   onRegisterClick(){
-
 
     // const email: string = this.email?.value;
     // const personalInfo = {
@@ -51,7 +48,7 @@ export class StudentComponent implements OnInit {
     console.log(this.student);
 
     console.log(this.authService.postStudent(this.student).subscribe());
-    //this.authService.registerStudent(this.student.email, this.student.personalInfo).subscribe();
+    // this.authService.registerStudent(this.student.email, this.student.personalInfo).subscribe();
     this.showForm = false;
     this.showLogin = true;
   }

@@ -56,12 +56,10 @@ export class RegisterComponent implements OnInit, OnDestroy {
   onStudentClick(){
     this.showRegisterCompany = false;
     this.showRegisterStudent = true;
-    console.log("in on Sompany CLick")
 
   }
   onCompanyClick(){
     this.showRegisterCompany = true;
     this.showRegisterStudent = false;
-    console.log("in onCompany CLick")
   }
 }

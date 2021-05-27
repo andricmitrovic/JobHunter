@@ -9,6 +9,9 @@ import { LoginComponent } from '../../pages/login/login.component';
 import { RegisterComponent } from '../../pages/register/register.component';
 import { CompanyComponent } from '../../pages/register/company/company.component'
 import { StudentComponent} from '../../pages/register/student/student.component'
+import { SearchStudentsComponent } from 'src/app/search/search-students/search-students.component';
+import { SearchCompaniesComponent } from 'src/app/search/search-companies/search-companies.component';
+import { SearchComponent } from 'src/app/search/search/search.component';
 
 
 @NgModule({

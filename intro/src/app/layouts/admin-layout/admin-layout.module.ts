@@ -11,7 +11,16 @@ import { IconsComponent } from '../../pages/icons/icons.component';
 import { UserProfileComponent } from '../../pages/user-profile/user-profile.component';
 import { TablesComponent } from '../../pages/tables/tables.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { SearchComponent } from 'src/app/search/search/search.component';
+import { SearchCompaniesComponent } from 'src/app/search/search-companies/search-companies.component';
+import { SearchStudentsComponent } from 'src/app/search/search-students/search-students.component';
 // import { ToastrModule } from 'ngx-toastr';
+import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
+import { StudentListComponent } from 'src/app/students/student-list/student-list.component';
+import { StudentInfoComponent } from 'src/app/students/student-info/student-info.component';
+import { StudentsComponent } from 'src/app/profile/students/students.component';
+import { CompanyListComponent } from 'src/app/companies/company-list/company-list.component';
+
 
 @NgModule({
   imports: [
@@ -20,14 +29,23 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     FormsModule,
     HttpClientModule,
     NgbModule,
-    ClipboardModule
+    ClipboardModule,
+    FormsModule,
+    ReactiveFormsModule,
+    NgMultiSelectDropDownModule
   ],
   declarations: [
     DashboardComponent,
     UserProfileComponent,
     TablesComponent,
     IconsComponent,
-  ]
+    SearchComponent,
+    SearchCompaniesComponent,
+    SearchStudentsComponent,
+    StudentListComponent,
+    StudentInfoComponent,
+    StudentsComponent,
+    CompanyListComponent   ]
 })
 
 export class AdminLayoutModule {}
