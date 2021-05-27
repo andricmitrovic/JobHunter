@@ -1,7 +1,10 @@
-import { Component, OnInit, ElementRef } from '@angular/core';
+import { Component, OnInit, ElementRef, Input} from '@angular/core';
 import { ROUTES } from '../sidebar/sidebar.component';
 import { Location, LocationStrategy, PathLocationStrategy } from '@angular/common';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
+import { StudentService } from './../../students/services/student.service';
+import { Student } from './../../students/models/student';
 
 @Component({
   selector: 'app-navbar',
@@ -12,8 +15,14 @@ export class NavbarComponent implements OnInit {
   public focus;
   public listTitles: any[];
   public location: Location;
-  constructor(location: Location,  private element: ElementRef, private router: Router) {
+
+  @Input() student!: Student | null;
+  showLogin : boolean;
+  sub! : Subscription;
+
+  constructor(location: Location,  private element: ElementRef, private router: Router, private studentService: StudentService) {
     this.location = location;
+    this.showLogin = (this.student != null);
   }
 
   ngOnInit() {
@@ -31,6 +40,10 @@ export class NavbarComponent implements OnInit {
         }
     }
     return 'Dashboard';
+  }
+  public Logout(){
+    this.studentService.logouStudent();
+    this.showLogin = false;
   }
 
 }

@@ -1,5 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
+import { StudentService } from './../../students/services/student.service';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { JwtService } from './../../../services/jwt.service';
+import { Student } from './../../students/models/student';
+import { HtmlParser } from '@angular/compiler';
 
 declare interface RouteInfo {
     path: string;
@@ -24,7 +30,16 @@ export class SidebarComponent implements OnInit {
   public menuItems: any[];
   public isCollapsed = true;
 
-  constructor(private router: Router) { }
+  @Input() student!: Student | null;
+  showLogin : boolean;
+  sub! : Subscription;
+
+  constructor(private router: Router, private studentService: StudentService) { }
+
+  public Logout(){
+    console.log("Logout!");
+    this.studentService.logouStudent();
+  }
 
   ngOnInit() {
     this.menuItems = ROUTES.filter(menuItem => menuItem);
