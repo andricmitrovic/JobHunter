@@ -1,10 +1,11 @@
 import { JwtService } from './../../../services/jwt.service';
 import { Student } from './../models/student';
-import { HttpClient, HttpErrorResponse, HttpHeaders, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders, HttpParams, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, of, Subject } from 'rxjs';
+import { Observable, of, Subject} from 'rxjs';
 import { StudentPagination } from './models/student-pagination';
 import { catchError, map } from "rxjs/operators";
+import { error } from 'selenium-webdriver';
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +19,11 @@ export class StudentService {
 
   public readonly studentObservable = this.studentSubject.asObservable();
 
-  private readonly url = "http://localhost:3000/api/students";
+  private readonly urlStudent = "http://localhost:3000/api/students";
+  private readonly urlRegistration = "http://localhost:3000/api/registrstion";
+  private readonly urlProfile = "http://localhost:3000/api/profile";
+  private readonly urlchangePassword = "http://localhost:3000/api/changePassword";
+
 
   constructor(private http: HttpClient, private jwtService:JwtService) { }
 
@@ -29,7 +34,7 @@ export class StudentService {
     headers.append('Authorization', this.tokenJwt);
     headers.append('Content-Type', 'application/json');
 
-    return this.http.post<{token : string}>("http://localhost:3000/api/profile", body, {headers}).pipe(
+    return this.http.post<{token : string}>(this.urlProfile, body, {headers}).pipe(
       catchError((error:HttpErrorResponse) => this.handleError(error)),
       map((response: { token: string }) => this.mapResponseToUser(response))
     );
@@ -50,7 +55,7 @@ export class StudentService {
 
     const params: HttpParams = new HttpParams({fromObject: data})
 
-    const obs: Observable<StudentPagination> = this.http.get<StudentPagination>(this.url, {params});
+    const obs: Observable<StudentPagination> = this.http.get<StudentPagination>(this.urlStudent, {params});
 
     const newObs: Observable<Student[]> =  obs.pipe(
       map((pagination: StudentPagination) => {return pagination.docs})
@@ -64,10 +69,10 @@ export class StudentService {
     const body = {email, password};
     const headers: HttpHeaders = new HttpHeaders();
     headers.append('Authorization', this.tokenJwt);
-    headers.append('Content-Type', 'application/json');
 
-    return this.http.post<{token : string}>(this.url, body, {headers}).pipe(
-      catchError((error:HttpErrorResponse) => this.handleError(error)),
+    return this.http.post<{token : string}>(this.urlStudent, body, {headers}).pipe(
+      catchError((error:HttpErrorResponse) => {window.alert("Invalid email or password! Try again!");
+              return new Observable<null>();}),
       map((response: { token: string }) => this.mapResponseToUser(response))
     );
   }
@@ -81,7 +86,7 @@ export class StudentService {
     headers.append('Authorization', this.tokenJwt);
     headers.append('Content-Type', 'application/json');
 
-    return this.http.post<{success : boolean}>("http://localhost:3000/api/profile" , body, {headers}).pipe(
+    return this.http.post<{success : boolean}>(this.urlchangePassword , body, {headers}).pipe(
       catchError((error:HttpErrorResponse) => {throw Error(error.message)}),
       map((response: { success: boolean }) => response.success));
 
@@ -98,7 +103,7 @@ export class StudentService {
     headers.append('Content-Type', 'application/json');
 
 
-    return this.http.get<{success : string}>("http://localhost:3000/api/profile", {headers, params}).pipe(
+    return this.http.get<{success : string}>(this.urlProfile, {headers, params}).pipe(
       catchError((error:HttpErrorResponse) => this.handleError(error)),
       map((response :{success: string})=>{return response.success})
     );
@@ -106,18 +111,16 @@ export class StudentService {
   }
 
 
-  public postStudent(student: Student): Observable<Student>
+  public postStudent(student: Student): Observable<Student | null>
   {
 
     const headers: HttpHeaders = new HttpHeaders();
     headers.append('x-access-token', this.tokenJwt);
     headers.append('Content-Type', 'application/json');
-    headers.append("Access-Control-Allow-Origin", "http://localhost:3000/api/registration");
 
-
-    const obs: Observable<Student> = this.http.post<Student>("http://localhost:3000/api/registration", student, {headers});
-
-    return obs;
+    return this.http.post<Student>("http://localhost:3000/api/registration", student, {headers}).pipe(
+        catchError((error: HttpErrorResponse)=>{window.alert("Profile with the same email already exists. Try again!");
+                   return new Observable<null>();}));
   }
 
 

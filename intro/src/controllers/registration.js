@@ -17,7 +17,9 @@ const getStudentByEmail = async (req, res, next) => {
 
     const student = await studentsService.getStudentByEmail(email);
     if (student == null) {
-      res.status(404).json();
+      const error = new Error('Student does not exists!');
+      error.status = 404;
+      throw error;
     } else {
       res.status(200).json(student);
     }
@@ -34,38 +36,28 @@ const addNewStudent = async (req, res, next) => {
   try
   {
     if (
-    //  !username ||
+      !personalInfo.fullName ||
 
-        !personalInfo.fullName ||
-      //!personalInfo.adress ||
-        !email ||
-     // !personalInfo.gender ||
-     // !personalInfo.dateOfBirth ||
-        !personalInfo.password ||
-
-     // !education.university ||
-     // !education.faculty ||
-     // !education.gpa ||
-
-     // !experience ||
-     // !techologies ||
-     // !languages ||
-
-      // !portfolio ||
-      // !about ||
-
-       !validator.isEmail(email)
-     // !validator.isAlphanumeric(username)
+      !email ||
+      !personalInfo.password ||
+      !validator.isEmail(email)
 
     )
     {
-      res.status(400).json('Proverite prosledjene podatke1! ' + email);
+      const error = new Error('Error in data!');
+      error.status = 400;
+      throw error;
+
     }
 
     const exists = await studentsService.getStudentByEmail(email);
     if (exists)
     {
-      res.status(403).json('Korisnik sa ovim emailom je vec registrovan!');
+
+      const error = new Error('Already exists!');
+      error.status = 403;
+      throw error;
+
     }
 
     const user = await studentsService.addNewStudent(email, personalInfo, education, experience, techologies, languages, portfolio, about);

@@ -1,8 +1,9 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import {FormGroup, FormBuilder, Validators} from '@angular/forms'
 import { Student } from './../../../students/models/student';
 import { StudentService } from '../../../students/services/student.service';
-import { Subscription } from 'rxjs';
+import { Subscription, Observable } from 'rxjs';
 
 @Component({
   selector: 'app-student',
@@ -14,6 +15,8 @@ export class StudentComponent implements OnInit {
 
   student!:Student;
   registerForm: FormGroup;
+
+  sub : Subscription;
 
   showForm : boolean;
   showLogin: boolean;
@@ -49,10 +52,13 @@ export class StudentComponent implements OnInit {
 
     console.log(this.student);
 
-    console.log(this.authService.postStudent(this.student).subscribe());
-    // this.authService.registerStudent(this.student.email, this.student.personalInfo).subscribe();
-    this.showForm = false;
-    this.showLogin = true;
+    this.sub = this.authService.postStudent(this.student).subscribe((student : Student | null) =>{
+        if (student){
+          this.showForm = false;
+          this.showLogin = true;
+          this.student = student;
+        }
+    });
   }
   ngOnInit(): void {
   }

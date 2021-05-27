@@ -45,59 +45,6 @@ const getStudentByEmail = async (req, res, next) => {
   }
 };
 
-const addNewStudent = async (req, res, next) => {
-  const { email, personalInfo, education, experience,
-    techologies, languages, portfolio, about } = req.body;
-
-
-  try
-  {
-    if (
-    //  !username ||
-
-        !personalInfo.fullName ||
-      //!personalInfo.adress ||
-        !email ||
-     // !personalInfo.gender ||
-     // !personalInfo.dateOfBirth ||
-        !personalInfo.password ||
-
-     // !education.university ||
-     // !education.faculty ||
-     // !education.gpa ||
-
-     // !experience ||
-     // !techologies ||
-     // !languages ||
-
-      // !portfolio ||
-      // !about ||
-
-       !validator.isEmail(email)
-     // !validator.isAlphanumeric(username)
-
-    )
-    {
-      res.status(400).json('Proverite prosledjene podatke1! ' + email);
-    }
-
-    const exists = await studentsService.getStudentByEmail(email);
-    if (exists)
-    {
-      res.status(403).json('Korisnik sa ovim emailom je vec registrovan!');
-    }
-
-    const user = await studentsService.addNewStudent(email, personalInfo, education, experience, techologies, languages, portfolio, about);
-    res.status(201).json({
-      user
-    });
-
-  } catch(error)
-  {
-    next(error);
-  }
-
-};
 
 const changeUserPassword = async (req, res, next) => {
   const email = req.params.email;
