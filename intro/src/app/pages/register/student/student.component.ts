@@ -3,11 +3,13 @@ import {FormGroup, FormBuilder, Validators} from '@angular/forms'
 import { Student } from './../../../students/models/student';
 import { StudentService } from '../../../students/services/student.service';
 import { Subscription } from 'rxjs';
+
 @Component({
   selector: 'app-student',
   templateUrl: './student.component.html',
   styleUrls: ['./student.component.css']
 })
+
 export class StudentComponent implements OnInit {
 
   student!:Student;

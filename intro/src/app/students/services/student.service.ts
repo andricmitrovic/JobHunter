@@ -13,7 +13,7 @@ import { catchError, map } from "rxjs/operators";
 export class StudentService {
 
   public readonly studentSubject : Subject<Student> = new Subject<Student>();
-  public readonly tokenJwt = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhZG1pblVzZXJuYW1lIjoiYWRtaW4iLCJhZG1pblBhc3N3b3JkIjoiYWRtaW5wYXNzIiwiaWF0IjoxNjE3NzM4NzEzLCJleHAiOjE2MjAzMzA3MTN9.h-H96EdSvm_q6PFrKrjPoi-c5akNVgDynrrq1bTblIw";
+  public readonly tokenJwt = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhZG1pblVzZXJuYW1lIjoiYWRtaW4iLCJhZG1pblBhc3N3b3JkIjoiYWRtaW5wYXNzIiwiaWF0IjoxNjE3NzM4NzEzLCJleHAiOjE2MjAzMzA3MTN9.h-H96EdSvm_q6PFrKrjPoi-c5akNVgDynrrq1bTblIw';
 
   public readonly studentObservable = this.studentSubject.asObservable();
 
@@ -97,8 +97,9 @@ export class StudentService {
       ? new Student(payloadData.email, payloadData.personalInfo, payloadData.education, payloadData.experience, payloadData.technologies,
         payloadData.languages, payloadData.portfolio, payloadData.img, payloadData.about) : null;
 
-    if (student)
+    if (student) {
       this.studentSubject.next(student);
+    }
     return student;
   }
 }
