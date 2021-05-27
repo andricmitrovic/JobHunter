@@ -20,6 +20,7 @@ import { StudentListComponent } from 'src/app/students/student-list/student-list
 import { StudentInfoComponent } from 'src/app/students/student-info/student-info.component';
 import { StudentsComponent } from 'src/app/profile/students/students.component';
 import { CompanyListComponent } from 'src/app/companies/company-list/company-list.component';
+import { CompanyInfoComponent } from 'src/app/companies/company-info/company-info.component';
 
 
 @NgModule({
@@ -45,7 +46,8 @@ import { CompanyListComponent } from 'src/app/companies/company-list/company-lis
     StudentListComponent,
     StudentInfoComponent,
     StudentsComponent,
-    CompanyListComponent   ]
+    CompanyListComponent,
+    CompanyInfoComponent   ]
 })
 
 export class AdminLayoutModule {}
