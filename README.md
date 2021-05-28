@@ -1,13 +1,19 @@
 # Project JobHunter
 
 Platforma koju će koristiti poslodavci da pronađu adekvatne radnike i nezaposleni da pronađu poslove/prakse shodno svojim afinitetetima.
+# Demo 
+- https://youtu.be/6T6Tt7w0ZEA
 
-# [Opis podataka](https://gitlab.com/matfpveb/projekti/2020-2021/05-JobHunter/-/wikis/Opis-podataka)
+# Opis podataka
+- [Opis podataka](https://gitlab.com/matfpveb/projekti/2020-2021/05-JobHunter/-/wikis/Opis-podataka)
 <!-- - [demo-video](#); [backup](#) 
-[![demo](thumbnail03.jpeg)](#) -->
+[![demo](thumbnail03.jpeg)](#)
+
+-->
 
 
-# [Build](https://gitlab.com/matfpveb/projekti/2020-2021/05-JobHunter/-/wikis/Prevo%C4%91enje)
+# Build
+- [Build procedura](https://gitlab.com/matfpveb/projekti/2020-2021/05-JobHunter/-/wikis/Prevo%C4%91enje)
 
 ## Developers
 
