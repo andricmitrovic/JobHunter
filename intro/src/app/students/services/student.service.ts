@@ -20,7 +20,7 @@ export class StudentService {
   public readonly studentObservable = this.studentSubject.asObservable();
 
   private readonly urlStudent = "http://localhost:3000/api/students";
-  private readonly urlRegistration = "http://localhost:3000/api/registrstion";
+  private readonly urlRegistration = "http://localhost:3000/api/registration";
   private readonly urlProfile = "http://localhost:3000/api/profile";
   private readonly urlchangePassword = "http://localhost:3000/api/changePassword";
 
@@ -84,10 +84,10 @@ export class StudentService {
 
     const headers: HttpHeaders = new HttpHeaders();
     headers.append('Authorization', this.tokenJwt);
-    headers.append('Content-Type', 'application/json');
+    //headers.append('Content-Type', 'application/json');
 
     return this.http.post<{success : boolean}>(this.urlchangePassword , body, {headers}).pipe(
-      catchError((error:HttpErrorResponse) => {throw Error(error.message)}),
+      catchError((error:HttpErrorResponse) => {window.alert("You entered wrong password! Try again!"); return new Observable<null>();}),
       map((response: { success: boolean }) => response.success));
 
   }
@@ -96,8 +96,6 @@ export class StudentService {
   {
     const data = {email: email};
     const params: HttpParams = new HttpParams({fromObject: data});
-
-    window.alert(params.toString());
 
     const headers: HttpHeaders = new HttpHeaders();
     headers.append('Content-Type', 'application/json');

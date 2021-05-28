@@ -6,12 +6,14 @@ const Student = require('../models/students');
 const Jwtsecret = process.env.JWT_SECRET || 'masasavic'
 
 const changeUserPassword = async (req, res, next) => {
-  const email = req.params.email;
-   const { oldPassword, newPassword } = req.body;
-   try {
+
+  const email = req.body.email;
+  const oldPassword = req.body.old_password;
+  const newPassword = req.body.new_password;
+  try {
 
     if (!email || !oldPassword || !newPassword) {
-      const error = new Error('Greska u podacima!');
+      const error = new Error('Greska u podacima!' + email + oldPassword + newPassword);
       error.status = 404;
       throw error;
    }
@@ -28,7 +30,7 @@ const changeUserPassword = async (req, res, next) => {
       error.status = 403;
       throw error;
     }
-    const changedStudent = await this.studentsService.changePassword(email, oldPassword, newPassword);
+    await studentsService.changePassword(email, oldPassword, newPassword);
 
 
     res.status(200).json({

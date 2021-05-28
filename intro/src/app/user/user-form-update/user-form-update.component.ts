@@ -131,7 +131,6 @@ export class UserFormUpdateComponent implements OnInit, OnDestroy {
   }
   public submitChanges(){
 
-    console.log(this.formUpdateProfile);
 
     this.student.personalInfo = {
         fullName: this.fullName,

@@ -59,11 +59,9 @@ export class StudentProfileComponent implements OnInit, OnDestroy{
 
   public submitChangePassword(){
       if (this.new_password != this.new_password_r){
-        window.alert("Ne poklapaju se sifre!");
+        window.alert("You've enetered different values for new password!");
       }
       else {
-        if (this.sub)
-          this.sub.unsubscribe();
         this.sub = this.studentService.changeStudentPassword(this.student.email, this.old_password, this.new_password)
           .subscribe((response) => {this.showSuccess = true; this.formChangePassword.reset();
           });
