@@ -1,8 +1,11 @@
 <div *ngIf="!showLogin">
-<button class = "ui button" (click)= "Logout()">Logout</button>
-<button class = "ui button" (click)= "updateProfile()">Change information</button>
-<button class = "ui button" (click)= "changePassword()"> Change password </button>
-<button class = "ui button" (click)= "deleteAccount()"> Delete account</button>
+<div class="row justify-content-center">
+<button class ="btn btn-info" (click)= "Logout()">Logout</button>
+<button class = "btn btn-info" (click)= "updateProfile()">Change information</button>
+<button class = "btn btn-info" (click)= "changePassword()"> Change password </button>
+<button class = "btn btn-info" (click)= "deleteAccount()"> Delete account</button>
+</div>
+<br><br>
 
 <app-user-form-update *ngIf = "showUpdateForm" [student]="student"></app-user-form-update>
 
