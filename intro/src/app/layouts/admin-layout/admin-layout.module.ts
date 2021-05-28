@@ -1,3 +1,5 @@
+import { StudentProfileComponent } from './../../user/student-profile/student-profile.component';
+import { StudentsComponent } from 'src/app/profile/students/students.component';
 import { CompaniesComponent } from './../../profile/companies/companies.component';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';import { RouterModule } from '@angular/router';
@@ -39,11 +41,13 @@ import { CompanyInfoComponent } from 'src/app/companies/company-info/company-inf
     SearchComponent,
     SearchCompaniesComponent,
     SearchStudentsComponent,
+    StudentsComponent,
     StudentListComponent,
     StudentInfoComponent,
     CompanyListComponent,
     CompanyInfoComponent,
-    CompaniesComponent   ]
+    CompaniesComponent,
+  StudentProfileComponent  ]
 })
 
 export class AdminLayoutModule {}
