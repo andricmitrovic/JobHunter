@@ -7,7 +7,7 @@ Platforma koju će koristiti poslodavci da pronađu adekvatne radnike i nezaposl
 [![demo](thumbnail03.jpeg)](#) -->
 
 
-# [Build]()
+# [Build](https://gitlab.com/matfpveb/projekti/2020-2021/05-JobHunter/-/wikis/Prevo%C4%91enje)
 
 ## Developers
 
