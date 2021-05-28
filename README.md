@@ -2,7 +2,7 @@
 
 Platforma koju će koristiti poslodavci da pronađu adekvatne radnike i nezaposleni da pronađu poslove/prakse shodno svojim afinitetetima.
 
-## Demo
+## [Demo](https://gitlab.com/matfpveb/projekti/2020-2021/05-JobHunter/-/wikis/Opis-podataka)
 <!-- - [demo-video](#); [backup](#) 
 [![demo](thumbnail03.jpeg)](#) -->
 
