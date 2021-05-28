@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { JwtService } from './../../../services/jwt.service';
 import { StudentService } from './../../students/services/student.service';
 import { Student } from './../../students/models/student';
@@ -10,6 +11,8 @@ import jspdf from 'jspdf';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { JwtServiceCompanyService } from './../../../services/jwt-service-company.service';
 import { Subscription } from 'rxjs';
+import { Route } from '@angular/compiler/src/core';
+
 
 @Component({
   selector: 'app-user-profile',
@@ -31,7 +34,8 @@ export class UserProfileComponent implements OnInit {
 
 
 
-  constructor(private studentService:StudentService, private fb:FormBuilder, private jwtService: JwtService) {
+  constructor(private studentService:StudentService, private fb:FormBuilder, private jwtService: JwtService,
+    private router: Router) {
     this.showLogin = false;
     this.showChangePassword = false;
     this.showSuccess = false;
@@ -57,6 +61,7 @@ export class UserProfileComponent implements OnInit {
   public Logout(){
     this.showLogin = true;
     this.studentService.logouStudent();
+    this.router.navigate(['/login']);
   }
 
   public changePassword(){
@@ -82,6 +87,8 @@ export class UserProfileComponent implements OnInit {
     this.studentService.deleteStudentAccount(email).subscribe();
 
     this.showLogin = true;
+
+    this.router.navigate(['/login']);
   }
 
   public updateProfile(){

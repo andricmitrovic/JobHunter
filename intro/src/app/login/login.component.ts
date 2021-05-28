@@ -1,9 +1,9 @@
+import { Router } from '@angular/router';
 import { StudentService } from './../students/services/student.service';
 import { Student } from './../students/models/student';
 import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Observable, Subject, Subscription } from 'rxjs';
-
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -28,7 +28,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   eventsSubject: Subject<any> = new Subject<any>();
 
   showError: boolean;
-  constructor(private fb: FormBuilder, private studentService: StudentService) {
+  constructor(private fb: FormBuilder, private studentService: StudentService, private router: Router) {
 
     this.showLogInForm = true;
     this.showRegisterCompany = false;
@@ -65,6 +65,8 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.sub = this.studentService.Login(tmp.email, tmp.password).subscribe((student:Student | null)=>{
       this.student = student;
     });
+
+    this.router.navigate(['/user-profile']);
   }
 
 

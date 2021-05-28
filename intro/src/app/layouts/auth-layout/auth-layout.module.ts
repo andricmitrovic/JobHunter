@@ -12,7 +12,6 @@ import { StudentComponent} from '../../pages/register/student/student.component'
 import { SearchStudentsComponent } from 'src/app/search/search-students/search-students.component';
 import { SearchCompaniesComponent } from 'src/app/search/search-companies/search-companies.component';
 import { SearchComponent } from 'src/app/search/search/search.component';
-import { StudentProfileComponent } from 'src/app/user/student-profile/student-profile.component';
 import { StudentsComponent } from 'src/app/profile/students/students.component';
 import { UserFormUpdateComponent } from 'src/app/user/user-form-update/user-form-update.component';
 
@@ -29,8 +28,7 @@ import { UserFormUpdateComponent } from 'src/app/user/user-form-update/user-form
     RegisterComponent,
     CompanyComponent,
     StudentComponent,
-    StudentProfileComponent,
-    StudentsComponent, 
+    StudentsComponent,
     UserFormUpdateComponent
   ]
 })
