@@ -51,7 +51,7 @@ export class LoginComponent implements OnInit, OnDestroy {
       this.sub.unsubscribe();
     }
   }
-  
+
   public get email(){
     return this.form.get('email');
   }
@@ -65,13 +65,8 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.sub = this.studentService.Login(tmp.email, tmp.password).subscribe((student:Student | null)=>{
       this.student = student;
     });
-
-
   }
 
-  public isLoged() {
-
-  } 
 
   onStudentClick(){
     this.showLogInForm = false;
