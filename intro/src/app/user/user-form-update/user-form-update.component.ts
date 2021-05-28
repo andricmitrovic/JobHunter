@@ -151,14 +151,12 @@ export class UserFormUpdateComponent implements OnInit, OnDestroy {
       gpa : this.gpa
     };
 
-    this.tech.push(this.technologies.value.join(", "));
-    this.student.technologies = this.tech;
+    //this.tech.push(this.technologies.toString());
 
-    this.exp.push(this.experience.value);
+    this.student.technologies = this.technologies.value;
 
-    this.student.experience = this.exp;
+    this.student.experience = this.experience.value;
 
-    console.log(this.student);
     this.sub = this.studentService.updateProfile(this.student).subscribe(
         (student:Student | null)=>{
           this.student = student;

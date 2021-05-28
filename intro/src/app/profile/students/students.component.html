@@ -39,8 +39,10 @@
                       <h4  class="text" style="color: black">{{student.personalInfo.fullName}}</h4>
                       <p  class="text mb-1" style="color: black" *ngIf="student.about != undefined">{{student.about}}</p>
                       <p class="text-muted font-size-sm">{{student.personalInfo.adress}}</p>
+                      <!--
                       <button class="btn btn-primary">Follow</button>
                       <button class="btn btn-outline-primary">Review</button>
+                      -->
                     </div>
                   </div>
                 </div>
@@ -87,11 +89,11 @@
             <div class="col-md-8">
               <div class="card mb-3">
                 <div class="card-body">
-                  <h4>Obrazovovanje</h4>
+                  <h4>Education</h4>
                   <hr>
                   <div class="row">
                     <div class="col-sm-3">
-                      <h6 class="mb-0 text"> Fakultet </h6>
+                      <h6 class="mb-0 text"> Faculty </h6>
                     </div>
                     <div class="col-sm-9 text" *ngIf="student.education !=undefined" style="color: black">
                         {{student.education.faculty + ", " + student.education.university + ", " + student.education.gpa}}
@@ -111,12 +113,16 @@
                     <hr>
                   <div class="row" >
                     <div class="col-sm-3">
-                      <h6 class="mb-0 text" style="color: black"> {{exp.position}} </h6>
+                      <label>Position</label>
+                      <h4 class="mb-0 text" style="color: black"> {{exp.position}} </h4>
 
                     </div>
 
                     <div class="col-sm-9 text" style="color: black">
-                        {{exp.company + ", " +  exp.length}}
+                      <label>Company</label>
+                      <h4 class="mb-0 text" style="color: black"> {{exp.company + ", " +  exp.length}}
+                      </h4>
+
 
                     </div>
 

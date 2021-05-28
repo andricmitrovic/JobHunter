@@ -14,6 +14,7 @@ import jspdf from 'jspdf';
 export class StudentsComponent implements OnInit {
 
   @Input() student!: Student;
+  @ViewChild('pdfTable') pdfTable: ElementRef;
 
   constructor(private sS: StudentService) {
   }
@@ -21,20 +22,13 @@ export class StudentsComponent implements OnInit {
   ngOnInit(): void {
 
   }
-  @ViewChild('pdfTable') pdfTable: ElementRef;
 
-  public SavePDF():void{
+  public SavePDF(): void {
     const pdfTable = this.pdfTable.nativeElement;
 
-    var html = htmlToPdfmake(pdfTable.innerHTML);
+    const documentDefinition = {content: htmlToPdfmake(pdfTable.innerHTML)};
 
-    const documentDefinition = {  };
-    var docDefinition = {
-      pageSize: 'A5',
-      content: html,
-      pageMargins: [ 40, 60, 40, 60 ]
-    };
-    pdfMake.createPdf(documentDefinition).download("cv.pdf");
+    pdfMake.createPdf(documentDefinition).download('cv.pdf');
   }
 
 }
