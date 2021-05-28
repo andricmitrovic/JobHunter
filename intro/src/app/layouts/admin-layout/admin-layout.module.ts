@@ -16,7 +16,6 @@ import { SearchStudentsComponent } from 'src/app/search/search-students/search-s
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { StudentListComponent } from 'src/app/students/student-list/student-list.component';
 import { StudentInfoComponent } from 'src/app/students/student-info/student-info.component';
-import { StudentsComponent } from 'src/app/profile/students/students.component';
 import { CompanyListComponent } from 'src/app/companies/company-list/company-list.component';
 import { CompanyInfoComponent } from 'src/app/companies/company-info/company-info.component';
 
@@ -41,7 +40,6 @@ import { CompanyInfoComponent } from 'src/app/companies/company-info/company-inf
     SearchStudentsComponent,
     StudentListComponent,
     StudentInfoComponent,
-    StudentsComponent,
     CompanyListComponent,
     CompanyInfoComponent   ]
 })
