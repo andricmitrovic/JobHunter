@@ -1,3 +1,4 @@
+import { StudentProfileComponent } from './../../user/student-profile/student-profile.component';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
@@ -29,7 +30,8 @@ import { UserFormUpdateComponent } from 'src/app/user/user-form-update/user-form
     CompanyComponent,
     StudentComponent,
     StudentsComponent,
-    UserFormUpdateComponent
+    UserFormUpdateComponent,
+    StudentProfileComponent
   ]
 })
 export class AuthLayoutModule { }
