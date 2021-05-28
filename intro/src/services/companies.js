@@ -10,7 +10,7 @@ const getAllCompanies = async () => {
 async function paginateThroughCompanies(page = 1, limit = 10, adress = "all", positionSeniority = "all", length = "all", searchString = "all") {
 
   const query = Company.find()  // radi i sa findOne ???
-  
+
   if ( adress !== "all" )
   {
     query.where('personalInfo.adress').equals(adress);
@@ -25,7 +25,7 @@ async function paginateThroughCompanies(page = 1, limit = 10, adress = "all", po
     query.find({ "personalInfo.fullName": { "$regex": searchString, "$options": "i" } });
   }
 
-  // Todo 
+  // Todo
 
   // if ( length !== undefined )
   // {
@@ -36,56 +36,61 @@ async function paginateThroughCompanies(page = 1, limit = 10, adress = "all", po
   return await Company.paginate(query, { page, limit, populate: 'owner', sort: 'timestamp', projection: '-timestamp' });
 }
 
-const getCompanyByUsername = async (username) => {
-  const company = await Company.findOne({ username: username }).exec();
+const getCompanyByEmail = async (email) => {
+  const company = await Company.findOne({ email: email }).exec();
   return company;
 };
 
-const addNewCompany = async (username, personalInfo, positions, about) => {
+const addNewCompany = async (email, personalInfo, positions, about) => {
 
   // let isAdded = false;
 
   const newCompany = new Company({
     _id: new mongoose.Types.ObjectId(),
-    username, 
-    personalInfo, 
-    positions, 
+    email,
+    personalInfo,
+    positions,
     about
   });
-
-  // const user = getUserByUsername(username);
-
-  // if (user == null) {
-  //   await newUser.save();
-  //   isAdded = true;
-  // }
-
-  // return isAdded;
 
   await newCompany.save();
   return newCompany;
 
 };
 
-// const changeUserPassword = (username, oldPassword, newPassword) => {
-//   const foundUser = users.find(user => user.username == username && user.password == oldPassword);
-//   if (!foundUser) {
-//     return false;
-//   }
+const changePassword = async (email, oldPassword, newPassword) => {
 
-//   foundUser.password = newPassword;
-//   return true;
-// };
+  const query = {email: email, 'personalInfo.password': oldPassword};
 
-const deleteCompany = async (username) => {
-  await Company.findOneAndDelete({ username: username }).exec();
+  await Student.findOneAndUpdate(query,
+    {$set : {'personalInfo.password' : newPassword}});
+  const stud = await Company.findOne({email:email}).exec();
+  return stud;
+ };
+
+ const updateProfile = async (email, personalInfo, positions, about) => {
+
+  const query = {email: email};
+
+  await Student.findOneAndUpdate(query,
+    {$set : {'personalInfo' : personalInfo,
+            'positions' : positions},
+            'about': about,
+            });
+  return await Student.findOne({email:email});
+ };
+
+
+const deleteCompany = async (email) => {
+  await Company.findOneAndDelete({ email: email}).exec();
 };
+
 
 module.exports = {
   paginateThroughCompanies,
   getAllCompanies,
-  getCompanyByUsername,
+  getCompanyByEmail,
   addNewCompany,
-  // changeUserPassword,
+  changePassword,
   deleteCompany
 };

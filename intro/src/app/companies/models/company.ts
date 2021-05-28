@@ -4,8 +4,8 @@ export class Company {
 //   private currentImg: number = 0;
 
   constructor(
-    public username: string,
-    public personalInfo: {fullName:string, email:string, password:string, adress?:string},
+    public email: string,
+    public personalInfo: {fullName:string, password:string, adress?:string},
     public positions?: [{positionName:string, positionExp:string, length:string, techologies:[string], languages:[string]}],
     public about?: string,
   ) {

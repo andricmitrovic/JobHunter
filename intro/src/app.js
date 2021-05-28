@@ -2,8 +2,12 @@ const express = require('express');
 const studentsRouter = require('./routes/api/students');
 const companiesRouter = require('./routes/api/companies');
 const profileRouter = require('./routes/api/profile');
+const profileCompanyRouter = require('./routes/api/profileCompanies');
 const registerRouter = require('./routes/api/registration');
+const registerCompanyRouter = require('./routes/api/registrationCompany');
 const changePasswordRouter = require('./routes/api/changePassword');
+const changePasswordCompanyRouter = require('./routes/api/changePasswordCompany');
+
 
 const { urlencoded, json } = require('body-parser');
 const mongoose = require('mongoose');
@@ -54,8 +58,12 @@ app.use(function (req, res, next) {
 app.use('/api/students', studentsRouter);
 app.use('/api/companies', companiesRouter);
 app.use('/api/profile', profileRouter);
+app.use('/api/profileCompanies', profileCompanyRouter);
 app.use('/api/registration', registerRouter);
+//app.use('/api/registrationCompany', registerCompanyRouter);
 app.use('/api/changePassword', changePasswordRouter);
+app.use('/api/changePasswordCompany', changePasswordCompanyRouter);
+
 
 app.use(function (req, res, next) {
     const error = new Error('Zahtev nije podrzan!');

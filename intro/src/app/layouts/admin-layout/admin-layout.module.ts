@@ -1,3 +1,4 @@
+import { CompaniesComponent } from './../../profile/companies/companies.component';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
@@ -41,7 +42,8 @@ import { CompanyInfoComponent } from 'src/app/companies/company-info/company-inf
     StudentListComponent,
     StudentInfoComponent,
     CompanyListComponent,
-    CompanyInfoComponent   ]
+    CompanyInfoComponent,
+    CompaniesComponent   ]
 })
 
 export class AdminLayoutModule {}

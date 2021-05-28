@@ -9,11 +9,17 @@ import { Company } from '../models/company';
 export class CompanyInfoComponent implements OnInit {
 
   @Input() company!: Company;
+  showProfile : boolean;
 
-  constructor() { }
+  constructor() {
+    this.showProfile = false;
+   }
 
   ngOnInit(): void {
-    console.log(this.company)
+  }
+
+  public clickName(){
+    this.showProfile = !this.showProfile;
   }
 
 }
