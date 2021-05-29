@@ -21,11 +21,18 @@
 
     <div class="col-lg-5 col-md-7" *ngIf="!login">
         <div class="row justify-content-center">
-
+          
+    <div class="card bg-secondary mt--6 shadow border-0">
+      <h1>You are already logedin!</h1>
+      <div class="col-8 text-right">
+        <a href="#/register" class="text-lead"><h3>Create new account</h3></a>
+      </div>
+    </div>
     </div>
   </div>
 
     <div class="col-lg-5 col-md-7" *ngIf="login">
+
       <div class="card bg-secondary shadow border-0">
 
         <div class="card-body px-lg-5 py-lg-5">

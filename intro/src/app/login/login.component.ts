@@ -4,6 +4,8 @@ import { Student } from './../students/models/student';
 import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Observable, Subject, Subscription } from 'rxjs';
+import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -60,13 +62,19 @@ export class LoginComponent implements OnInit, OnDestroy {
     return this.form.get('password');
   }
   onSubmit(){
-    const tmp = this.form.value
+    
+    
+    this.router.navigate(['#/user-profile']);
+    const tmp = this.form.value;
 
     this.sub = this.studentService.Login(tmp.email, tmp.password).subscribe((student:Student | null)=>{
       this.student = student;
     });
 
+<<<<<<< Updated upstream
     this.router.navigate(['/user-profile']);
+=======
+>>>>>>> Stashed changes
   }
 
 
