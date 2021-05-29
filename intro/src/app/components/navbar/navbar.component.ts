@@ -18,16 +18,22 @@ export class NavbarComponent implements OnInit {
 
   @Input() student!: Student | null;
   showLogin : boolean;
+  showProfile : boolean;
   sub! : Subscription;
-
+  
   constructor(location: Location,  private element: ElementRef, private router: Router, private studentService: StudentService) {
     this.location = location;
     this.showLogin = (this.student != null);
+    this.showProfile = true;
   }
 
   ngOnInit() {
     this.listTitles = ROUTES.filter(listTitle => listTitle);
+    if (this.studentService.sendUserDataIfExists()==null) {
+      this.showProfile = false;
+    }
   }
+  
   getTitle(){
     var titlee = this.location.prepareExternalUrl(this.location.path());
     if(titlee.charAt(0) === '#'){

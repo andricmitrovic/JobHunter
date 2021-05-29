@@ -42,7 +42,21 @@ export class SidebarComponent implements OnInit {
   }
 
   ngOnInit() {
+    
     this.menuItems = ROUTES.filter(menuItem => menuItem);
+    
+    if (this.studentService.sendUserDataIfExists()==null) {
+      let side_routes = this.menuItems;
+      for (let side_route of side_routes) {
+        if (side_route.path == "/user-profile") {
+          side_routes.splice(side_routes.indexOf(side_route),1);
+        }
+      }
+
+      this.menuItems = side_routes;
+    }
+
+    
     this.router.events.subscribe((event) => {
       this.isCollapsed = true;
    });
