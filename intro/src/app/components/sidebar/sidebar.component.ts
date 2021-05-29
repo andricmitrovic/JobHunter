@@ -45,15 +45,39 @@ export class SidebarComponent implements OnInit {
     
     this.menuItems = ROUTES.filter(menuItem => menuItem);
     
-    if (this.studentService.sendUserDataIfExists()==null) {
+    console.log("@@@@@@@@@@@@@@@@@@@@@@");
+    console.log(this.studentService.sendUserDataIfExists());
+    console.log("@@@@@@@@@@@@@@@@@@@@@@");
+    
+    if (this.studentService.sendUserDataIfExists() === null) {
       let side_routes = this.menuItems;
       for (let side_route of side_routes) {
-        if (side_route.path == "/user-profile") {
+        console.log(side_route.path);
+        if (side_route.path === "/user-profile") {
           side_routes.splice(side_routes.indexOf(side_route),1);
+        } 
+      }
+      this.menuItems = side_routes;
+    } else {
+      
+      let side_routes = this.menuItems;
+      for (let side_route of side_routes) {
+
+        if (side_route.path == "/login") {
+          side_routes.splice(side_routes.indexOf(side_route),1);  
         }
+      }
+      
+      for (let side_route of side_routes) {
+
+        if (side_route.path == "/register") {
+          side_routes.splice(side_routes.indexOf(side_route),1);
+          
+        }   
       }
 
       this.menuItems = side_routes;
+
     }
 
     
