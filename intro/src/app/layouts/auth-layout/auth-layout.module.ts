@@ -1,4 +1,3 @@
-import { StudentProfileComponent } from './../../user/student-profile/student-profile.component';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';

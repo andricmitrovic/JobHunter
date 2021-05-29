@@ -65,8 +65,10 @@
 </div>
 </form>
 
-<div *ngIf="showLogin">
+<div *ngIf="showLogin" class="row justify-content-center">
   <h1 class="ui h1">You registration was successful!</h1>
+
+  <button class="btn btn-primary" onclick="window.location.href='#/login'"> Login </button>
   <!-- <app-search></app-search> -->
 </div>
 
