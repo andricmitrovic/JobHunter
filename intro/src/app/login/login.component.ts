@@ -4,7 +4,6 @@ import { Student } from './../students/models/student';
 import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Observable, Subject, Subscription } from 'rxjs';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -71,10 +70,7 @@ export class LoginComponent implements OnInit, OnDestroy {
       this.student = student;
     });
 
-<<<<<<< Updated upstream
     this.router.navigate(['/user-profile']);
-=======
->>>>>>> Stashed changes
   }
 
 
