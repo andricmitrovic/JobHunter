@@ -36,7 +36,7 @@ export class SidebarComponent implements OnInit {
 
   constructor(private router: Router, private studentService: StudentService) { }
 
-  public Logout(){
+  public (){
     console.log("Logout!");
     this.studentService.logouStudent();
   }

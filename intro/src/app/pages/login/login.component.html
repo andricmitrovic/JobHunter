@@ -2,7 +2,7 @@
   <div class="container">
     <div class="header-body text-center mb-7">
       <div class="row justify-content-center">
-        <div class="col-lg-5 col-md-6" *ngIf="!login">
+        <div class="col-lg-5 col-md-6" *ngIf="!login" >
           <h1 class="text-white">Hello, welcome to Job Hunter!</h1>
         </div>
       </div>
@@ -61,7 +61,7 @@
                 Please enter a password!
               </div>
               <div class="ui pointing red basic label " *ngIf="password != null && password.touched && password.invalid">
-                Password must be length 8!
+                Incorect password!
               </div>
             </div>
             <div class="custom-control custom-control-alternative custom-checkbox">

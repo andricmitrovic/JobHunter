@@ -140,6 +140,7 @@ export class StudentService {
     // Uklanjamo JWT iz memorije i saljemo svim komponentama da korisnik "ne postoji"
     this.jwtService.removeToken();
     this.studentSubject.next(undefined);
+    location.replace("#/login");
     location.reload();
   }
   public sendUserDataIfExists(): Student | null {

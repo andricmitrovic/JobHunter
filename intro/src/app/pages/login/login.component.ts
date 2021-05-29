@@ -64,21 +64,20 @@ export class LoginComponent implements OnInit, OnDestroy {
 
     this.sub = this.studentService.Login(tmp.email, tmp.password).subscribe((student: Student | null) => {
       this.student = student;
+      location.replace("#/user-profile");
     });
-
-    this.login = false;
+  
   }
 
-  onStudentClick() {
-    this.showLogInForm = false;
-    this.showRegisterCompany = false;
-    this.showRegisterStudent = true;
+  // onStudentClick() {
+  //   this.showLogInForm = false;
+  //   this.showRegisterCompany = false;
+  //   this.showRegisterStudent = true;
 
-  }
-  onCompanyClick() {
-    this.showLogInForm = false;
-    this.showRegisterCompany = true;
-    this.showRegisterStudent = false;
-    console.log('in onCompany CLick');
-  }
+  // }
+  // onCompanyClick() {
+  //   this.showLogInForm = false;
+  //   this.showRegisterCompany = true;
+  //   this.showRegisterStudent = false;
+  // }
 }

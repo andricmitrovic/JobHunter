@@ -27,8 +27,7 @@ import { UserFormUpdateComponent } from 'src/app/user/user-form-update/user-form
     LoginComponent,
     RegisterComponent,
     CompanyComponent,
-    StudentComponent,
-    UserFormUpdateComponent
+    StudentComponent
   ]
 })
 export class AuthLayoutModule { }

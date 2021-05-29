@@ -81,8 +81,8 @@ public logoutCompany(): void {
   // Uklanjamo JWT iz memorije i saljemo svim komponentama da korisnik "ne postoji"
   this.jwtService.removeToken();
   this.companySubject.next(undefined);
-  location.reload();
-
+  location.replace("#/");
+  // location.reload();
 }
 public sendUserDataIfExists(): Company | null {
   // Dohvatamo podatke iz JWT
