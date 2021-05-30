@@ -1,4 +1,4 @@
-.topnav {
+/* .topnav {
   background-color: #333;
   overflow: hidden;
   width: 1098px;
@@ -23,7 +23,7 @@
 .topnav a.active {
   background-color: #04AA6D;
   color: white;
-}
+} */
 
 #mainHeader {
     font-family: Georgia, sans-serif;

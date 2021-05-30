@@ -19,8 +19,8 @@ export class LoginComponent implements OnInit, OnDestroy {
   student!: Student | null;
 
   form!: FormGroup;
-  showRegisterCompany: boolean;
-  showRegisterStudent: boolean;
+  showLoginCompany: boolean;
+  showLoginStudent: boolean;
   showLogInForm: boolean;
   login: boolean;
 
@@ -31,8 +31,8 @@ export class LoginComponent implements OnInit, OnDestroy {
   constructor(private fb: FormBuilder, private studentService: StudentService) {
 
     this.showLogInForm = true;
-    this.showRegisterCompany = false;
-    this.showRegisterStudent = false;
+    this.showLoginCompany = false;
+    this.showLoginStudent = false;
     this.login = true;
 
   }
@@ -69,15 +69,14 @@ export class LoginComponent implements OnInit, OnDestroy {
   
   }
 
-  // onStudentClick() {
-  //   this.showLogInForm = false;
-  //   this.showRegisterCompany = false;
-  //   this.showRegisterStudent = true;
-
-  // }
-  // onCompanyClick() {
-  //   this.showLogInForm = false;
-  //   this.showRegisterCompany = true;
-  //   this.showRegisterStudent = false;
-  // }
+  onStudentClick() {
+    this.showLogInForm = false;
+    this.showLoginCompany = false;
+    this.showLoginStudent = true;
+  }
+  onCompanyClick() {
+    this.showLogInForm = false;
+    this.showLoginCompany = true;
+    this.showLoginStudent = false;
+  }
 }

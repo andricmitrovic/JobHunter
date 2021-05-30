@@ -15,24 +15,37 @@
   </div>
 </div>
 
+
+
 <!-- Page content -->
 <div class="container mt--8 pb-5">
   <div class="row justify-content-center">
 
+    <div class="col-lg-11 col-md-6" style="text-align: center;">
+      <h1 class="text-white">Welcome back!</h1>
+    </div>
+
     <div class="col-lg-5 col-md-7" *ngIf="!login">
         <div class="row justify-content-center">
-
     </div>
   </div>
 
     <div class="col-lg-5 col-md-7" *ngIf="login">
+
       <div class="card bg-secondary shadow border-0">
 
         <div class="card-body px-lg-5 py-lg-5">
+          <div class="ui justify-content-center group"  >
+            <button class="btn btn-light" type="text"  (click)= "onCompanyClick()" > Company login </button>
+            <button class="btn btn-light" type="text" (click)= "onStudentClick()"> Student login </button>
+          </div>
+
+          <br>
           <div class="text-center text-muted mb-4">
             <small>Only two step to find your dream job!</small>
           </div>
-          <form [formGroup]="form" class="ui form" (ngSubmit)="onSubmit()" *ngIf="showLogInForm">
+          
+          <form [formGroup]="form" class="ui form" (ngSubmit)="onSubmit()"  *ngIf="showLoginCompany || showLoginStudent">
               <div class="form-group mb-3">
               <div class="input-group input-group-alternative">
                 <div class="input-group-prepend">
@@ -83,6 +96,7 @@
     </div>
   </div>
 </div>
+
 <!-- 
 <div *ngIf="student && !login">
   <app-student-profile [student] = "student"></app-student-profile>
