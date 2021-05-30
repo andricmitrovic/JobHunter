@@ -50,7 +50,7 @@ export class StudentComponent implements OnInit {
       password: this.password?.value
     });
 
-    console.log(this.student);
+    // console.log(this.student);
 
     this.sub = this.authService.postStudent(this.student).subscribe((student : Student | null) =>{
         if (student){

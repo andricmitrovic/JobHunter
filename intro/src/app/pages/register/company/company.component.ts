@@ -26,6 +26,7 @@ export class CompanyComponent implements OnInit {
    }
 
    onSubmit(){
+      //TODO!
       console.log(this.formRegisterCompany.value)
         // this.showLogin = true;
     }
