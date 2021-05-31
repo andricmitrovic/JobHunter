@@ -59,7 +59,7 @@ const addNewStudent = async (req, res, next) => {
       throw error;
 
     }
-
+    personalInfo.password = jwt.sign(personalInfo.password, Jwtsecret);
     const user = await studentsService.addNewStudent(email, personalInfo, education, experience, techologies, languages, portfolio, about);
     res.status(201).json({
       user

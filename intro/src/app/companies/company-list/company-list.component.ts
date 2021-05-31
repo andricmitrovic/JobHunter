@@ -1,6 +1,6 @@
+import { Company } from './../../pages/register/company/models/company';
 import { Component, Input, OnInit } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
-import { Company } from '../models/company';
 import { CompanyService } from '../services/company.service';
 
 @Component({
@@ -15,7 +15,7 @@ export class CompanyListComponent implements OnInit {
 
   companies!: Observable<Company[]>;
 
-  constructor(private companyServices: CompanyService) { 
+  constructor(private companyServices: CompanyService) {
   }
 
   ngOnInit(): void {

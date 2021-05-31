@@ -60,7 +60,7 @@ app.use('/api/companies', companiesRouter);
 app.use('/api/profile', profileRouter);
 app.use('/api/profileCompanies', profileCompanyRouter);
 app.use('/api/registration', registerRouter);
-//app.use('/api/registrationCompany', registerCompanyRouter);
+app.use('/api/registrationCompany', registerCompanyRouter);
 app.use('/api/changePassword', changePasswordRouter);
 app.use('/api/changePasswordCompany', changePasswordCompanyRouter);
 

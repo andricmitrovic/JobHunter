@@ -1,9 +1,9 @@
+import { Company } from './../../pages/register/company/models/company';
 import { RegisterComponent } from './../../pages/register/register.component';
 import { JwtServiceCompanyService } from './../../../services/jwt-service-company.service';
 import { HttpClient, HttpErrorResponse, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of, Subject } from 'rxjs';
-import { Company } from '../models/company';
 import { CompanyPagination } from './models/company-pagination';
 import { catchError, map } from "rxjs/operators";
 

@@ -1,5 +1,5 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import {FormGroup, FormBuilder, Validators} from '@angular/forms'
 import { Student } from './../../../students/models/student';
 import { StudentService } from '../../../students/services/student.service';
@@ -11,7 +11,7 @@ import { Subscription, Observable } from 'rxjs';
   styleUrls: ['./student.component.css']
 })
 
-export class StudentComponent implements OnInit {
+export class StudentComponent implements OnInit, OnDestroy {
 
   student!:Student;
   registerForm: FormGroup;
@@ -35,13 +35,6 @@ export class StudentComponent implements OnInit {
 
   onRegisterClick(){
 
-    // const email: string = this.email?.value;
-    // const personalInfo = {
-    //   fullName: this.name?.value,
-    //   dateOfBirth: new Date(this.date?.value),
-    //   password: this.password?.value
-    // }
-
     this.student = new Student(
       this.email?.value,
       {
@@ -49,8 +42,6 @@ export class StudentComponent implements OnInit {
       dateOfBirth: new Date(this.date?.value),
       password: this.password?.value
     });
-
-    // console.log(this.student);
 
     this.sub = this.authService.postStudent(this.student).subscribe((student : Student | null) =>{
         if (student){
@@ -61,6 +52,12 @@ export class StudentComponent implements OnInit {
     });
   }
   ngOnInit(): void {
+  }
+
+  ngOnDestroy(): void {
+    if (this.sub){
+      this.sub.unsubscribe();
+    }
   }
 
   public get name(){

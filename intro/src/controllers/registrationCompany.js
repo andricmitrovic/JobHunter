@@ -58,7 +58,7 @@ const addNewCompany = async (req, res, next) => {
       throw error;
 
     }
-
+    personalInfo.password = jwt.sign(personalInfo.password, Jwtsecret);
     const user = await companyService.addNewCompany(email, personalInfo, positions, about);
     res.status(201).json({
       user

@@ -1,4 +1,4 @@
-import { Company } from './../app/companies/models/company';
+import { Company } from './../app/pages/register/company/models/company';
 import { Injectable } from '@angular/core';
 
 @Injectable({

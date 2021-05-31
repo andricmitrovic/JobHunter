@@ -8,8 +8,8 @@ const Jwtsecret = process.env.JWT_SECRET || 'masasavic'
 const changeUserPassword = async (req, res, next) => {
 
   const email = req.body.email;
-  const oldPassword = req.body.old_password;
-  const newPassword = req.body.new_password;
+  const oldPassword = jwt.sign(req.body.old_password, Jwtsecret);
+  const newPassword = jwt.sign(req.body.new_password, Jwtsecret);
   try {
 
     if (!email || !oldPassword || !newPassword) {

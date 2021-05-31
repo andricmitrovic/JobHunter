@@ -48,7 +48,11 @@ const getStudentByEmail = async (req, res, next) => {
 
 const changeUserPassword = async (req, res, next) => {
   const email = req.params.email;
-   const { oldPassword, newPassword } = req.body;
+
+  const { oldPassword, newPassword } = req.body;
+  oldPassword = jwt.sign(oldPassword, Jwtsecret);
+  newPassword = jwt.sign(newPassword, Jwtsecret);
+
    try {
 
     if (!email || !oldPassword || !newPassword) {
@@ -84,7 +88,7 @@ const changeUserPassword = async (req, res, next) => {
 const Login = async (req, res, next) => {
 
   const email = req.body.email;
-  const password = req.body.password;
+  const password = jwt.sign(req.body.password, Jwtsecret);
   try {
     const user = await studentsService.getStudentByEmail(email);
     if (!user) {

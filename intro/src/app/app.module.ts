@@ -13,7 +13,9 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppRoutingModule } from './app.routing';
 import { ComponentsModule } from './components/components.module';
 import {CommonModule} from '@angular/common';
-import { UserFormUpdateComponent } from './user/user-form-update/user-form-update.component'
+import { UserFormUpdateComponent } from './user/user-form-update/user-form-update.component';
+import { CompanyProfileComponent } from './user/company-profile/company-profile.component';
+import { CompanyFormUpdateComponent } from './user/company-form-update/company-form-update.component'
 
 @NgModule({
   imports: [
@@ -31,7 +33,9 @@ import { UserFormUpdateComponent } from './user/user-form-update/user-form-updat
   declarations: [
     AppComponent,
     AdminLayoutComponent,
-    AuthLayoutComponent
+    AuthLayoutComponent,
+    CompanyProfileComponent,
+    CompanyFormUpdateComponent
   ],
   providers: [],
   bootstrap: [AppComponent]

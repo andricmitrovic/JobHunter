@@ -1,4 +1,4 @@
-import { Company } from '../../models/company'
+import { Company } from './../../../pages/register/company/models/company';
 
 export interface CompanyPagination{
     docs: Company[];
