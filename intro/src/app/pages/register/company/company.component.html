@@ -13,7 +13,7 @@
             Please enter a name of company!
           </div>
           <div class="ui pointing red basic label " *ngIf="name != null && name.touched && name.invalid">
-            Invalid name!
+            Invalid name! Name must be at least 10 characters long!
           </div>
     </div>
 
@@ -30,10 +30,10 @@
       </div>
       <div class="ui pointing red basic label " *ngIf="email != null && email.touched && email.invalid">
         Invalid email!
-      </div>  
+      </div>
     </div>
 
-    
+
 
     <div class="form-group">
         <div class="input-group input-group-alternative">
@@ -52,8 +52,8 @@
         </div>
             <input class="form-control" type="text" placeholder="Short bio" formControlName = "bio">
         </div>
-    </div>    
-    
+    </div>
+
     <div class="form-group">
         <div class="input-group input-group-alternative">
             <div class="input-group-prepend">
@@ -66,12 +66,12 @@
             Please enter a password!
         </div>
         <div class="ui pointing red basic label " *ngIf="password != null && password.touched && password.invalid">
-            Invalid password!
+            Invalid password! It must be at least 10 characters long!
         </div>
         </div>
 
     </div>
-    
+
     <div class="text-center">
       <button type="submit" class="btn btn-primary mt-4" [disabled]="!formRegisterCompany.valid">Create account</button>
     </div>
@@ -80,5 +80,4 @@
   <div *ngIf="showLogin">
         <h1 class="ui h1">You registration was successful!</h1>
         <app-login></app-login>
-  </div> 
-      
+  </div>

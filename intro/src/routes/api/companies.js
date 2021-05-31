@@ -5,10 +5,9 @@ const verifyToken = require('./../../utils/authentication');
 const router = express.Router();
 
 router.get('/', controller.getAllCompanies);
-router.get('/:username', controller.getCompanyByUsername);
+router.get('/:email', controller.getCompanyByEmail);
 
-router.post('/', controller.addNewCompany);
-// router.put('/', controller.changeUserPassword);
+router.post('/', controller.Login);
 
 router.delete('/:username', verifyToken, controller.deleteCompany);
 

@@ -1,9 +1,9 @@
 const mongoose = require('mongoose');
 const mongoosePaginate = require('mongoose-paginate-v2');
 
-const userSchema = new mongoose.Schema({
+const companySchema = new mongoose.Schema({
     _id: mongoose.Schema.Types.ObjectId,
-    username: {
+    email: {
         type: mongoose.Schema.Types.String,
         required: true
     },
@@ -15,11 +15,12 @@ const userSchema = new mongoose.Schema({
         },
         adress: {
             type: mongoose.Schema.Types.String,
-            required: true
+            required: false
         },
-        email: {
-            type: mongoose.Schema.Types.String,
-            required: true
+        web : {
+          type: mongoose.Schema.Types.String,
+          required: false
+
         },
         password: {
             type: mongoose.Schema.Types.String,
@@ -27,30 +28,32 @@ const userSchema = new mongoose.Schema({
         }
     },
 
-    positions: [
+    positions:{
+      type : [
         {
         positionName: {
             type: mongoose.Schema.Types.String,
-            required: true
+            required: false
         },
         positionExp: {
             type: mongoose.Schema.Types.String,
-            required: true
+            required: false
         },
         length: {
             type: mongoose.Schema.Types.String,
-            required: true
+            required: false
         },
         techologies: [mongoose.Schema.Types.String],
         languages: [mongoose.Schema.Types.String],
-        }
-    ],
+        },
 
-    about: mongoose.Schema.Types.String
+    ], required: false
+  },
+    about: {type: mongoose.Schema.Types.String, required: false}
 });
 
-userSchema.plugin(mongoosePaginate);
+companySchema.plugin(mongoosePaginate);
 
-const Company = mongoose.model('Company', userSchema, 'companies');
+const Company = mongoose.model('Company', companySchema, 'companies');
 
 module.exports = Company;

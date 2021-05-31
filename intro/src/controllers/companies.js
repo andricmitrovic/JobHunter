@@ -1,6 +1,8 @@
 const companiesService = require('../services/companies');
 const validator = require('validator');
-
+const jwt = require('jsonwebtoken');
+const { json } = require('body-parser');
+const Jwtsecret = process.env.JWT_SECRET || 'masasavic'
 
 const getAllCompanies = async (req, res, next) => {
   try {
@@ -19,17 +21,17 @@ const getAllCompanies = async (req, res, next) => {
   }
 };
 
-const getCompanyByUsername = async (req, res, next) => {
-  const username = req.params.username;
+const getCompanyByEmail = async (req, res, next) => {
+  const email = req.params.email;
 
   try {
-    if (username == undefined) {
-      const error = new Error('Nedostaje korisnicko ime!');
+    if (email == undefined) {
+      const error = new Error('Nedostaje email!');
       error.status = 400;
       throw error;
     }
 
-    const company = await companiesService.getCompanyByUsername(username);
+    const company = await companiesService.getCompanyByEmail(email);
     if (company == null) {
       res.status(404).json();
     } else {
@@ -40,93 +42,60 @@ const getCompanyByUsername = async (req, res, next) => {
   }
 };
 
-const addNewCompany = async (req, res, next) => {
-  const { username, personalInfo, positions, about } = req.body;
-  
-  try
-  {
-    if (
-      !username ||
-
-      !personalInfo.fullName ||
-      !personalInfo.adress ||
-      !personalInfo.email ||
-      !personalInfo.password ||
-
-      // !positions ||
-      // !about ||
-
-      !validator.isEmail(personalInfo.email) ||
-      !validator.isAlphanumeric(username)      
-    ) 
-    {
-      res.status(400).json('Proverite prosledjene podatke!');
-    }
-
-    const exists = await companiesService.getCompanyByUsername(username);
-    if (exists) 
-    {
-      res.status(403).json('Proverite prosledjene podatke!');
-    }
-
-    const newCompany = await companiesService.addNewCompany(username, personalInfo, positions, about);
-    res.status(201).json(newCompany);
-
-  } catch(error)
-  {
-    next(error);
-  }
-    
-};
-
-// const changeUserPassword = (req, res) => {
-//   const { username, oldPassword, newPassword } = req.body;
-
-//   if (!username || !oldPassword || !newPassword) {
-//     res.status(400).json();
-//   } else {
-//     const isChanged = users.changeUserPassword(
-//       username,
-//       oldPassword,
-//       newPassword
-//     );
-//     if (isChanged) {
-//       const user = users.getUserByUsername(username);
-//       res.status(200).json(user);
-//     } else {
-//       res.status(404).json();
-//     }
-//   }
-// };
-
 const deleteCompany = async (req, res, next) => {
-  const username = req.params.username;
+  const email = req.params.email;
 
   try {
-    if (!username) {
-      const error = new Error('Nedostaje korisnicko ime!');
+    if (!email) {
+      const error = new Error('Nedostaje email!');
       error.status = 400;
       throw error;
     }
 
-    const user = await companiesService.getCompanyByUsername(username);
+    const user = await companiesService.getCompanyByEmail(email);
     if (!user) {
-      const error = new Error('Proverite korisnicko ime!');
+      const error = new Error('Proverite email!');
       error.status = 404;
       throw error;
     }
 
-    await companiesService.deleteCompany(username);
+    await companiesService.deleteCompany(email);
     res.status(200).json();
   } catch (error) {
     next(error);
   }
 };
 
+const Login = async (req, res, next) => {
+
+  const email = req.body.email;
+  const password = jwt.sign(req.body.password, Jwtsecret);
+  try {
+    const user = await companiesService.getCompanyByEmail(email);
+    if (!user) {
+      const error = new Error('Pogresan mejl!' + email);
+      error.status = 404;
+      throw error;
+    }
+
+    if (user.personalInfo.password != password){
+      const error = new Error('Pogresna lozinka!');
+      error.status = 400;
+      throw error;
+    }
+
+    res.status(200).json({
+      token: jwt.sign(user.toJSON(), Jwtsecret)
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
+
 module.exports = {
     getAllCompanies,
-    getCompanyByUsername,
-    addNewCompany,
-  // changeUserPassword,
+    getCompanyByEmail,
+    Login,
     deleteCompany
 };

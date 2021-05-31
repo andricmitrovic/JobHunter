@@ -28,43 +28,6 @@ const getStudentByEmail = async (req, res, next) => {
   }
 };
 
-const changeUserPassword = async (req, res, next) => {
-
-  const email = req.body.email;
-  const oldPassword = req.body.old_password;
-  const newPassword = req.body.new_password;
-
-   try {
-
-    if (!email || !oldPassword || !newPassword) {
-      const error = new Error('Greska u podacima! ');
-      error.status = 404;
-      throw error;
-   }
-
-    const student = await studentsService.getStudentByEmail(email);
-    // Ovo nam ne treba jer se poziva samo kada je ulogovan student
-    if (!student) {
-      const error = new Error('Proverite email!');
-      error.status = 404;
-      throw error;
-    }
-    if (student.personalInfo.password != oldPassword){
-      const error = new Error('Neispravna lozinka!');
-      error.status = 403;
-      throw error;
-    }
-
-
-    await studentsService.changePassword(email, oldPassword, newPassword);
-
-    res.status(200).json({
-      success: true
-    });
-  }catch(error){
-    next(error);
-  }
-};
 
 const deleteStudent = async (req, res, next) => {
   const email = req.query.email;
@@ -122,7 +85,6 @@ const updateProfile = async (req, res, next) => {
 
 module.exports = {
   getStudentByEmail,
-  changeUserPassword,
   updateProfile,
   deleteStudent
 };

@@ -1,3 +1,6 @@
+import { JwtService } from './../../../services/jwt.service';
+import { CompanyService } from './../../companies/services/company.service';
+import { Company } from './../register/company/models/company';
 import { StudentService } from './../../students/services/student.service';
 import { Student } from './../../students/models/student';
 import { Component, OnInit, Input, OnDestroy } from '@angular/core';
@@ -16,7 +19,8 @@ export class LoginComponent implements OnInit, OnDestroy {
   private eventsSubscription!: Subscription;
   @Input() events!: Observable<any>;
   studentObs!: Observable<Student | null>;
-  student!: Student | null;
+  student?: Student;
+  company?: Company;
 
   form!: FormGroup;
   showLoginCompany: boolean;
@@ -28,13 +32,12 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   eventsSubject: Subject<any> = new Subject<any>();
 
-  constructor(private fb: FormBuilder, private studentService: StudentService) {
+  constructor(private fb: FormBuilder, private studentService: StudentService, private companyService: CompanyService) {
 
     this.showLogInForm = true;
     this.showLoginCompany = false;
     this.showLoginStudent = false;
     this.login = true;
-
   }
 
     ngOnInit(): void {
@@ -62,11 +65,18 @@ export class LoginComponent implements OnInit, OnDestroy {
   onSubmit() {
     const tmp = this.form.value;
 
-    this.sub = this.studentService.Login(tmp.email, tmp.password).subscribe((student: Student | null) => {
-      this.student = student;
-      location.replace("#/user-profile");
-    });
-  
+    if (this.showLoginStudent)
+      this.sub = this.studentService.Login(tmp.email, tmp.password).subscribe((student: Student | null) => {
+        this.student = student;
+        location.replace("#/user-profile");
+      });
+    else
+      this.sub = this.companyService.Login(tmp.email, tmp.password).subscribe((company: Company | null) => {
+        this.company = company;
+        location.replace('#company-profile');
+      });
+
+
   }
 
   onStudentClick() {
