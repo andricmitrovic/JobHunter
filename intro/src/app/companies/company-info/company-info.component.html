@@ -1,7 +1,6 @@
-
 <div class="image" *ngIf="!showProfile">
   <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRKzDJR64CkJD5fnPohr3GsSa1m5dFPWfJ2x0LP40BFyEsxDk-jLodzwFhZt5J5_gxxZOw&usqp=CAU" alt="Admin" class="rounded-circle" width="150">
-  </div>
+</div>
   <div class="content">
     <a class="header" (click)="clickName()"> {{ company.personalInfo.fullName }} </a>
     <div class="meta" *ngIf="!showProfile">
@@ -15,6 +14,8 @@
       <p> {{ company.about }} </p>
     </div>
   </div>
-<div *ngIf = "showProfile && company">
+<div class="justify-content-center" *ngIf = "showProfile && company">
+  <br>
   <app-companies [company]="company"></app-companies>
+  <br>
 </div>
