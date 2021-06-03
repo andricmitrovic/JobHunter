@@ -1,127 +1,123 @@
-<div class="col" style="text-align: center;">
-    <div class="row">
-        <form class="ui form" [formGroup]="formUpdateProfile" (ngSubmit) = "submitChanges()">
-            <h1 class="ui h1" style="text-align: center;">Change profile information</h1>
-            <hr>
-            <h3 class = "ui h3"> Personal information</h3>
-            <div class="ui form field">
-                <label class="ui label"><i>Name</i></label>
-                <input type="text" formControlName="fullName" value= {{student.personalInfo.fullName}}/>
-                <div class="ui pointing red basic label " *ngIf=" fullName.touched || fullName.errors?.required">
-                  Name is required!
-                </div>
-            </div>
-            <div class="ui form field">
-                <label class="ui label"><i>Email</i></label>
-                <input type="text" [disabled] = "true" value= {{student.email}}/>
-            </div>
-            <br>
-            <div class="ui form field">
-                <label class="ui label"><i>Address</i></label>
-                <input type="text" formControlName="adress" value="{{student.personalInfo.adress}}" />
-            </div>
-            <br>
-            <div class="ui form field">
-                <label class="ui label"><i>Date of birth</i></label>
-                <input type="date" formControlName="dateOfBirth" value="{{student.personalInfo.dateOfBirth}}"/>
-            </div>
-            <br>
-            <div class="ui form field">
-                <label class="ui label"><i>Gender</i></label>
-                <input type="text" formControlName="gender"
-                value="{{student.personalInfo.gender}}" />
-            </div>
-            <br>
-            <div class="ui form field">
-                <label class="ui label"><i>About</i></label>
-                <input type="text"  value= {{student.about}}/>
-            </div>
-
-            <hr>
-  
-            <h3 class = "ui h3">Portfolio</h3>
-            <div class="ui form field">
-                <label class="ui label"><i>GitHub</i></label>
-                <input type="text" formControlName="gitHub" value= {{student.portfolio?.gitHub}}/>
-            </div>
-            <br>
-            <div class="ui form field">
-                <label class="ui label"><i>LinkedIn</i></label>
-                <input type="text" formControlName="linkedin" value= {{student.portfolio?.linkedin}}/>
-            </div>
-
-            <hr>
-
-            <h3 class = "ui h3"> Education</h3>
-  
-            <div class="ui form field">
-                <label class="ui label"><i>University</i></label>
-                <input type="text" formControlName="university" value= {{student.education?.university}}/>
-            </div>
-            <br>
-            <div class="ui form field">
-                <label class="ui label"><i>Faculty</i></label>
-                <input type="text" formControlName="faculty" value= {{student.education?.faculty}}/>
-            </div>
-            <br>
-            <div class="ui form field">
-                <label class="ui label"><i>GPA</i></label>
-                <input type="number" formControlName="gpa" value= {{student.education?.gpa}}/>
-            </div>
-
-            <hr>
-
-            <h3 class = "ui h3"> Technologies</h3>
-            <div class="ui form field">
-                <label class="ui label"><i>Technologies</i></label>
-                <button type = "button" (click) = "addTech()">Add technology</button>
-                <br><br>
-                <div *ngFor = "let t of student.technologies.toString().split(','); index as i">
-                    <input value = {{t}}>
-                    <button type="button" (click) = "removeTech()">X</button>
-                </div>
-  
-                <div formArrayName = "technologies">
-                    <div *ngFor="let t of technologies.controls; index as i">
-                        <input [formControl] = "technologies.controls[i]">
-                        <button type = "button" (click)="deleteTech(i)">X</button>
-                    </div>
-                </div>
-            </div>
-
-            <hr>
-  
-            <h3 class = "ui h3">Experience</h3>
-            <button type = "button" (click) = "addExperience()">Add</button>
-            <br><br>
-            <div *ngFor = "let e of student.experience; index as i">
-                <label><i>Company</i></label>
-                <input value = {{e.company}}>
-                <label><i>Position</i></label>
-                <input value = {{e.position}}>
-                <label><i>Length</i></label>
-                <input value = {{e.length}}>
-                <button type="button" (click) = "removeExp()">X</button>
-            </div>
-
-            <div class="ui form field">
-                <div formArrayName = "experience">
-                    <div *ngFor="let exp of experience.controls; index as i">
-                        <div [formGroup] = "experience.controls[i]">
-                            <label><i>Company</i></label>
-                            <input formControlName="company"/>
-                            <label><i>Position</i></label>
-                            <input formControlName="position"/>
-                            <label><i>Length</i></label>
-                            <input formControlName="length"/>
-                            <button type = "button" (click)="deleteExperience(i)">X</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <hr>
-            <button class="btn" type = "submit"  [disabled] = "!formUpdateProfile.valid"> Update profile </button>
-        </form>
+<form class="ui form" [formGroup]="formUpdateProfile" (ngSubmit) = "submitChanges()" style="text-align: center;">
+    <h1 class="ui h1">Change profile information</h1>
+    <hr>
+    <h3 class = "ui h3"> Personal information</h3>
+    <div class="ui form field">
+        <label class="ui label"><i>Name </i></label>
+        <input type="text" formControlName="fullName" value= {{student.personalInfo.fullName}}/>
+        <div class="ui pointing red basic label " *ngIf=" fullName.touched || fullName.errors?.required">
+          Name is required!
+        </div>
     </div>
-</div>
+    <div class="ui form field">
+        <label class="ui label"><i>Email </i></label>
+        <input type="text" [disabled] = "true" value= {{student.email}}/>
+    </div>
+    <br>
+    <div class="ui form field">
+        <label class="ui label"><i>Address </i></label>
+        <input type="text" formControlName="adress" value="{{student.personalInfo.adress}}" />
+    </div>
+    <br>
+    <div class="ui form field">
+        <label class="ui label"><i>Date of birth </i></label>
+        <input type="date" formControlName="dateOfBirth" value="{{student.personalInfo.dateOfBirth}}"/>
+    </div>
+    <br>
+    <div class="ui form field">
+        <label class="ui label"><i>Gender </i></label>
+        <input type="text" formControlName="gender"
+        value="{{student.personalInfo.gender}}" />
+    </div>
+    <br>
+    <div class="ui form field">
+        <label class="ui label"><i>About </i></label>
+        <input type="text"  value= {{student.about}}/>
+    </div>
+
+    <hr>
+
+    <h3 class = "ui h3">Portfolio</h3>
+    <div class="ui form field">
+        <label class="ui label"><i>GitHub </i></label>
+        <input type="text" formControlName="gitHub" value= {{student.portfolio?.gitHub}}/>
+    </div>
+    <br>
+    <div class="ui form field">
+        <label class="ui label"><i>LinkedIn </i></label>
+        <input type="text" formControlName="linkedin" value= {{student.portfolio?.linkedin}}/>
+    </div>
+
+    <hr>
+
+    <h3 class = "ui h3"> Education</h3>
+
+    <div class="ui form field">
+        <label class="ui label"><i>University </i></label>
+        <input type="text" formControlName="university" value= {{student.education?.university}}/>
+    </div>
+    <br>
+    <div class="ui form field">
+        <label class="ui label"><i>Faculty </i></label>
+        <input type="text" formControlName="faculty" value= {{student.education?.faculty}}/>
+    </div>
+    <br>
+    <div class="ui form field">
+        <label class="ui label"><i>GPA </i></label>
+        <input type="number" formControlName="gpa" value= {{student.education?.gpa}}/>
+    </div>
+
+    <hr>
+
+    <h3 class = "ui h3"> Technologies</h3>
+    <div class="ui form field">
+        <!-- <label class="ui label"><i>Technologies </i></label> -->
+        <button type = "button" (click) = "addTech()">Add technology</button>
+        <br><br>
+        <div *ngFor = "let t of student.technologies.toString().split(','); index as i">
+            <input value = {{t}}>
+            <button type="button" (click) = "removeTech()">X</button>
+        </div>
+
+        <div formArrayName = "technologies">
+            <div *ngFor="let t of technologies.controls; index as i">
+                <input [formControl] = "technologies.controls[i]">
+                <button type = "button" (click)="deleteTech(i)">X</button>
+            </div>
+        </div>
+    </div>
+
+    <hr>
+
+    <h3 class = "ui h3">Experience</h3>
+    <button type = "button" (click) = "addExperience()">Add experience</button>
+    <br><br>
+    <div *ngFor = "let e of student.experience; index as i">
+        <label><i>Company</i></label>
+        <input value = {{e.company}}>
+        <label><i>Position</i></label>
+        <input value = {{e.position}}>
+        <label><i>Length</i></label>
+        <input value = {{e.length}}>
+        <button type="button" (click) = "removeExp()">X</button>
+    </div>
+
+    <div class="ui form field">
+        <div formArrayName = "experience">
+            <div *ngFor="let exp of experience.controls; index as i">
+                <div [formGroup] = "experience.controls[i]">
+                    <label><i>Company </i></label>
+                    <input formControlName="company"/>
+                    <label><i>Position </i></label>
+                    <input formControlName="position"/>
+                    <label><i>Length </i></label>
+                    <input formControlName="length"/>
+                    <button type = "button" (click)="deleteExperience(i)">X</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <hr>
+    <button class="btn" type = "submit"  [disabled] = "!formUpdateProfile.valid" style="background-color: lightslategray;"> Update profile </button>
+</form>
