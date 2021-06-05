@@ -74,6 +74,9 @@ export class CompanyProfileComponent implements OnInit, OnDestroy{
     this.companyService.deleteCompanyAccount(email).subscribe();
 
     this.showLogin = true;
+
+    location.replace("#/login");
+
   }
 
   public updateProfile(){

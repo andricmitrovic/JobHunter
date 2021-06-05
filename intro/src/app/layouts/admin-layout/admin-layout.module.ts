@@ -15,7 +15,6 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { SearchComponent } from 'src/app/search/search/search.component';
 import { SearchCompaniesComponent } from 'src/app/search/search-companies/search-companies.component';
 import { SearchStudentsComponent } from 'src/app/search/search-students/search-students.component';
-// import { ToastrModule } from 'ngx-toastr';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { StudentListComponent } from 'src/app/students/student-list/student-list.component';
 import { StudentInfoComponent } from 'src/app/students/student-info/student-info.component';
@@ -49,8 +48,7 @@ import { UserFormUpdateComponent } from 'src/app/user/user-form-update/user-form
     CompanyInfoComponent,
     CompaniesComponent,
     StudentProfileComponent,
-    UserFormUpdateComponent,
-    ]
+    UserFormUpdateComponent    ]
 })
 
 export class AdminLayoutModule {}

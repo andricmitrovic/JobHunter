@@ -1,8 +1,5 @@
-<!-- <form class="ui form" *ngIf="!showLogin" [formGroup] = "formRegisterCompany" (ngSubmit)= "onSubmit()" >
-</form> -->
-
-  <form [formGroup]="formRegisterCompany" class="ui form" id="company" (ngSubmit)="onSubmit()" >
-    <h1 class="ui h1"> Company information</h1>
+  <form [formGroup]="formRegisterCompany" class="ui form" id="company" (ngSubmit)="onSubmit()" *ngIf="showForm" >
+    <h1 class="ui h1"> Company registration</h1>
     <div class="form-group">
       <div class="input-group input-group-alternative mb-3">
         <div class="input-group-prepend">
@@ -77,7 +74,13 @@
     </div>
   </form>
 
-  <div *ngIf="showLogin">
-        <h1 class="ui h1">You registration was successful!</h1>
-        <app-login></app-login>
-  </div>
+
+
+<div *ngIf="showLogin" class="row justify-content-center">
+  <h1 class="ui h1">You registration was successful!</h1>
+
+  <button class="btn btn-primary" onclick="window.location.href='#/login'"> Login </button>
+  <!-- <app-login></app-login> -->
+
+</div>
+

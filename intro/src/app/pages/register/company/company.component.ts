@@ -13,13 +13,14 @@ export class CompanyComponent implements OnInit, OnDestroy {
 
   company!: Company;
   formRegisterCompany: FormGroup;
-  public showLogin : boolean;
+  showLogin : boolean;
+  showForm : boolean;
   sub : Subscription;
 
 
 
   constructor(private fb: FormBuilder, private companyService: CompanyService) {
-
+    this.showForm = true;
     this.showLogin = false;
     this.formRegisterCompany = this.fb.group({
       name : ['',[Validators.required, Validators.minLength(10)]],
@@ -42,11 +43,10 @@ export class CompanyComponent implements OnInit, OnDestroy {
       );
 
       this.sub = this.companyService.RegisterCompany(this.company).subscribe((company: Company | null) =>{
-
+        this.showForm = false;
+        this.showLogin = true;
         this.company  = company;
       });
-      //TODO ispisati da je uspesna reg i prebaciti na login :)
-
     }
 
   ngOnInit(): void {
