@@ -73,8 +73,8 @@ export class StudentProfileComponent implements OnInit, OnDestroy{
     const email = this.student.email;
 
     this.studentService.deleteStudentAccount(email).subscribe();
-
     this.showLogin = true;
+    location.replace("#/login");
   }
 
   public updateProfile(){

@@ -73,7 +73,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     else
       this.sub = this.companyService.Login(tmp.email, tmp.password).subscribe((company: Company | null) => {
         this.company = company;
-        location.replace('#company-profile');
+        location.replace('#/company-profile');
       });
 
 
@@ -84,6 +84,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.showLoginCompany = false;
     this.showLoginStudent = true;
   }
+
   onCompanyClick() {
     this.showLogInForm = false;
     this.showLoginCompany = true;

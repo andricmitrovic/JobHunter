@@ -87,8 +87,8 @@ export class UserProfileComponent implements OnInit {
     this.studentService.deleteStudentAccount(email).subscribe();
 
     this.showLogin = true;
+    location.replace("#/login");
 
-    this.router.navigate(['/login']);
   }
 
   public updateProfile(){
