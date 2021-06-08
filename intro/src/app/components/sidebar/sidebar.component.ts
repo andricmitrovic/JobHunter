@@ -2,10 +2,7 @@ import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { StudentService } from './../../students/services/student.service';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { JwtService } from './../../../services/jwt.service';
 import { Student } from './../../students/models/student';
-import { HtmlParser } from '@angular/compiler';
 
 declare interface RouteInfo {
     path: string;

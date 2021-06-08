@@ -6,6 +6,9 @@ import pdfFonts from 'pdfmake/build/vfs_fonts';
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
 import htmlToPdfmake from 'html-to-pdfmake';
 import jspdf from 'jspdf';
+import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
+
+
 @Component({
   selector: 'app-students',
   templateUrl: './students.component.html',
@@ -13,10 +16,13 @@ import jspdf from 'jspdf';
 })
 export class StudentsComponent implements OnInit {
 
+
+  closeResult = '';
+
   @Input() student!: Student;
   @ViewChild('pdfTable') pdfTable: ElementRef;
 
-  constructor(private sS: StudentService) {
+  constructor(private sS: StudentService, private modalService: NgbModal) {
   }
 
   ngOnInit(): void {
@@ -30,6 +36,25 @@ export class StudentsComponent implements OnInit {
 
     pdfMake.createPdf(documentDefinition).download('cv.pdf');
   }
+
+    open(content) {
+      this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
+        this.SavePDF();
+        this.closeResult = `Closed with: ${result}`;
+      }, (reason) => {
+        this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+      });
+    }
+
+    private getDismissReason(reason: any): string {
+      if (reason === ModalDismissReasons.ESC) {
+        return 'by pressing ESC';
+      } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+        return 'by clicking on a backdrop';
+      } else {
+        return `with: ${reason}`;
+      }
+    }
 
 }
 
