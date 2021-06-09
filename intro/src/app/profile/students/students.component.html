@@ -54,8 +54,18 @@
             <div class="modal-body">
               <form>
                 <div class="form-group">
-                  <label for="dateOfBirth">Generate all informations.</label>
-                  <div class="input-group">
+                  <div class="text-center"> 
+                   
+                    <form>
+                      <p>Chose CV template:</p>
+                      <div class="cc-selector">
+                          <input id="tableview" type="radio" name="cv-view" value="tableview" />
+                          <label class="drinkcard-cc tableview" for="tableview"></label>
+                          <input id="templateview" type="radio" name="cv-view" value="templateview" />
+                          <label class="drinkcard-cc templateview"for="templateview"></label>
+                      </div>
+                  </form>
+                   
                     <!-- <input id="dateOfBirth" class="form-control" placeholder="yyyy-mm-dd" name="dp" ngbDatepicker #dp="ngbDatepicker">
                     <div class="input-group-append">
                       <button class="btn btn-outline-secondary calendar" (click)="dp.toggle()" type="button"></button>
@@ -69,8 +79,10 @@
             </div>
           </ng-template>
           
+          <div class="form-group">
+            <div class="text-center"> 
           <button class="btn btn-lg btn-outline-primary" (click)="open(content)">Generate CV</button>
-          
+          </div></div>
           <hr>
           
           <pre>{{ closeResult }}</pre>
