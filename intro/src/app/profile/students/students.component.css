@@ -4,8 +4,8 @@
        -moz-appearance:none;
             appearance:none;
 }
-.tableview{background-image:url("../../../assets/img/icons/common/github.svg");}
-.templateview{background-image:url("../../../assets/img/icons/common/google.svg");}
+.tableview{background-image:url("../../../assets/img/icons/common/tableicon.ico");}
+.templateview{background-image:url("../../../assets/img/icons/common/cvicon.ico");}
 
 .cc-selector input:active +.drinkcard-cc{opacity: .9;}
 .cc-selector input:checked +.drinkcard-cc{
@@ -18,7 +18,7 @@
     background-size:contain;
     background-repeat:no-repeat;
     display:inline-block;
-    width:100px;height:70px;
+    width:130px;height:70px;
     -webkit-transition: all 100ms ease-in;
        -moz-transition: all 100ms ease-in;
             transition: all 100ms ease-in;

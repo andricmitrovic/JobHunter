@@ -14,6 +14,7 @@ import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
   templateUrl: './students.component.html',
   styleUrls: ['./students.component.css']
 })
+
 export class StudentsComponent implements OnInit {
 
 
@@ -30,6 +31,7 @@ export class StudentsComponent implements OnInit {
   }
 
   public SavePDF(): void {
+    
     const pdfTable = this.pdfTable.nativeElement;
 
     const documentDefinition = {content: htmlToPdfmake(pdfTable.innerHTML)};
