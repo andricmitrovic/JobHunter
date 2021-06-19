@@ -43,30 +43,41 @@
 
 
            <!-- <input type="button" value="Generate CV" class="btn btn-success" (click)="SavePDF()"> -->
-
            <ng-template #content let-modal>
+
             <div class="modal-header">
               <h4 class="modal-title" id="modal-basic-title">CV informations</h4>
               <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
+
+            <!-- <div *ngIf = "false; else showForm"> -->
+            <div *ngIf = "showTemplate; else showForm">
+
             <div class="modal-body">
-              <form>
-                <div class="form-group">
+              <form >
+                <div class="form-group" >
                   <div class="text-center"> 
                    
                     <form>
-                      <p>Chose CV template:</p>
-                      <div class="cc-selector">
+                      <h2 style="color: brown">Time to chose CV template!</h2>
+                      
+                      <hr>
+
+                      <div class="cc-selector" [formGroup]="formCV">
                         
-                          <input id="tableview" type="radio" name="cv-view" value="tableview"  />
+                          <input id="tableview" type="radio" name="tableview" value="tableview" formControlName="tableview"  />
                           <label class="drinkcard-cc tableview" for="tableview"> </label>
 
-                          <input id="templateview" type="radio" name="cv-view" value="templateview" checked />
+                          <input id="templateview" type="radio" name="tableview" value="templateview" formControlName="tableview" checked />
                           <label class="drinkcard-cc templateview"for="templateview"></label>
 
                       </div>
+                      <small style="padding-block: 15px;"> (Click on simple table or CV template) </small>
+
+                      <hr>
+
                   </form>
                    
                     <!-- <input id="dateOfBirth" class="form-control" placeholder="yyyy-mm-dd" name="dp" ngbDatepicker #dp="ngbDatepicker">
@@ -77,11 +88,116 @@
                 </div>
               </form>
             </div>
+            
             <div class="modal-footer">
-              <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Save</button>
+                <!-- <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Save</button> -->
+                <button type="button" class="btn btn-outline-dark" (click)="next()">Save</button>
             </div>
+
+            </div>
+            <ng-template #showForm>
+
+              <div class="ui container" style="padding-block: 15px;">
+
+              <h2 style="color: brown"> I want all informations. </h2>
+
+              <ul ngbNav #nav="ngbNav" class="nav-tabs">
+                <li ngbNavItem>
+                  <a ngbNavLink>Personal informatons</a>
+                  <ng-template ngbNavContent>
+
+                    <!-- forma stvari sa opisom -->
+                    <div class="form-group">
+
+                      <h3>Choose all! </h3>
+                      <div class="ui">
+                        <p> Fullname: {{student.personalInfo.fullName}} </p>
+                        <p> Email: {{student.personalInfo.email}} </p>
+                        <p> Adress: {{student.personalInfo.email}} </p>
+                        <p> About: {{student.personalInfo.email}} </p>
+
+                      </div>
+                    </div>
+
+                  </ng-template>
+                </li>
+                <li ngbNavItem>
+                  <a ngbNavLink>Contact info</a>
+                  <ng-template ngbNavContent>
+
+                      <h3>Choose all! </h3>
+                      <div class="ui">
+                          <p> Fullname: {{student.personalInfo.fullName}} </p>
+                          <p> Email: {{student.personalInfo.email}} </p>
+                          <p> Adress: {{student.personalInfo.email}} </p>
+                          <p> About: {{student.personalInfo.email}} </p>
+  
+                        </div>
+  
+
+                  </ng-template>
+                </li>
+                <li ngbNavItem>
+                    <a ngbNavLink>Work expirience</a>
+                    <ng-template ngbNavContent>
+  
+                        <h3>Choose all! </h3>
+                        <div class="ui">
+                            <p> Fullname: {{student.personalInfo.fullName}} </p>
+                            <p> Email: {{student.personalInfo.email}} </p>
+                            <p> Adress: {{student.personalInfo.email}} </p>
+                            <p> About: {{student.personalInfo.email}} </p>
+    
+                          </div>
+    
+  
+                    </ng-template>
+                  </li>
+                  <li ngbNavItem>
+                      <a ngbNavLink>Education</a>
+                      <ng-template ngbNavContent>
+    
+                          <h3>Choose all! </h3>
+                          <div class="ui">
+                              <p> Fullname: {{student.personalInfo.fullName}} </p>
+                              <p> Email: {{student.personalInfo.email}} </p>
+                              <p> Adress: {{student.personalInfo.email}} </p>
+                              <p> About: {{student.personalInfo.email}} </p>
+      
+                            </div>
+      
+    
+                      </ng-template>
+                    </li>
+                    <li ngbNavItem>
+                        <a ngbNavLink>Technologies</a>
+                        <ng-template ngbNavContent>
+      
+                            <h3>Choose all! </h3>
+                            <div class="ui">
+                                <p> Fullname: {{student.personalInfo.fullName}} </p>
+                                <p> Email: {{student.personalInfo.email}} </p>
+                                <p> Adress: {{student.personalInfo.email}} </p>
+                                <p> About: {{student.personalInfo.email}} </p>
+        
+                              </div>
+        
+      
+                        </ng-template>
+                      </li>
+              </ul>
+              <div [ngbNavOutlet]="nav"></div>
+              </div>
+
+              <div class="modal-footer justify-content-between">
+                  <button type="button" class="btn btn-outline-dark" (click)="back()">Back</button>
+                  <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Save</button>
+              </div>
+
+            </ng-template>
+
           </ng-template>
-          
+
           <div class="form-group">
             <div class="text-center"> 
           <button class="btn btn-lg btn-outline-primary" (click)="open(content)">Generate CV</button>

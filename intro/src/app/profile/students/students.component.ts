@@ -8,7 +8,7 @@ import htmlToPdfmake from 'html-to-pdfmake';
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 import jsPDF from 'jspdf';
 import autoTable from 'jspdf-autotable';
-
+import { FormControl, FormGroup, FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-students',
@@ -19,26 +19,21 @@ import autoTable from 'jspdf-autotable';
 export class StudentsComponent implements OnInit {
 
 
-  closeResult = '';
+  // Promenljive
+  closeResult : string = '';
+  showTemplate : boolean;
+  dataToExport = {};
+  formCV : FormGroup;
 
   @Input() student!: Student;
   @ViewChild('pdfTable') pdfTable: ElementRef;
-
-
-
-
-  head = [['ID', 'NAME', 'DESIGNATION', 'DEPARTMENT']]
-
-  data = [
-    [1, 'ROBERT', 'SOFTWARE DEVELOPER', 'ENGINEERING'],
-    [2, 'CRISTINAO','QA', 'TESTING'],
-    [3, 'KROOS','MANAGER', 'MANAGEMENT'],
-    [4, 'XYZ','DEVELOPER', 'DEVLOPEMENT'],
-    [5, 'ABC','CONSULTANT', 'HR'],
-    [73, 'QWE','VICE PRESIDENT', 'MANAGEMENT'],
-  ]
-
-  constructor(private sS: StudentService, private modalService: NgbModal) {
+  
+  constructor(private sS: StudentService, private modalService: NgbModal, private formBuilder: FormBuilder) {
+    this.showTemplate = true;
+    this.formCV = new FormGroup({
+      tableview: new FormControl(),
+      templateview: new FormControl()
+   }); 
   }
 
   ngOnInit(): void {
@@ -69,7 +64,8 @@ export class StudentsComponent implements OnInit {
         { header: 'ContactInfo', dataKey: 'ContactInfo' },
       ]})
 
-    doc.output('dataurlnewwindow')
+    doc.output('dataurlnewwindow');
+
     doc.save(`${this.student.personalInfo.fullName}_CV.pdf`);
     }
 
@@ -91,6 +87,23 @@ export class StudentsComponent implements OnInit {
       } else {
         return `with: ${reason}`;
       }
+    }
+
+    public next() : void {
+
+
+      if (!this.formCV.get('tableview').value) {
+        window.alert("Must choose one template");  
+      }
+
+      this.dataToExport['viewtype'] =this.formCV.get('tableview').value;
+      console.log(this.dataToExport);
+
+      this.showTemplate = false;
+    }
+
+    public back() : void {                                                                                                                                                                                                                                                                                                             
+      this.showTemplate = true;
     }
 
 }

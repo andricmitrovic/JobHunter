@@ -4,6 +4,8 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
+// import { MatTabsModule } from '@angular/material/tabs';
+
 
 import { AppComponent } from './app.component';
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
@@ -29,7 +31,7 @@ import { CompanyFormUpdateComponent } from './user/company-form-update/company-f
     RouterModule,
     BrowserModule,
     AppRoutingModule
-  ],
+    ],
   declarations: [
     AppComponent,
     AdminLayoutComponent,
