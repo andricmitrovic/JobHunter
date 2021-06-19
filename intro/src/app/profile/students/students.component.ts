@@ -93,13 +93,15 @@ export class StudentsComponent implements OnInit {
 
 
       if (!this.formCV.get('tableview').value) {
+        this.showTemplate = true;   
         window.alert("Must choose one template");  
+      } else {
+
+        this.dataToExport['viewtype'] =this.formCV.get('tableview').value;
+        console.log(this.dataToExport);
+
+        this.showTemplate = false;
       }
-
-      this.dataToExport['viewtype'] =this.formCV.get('tableview').value;
-      console.log(this.dataToExport);
-
-      this.showTemplate = false;
     }
 
     public back() : void {                                                                                                                                                                                                                                                                                                             

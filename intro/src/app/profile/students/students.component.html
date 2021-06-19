@@ -41,7 +41,6 @@
               <br>
             </div>
 
-
            <!-- <input type="button" value="Generate CV" class="btn btn-success" (click)="SavePDF()"> -->
            <ng-template #content let-modal>
 
@@ -61,10 +60,9 @@
                   <div class="text-center"> 
                    
                     <form>
-                      <h2 style="color: brown">Time to chose CV template!</h2>
-                      
-                      <hr>
+                      <h2 style="color: brown">Time to choose CV template!</h2>
 
+                      <hr>
                       <div class="cc-selector" [formGroup]="formCV">
                         
                           <input id="tableview" type="radio" name="tableview" value="tableview" formControlName="tableview"  />
@@ -74,8 +72,7 @@
                           <label class="drinkcard-cc templateview"for="templateview"></label>
 
                       </div>
-                      <small style="padding-block: 15px;"> (Click on simple table or CV template) </small>
-
+                      <small> Click on simple table or template. </small>
                       <hr>
 
                   </form>
@@ -91,32 +88,29 @@
             
             <div class="modal-footer">
                 <!-- <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Save</button> -->
-                <button type="button" class="btn btn-outline-dark" (click)="next()">Save</button>
+                <button type="button" class="btn btn-outline-dark" (click)="next()">Next</button>
             </div>
 
             </div>
             <ng-template #showForm>
 
               <div class="ui container" style="padding-block: 15px;">
-
-              <h2 style="color: brown"> I want all informations. </h2>
+             
+              <input type="checkbox" id="allWork">
+              <label for="allWork" class="heading-small" style="font-weight: bolder; color:brown; font-size: medium"> Select all informations </label>
+             
 
               <ul ngbNav #nav="ngbNav" class="nav-tabs">
                 <li ngbNavItem>
-                  <a ngbNavLink>Personal informatons</a>
+                  <a ngbNavLink>Personal info</a>
                   <ng-template ngbNavContent>
-
-                    <!-- forma stvari sa opisom -->
                     <div class="form-group">
-
-                      <h3>Choose all! </h3>
-                      <div class="ui">
-                        <p> Fullname: {{student.personalInfo.fullName}} </p>
-                        <p> Email: {{student.personalInfo.email}} </p>
-                        <p> Adress: {{student.personalInfo.email}} </p>
-                        <p> About: {{student.personalInfo.email}} </p>
-
-                      </div>
+                      <br>
+                      <p *ngIf="student.personalInfo.fullName"> Fullname: {{student.personalInfo.fullName}} </p>
+                      <p *ngIf="student.personalInfo.gender"> Gender: {{student.personalInfo.gender}} </p>
+                      <p *ngIf="student.personalInfo.dateOfBirth"> Date of birth: {{student.personalInfo.dateOfBirth}} </p>
+                      <p *ngIf="student.personalInfo.adress"> Address: {{student.personalInfo.adress}} </p>
+                      <p *ngIf="student.about"> About:  {{student.about}} </p>
                     </div>
 
                   </ng-template>
@@ -124,67 +118,55 @@
                 <li ngbNavItem>
                   <a ngbNavLink>Contact info</a>
                   <ng-template ngbNavContent>
-
-                      <h3>Choose all! </h3>
-                      <div class="ui">
-                          <p> Fullname: {{student.personalInfo.fullName}} </p>
-                          <p> Email: {{student.personalInfo.email}} </p>
-                          <p> Adress: {{student.personalInfo.email}} </p>
-                          <p> About: {{student.personalInfo.email}} </p>
-  
-                        </div>
-  
-
+                    <br>
+                    <div *ngIf="student.email"> <input type="checkbox">  <label> Email: </label> {{student.email}} </div>
+                    <p *ngIf="student.portfolio.gitHub"> GitHub: {{student.portfolio.gitHub}} </p>
+                    <p *ngIf="student.portfolio.linkedin"> LinkedIn: {{student.portfolio.linkedin}} </p>
                   </ng-template>
                 </li>
                 <li ngbNavItem>
-                    <a ngbNavLink>Work expirience</a>
+                    <a ngbNavLink>Education</a>
                     <ng-template ngbNavContent>
-  
-                        <h3>Choose all! </h3>
-                        <div class="ui">
-                            <p> Fullname: {{student.personalInfo.fullName}} </p>
-                            <p> Email: {{student.personalInfo.email}} </p>
-                            <p> Adress: {{student.personalInfo.email}} </p>
-                            <p> About: {{student.personalInfo.email}} </p>
-    
-                          </div>
-    
-  
+                        <div *ngIf="student.education.university"> <input type="checkbox">  <label> University: </label> {{student.education.university}} </div>
+                        <div *ngIf="student.education.faculty"> <input type="checkbox">  <label> Faculty: </label> {{student.education.faculty}} </div>
+                        <div *ngIf="student.education.gpa"> <input type="checkbox">  <label> GPA: </label> {{student.education.gpa}} </div>
                     </ng-template>
-                  </li>
-                  <li ngbNavItem>
-                      <a ngbNavLink>Education</a>
-                      <ng-template ngbNavContent>
-    
-                          <h3>Choose all! </h3>
-                          <div class="ui">
-                              <p> Fullname: {{student.personalInfo.fullName}} </p>
-                              <p> Email: {{student.personalInfo.email}} </p>
-                              <p> Adress: {{student.personalInfo.email}} </p>
-                              <p> About: {{student.personalInfo.email}} </p>
-      
+                </li>
+                <li ngbNavItem>
+                    <a ngbNavLink>Work experience</a>
+                    <ng-template ngbNavContent>
+                        <br>
+
+                        <!-- check -->
+                        <div *ngIf="student.experience.length>0">
+                        <input type="checkbox" id="allWork">
+                        <label for="allWork"> Export technologies </label>
+                        </div>
+
+                        <br>
+                        <div *ngFor="let exp of student.experience" class="form-control">
+
+                             <div class="row justify-content-center">
+                            
+                                <div class="col-lg-3"> 
+                                  <p style="text-align: center; " class="text"> {{exp.position}} </p>
+                                </div>
+                                <div class="col-lg-8">   <p style="text-align: center;" class="text"> {{exp.company + ", " +  exp.length}}  </p></div>    
                             </div>
-      
-    
-                      </ng-template>
-                    </li>
-                    <li ngbNavItem>
-                        <a ngbNavLink>Technologies</a>
-                        <ng-template ngbNavContent>
-      
-                            <h3>Choose all! </h3>
-                            <div class="ui">
-                                <p> Fullname: {{student.personalInfo.fullName}} </p>
-                                <p> Email: {{student.personalInfo.email}} </p>
-                                <p> Adress: {{student.personalInfo.email}} </p>
-                                <p> About: {{student.personalInfo.email}} </p>
-        
-                              </div>
-        
-      
-                        </ng-template>
-                      </li>
+              
+                          </div>
+                    </ng-template>
+                </li>
+                <li ngbNavItem>
+                    <a ngbNavLink>Technologies</a>
+                    <ng-template ngbNavContent>
+
+                      <input type="checkbox" id="allWork">
+                      <label for="allWork"> Export all work </label>
+  
+                      <span *ngFor="let tech of student.technologies"> {{ tech }} </span>
+                    </ng-template>
+                </li>
               </ul>
               <div [ngbNavOutlet]="nav"></div>
               </div>
