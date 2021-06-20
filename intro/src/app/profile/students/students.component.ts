@@ -48,9 +48,9 @@ export class StudentsComponent implements OnInit {
       
     let doc = new jsPDF('portrait');
     
-    doc.setFontSize(18);
-    doc.text(`CV ${this.student.personalInfo.fullName}`, 50, 8);
-    doc.setFontSize(11);
+    doc.setFontSize(16);
+    doc.text(`CV ${this.student.personalInfo.fullName}`, 20, 8);
+    doc.setFontSize(12);
     doc.setTextColor(156);
 
     // TODO, dinamicki se pravi niz objekata u zavisnosti od check vrednosti
