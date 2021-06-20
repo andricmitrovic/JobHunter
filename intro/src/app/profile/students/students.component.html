@@ -104,7 +104,16 @@
                 <li ngbNavItem>
                   <a ngbNavLink>Personal info</a>
                   <ng-template ngbNavContent>
+                    <br>
+    
                     <div class="form-group">
+
+                        <input  type="checkbox" value="" id="personalInfoCheck">
+                        <label  for="personalInfoCheck" style="color: brown; font-weight: bold">
+                          Export all personal info
+                        </label>
+                      
+
                       <br>
                       <p *ngIf="student.personalInfo.fullName"> Fullname: {{student.personalInfo.fullName}} </p>
                       <p *ngIf="student.personalInfo.gender"> Gender: {{student.personalInfo.gender}} </p>
@@ -118,15 +127,32 @@
                 <li ngbNavItem>
                   <a ngbNavLink>Contact info</a>
                   <ng-template ngbNavContent>
+                      <br>
+
+                      <input type="checkbox" value="" id="contactInfoCheck">
+                      <label for="contactInfoCheck" style="color: brown; font-weight: bold">
+                        Export all contact info
+                      </label>
+                    
                     <br>
-                    <div *ngIf="student.email"> <input type="checkbox">  <label> Email: </label> {{student.email}} </div>
+                    <p *ngIf="student.email"> Email: {{student.email}} </p>
                     <p *ngIf="student.portfolio.gitHub"> GitHub: {{student.portfolio.gitHub}} </p>
                     <p *ngIf="student.portfolio.linkedin"> LinkedIn: {{student.portfolio.linkedin}} </p>
                   </ng-template>
                 </li>
                 <li ngbNavItem>
                     <a ngbNavLink>Education</a>
+                    <br>
+
+                    
                     <ng-template ngbNavContent>
+
+
+                    <input  type="checkbox" value="" id="educationCheck">
+                    <label for="educationCheck" style="color: brown; font-weight: bold">
+                      Export education
+                    </label>
+
                         <div *ngIf="student.education.university"> <input type="checkbox">  <label> University: </label> {{student.education.university}} </div>
                         <div *ngIf="student.education.faculty"> <input type="checkbox">  <label> Faculty: </label> {{student.education.faculty}} </div>
                         <div *ngIf="student.education.gpa"> <input type="checkbox">  <label> GPA: </label> {{student.education.gpa}} </div>
@@ -137,11 +163,15 @@
                     <ng-template ngbNavContent>
                         <br>
 
-                        <!-- check -->
-                        <div *ngIf="student.experience.length>0">
-                        <input type="checkbox" id="allWork">
-                        <label for="allWork"> Export technologies </label>
+                        <div *ngIf="student.experience">
+                            <input  type="checkbox" value="" id="workExpirienceCheck">
+                            <label for="workExpirienceCheck" style="color: brown; font-weight: bold">
+                              Export work experience
+                            </label>
+        
                         </div>
+
+
 
                         <br>
                         <div *ngFor="let exp of student.experience" class="form-control">
@@ -161,9 +191,12 @@
                     <a ngbNavLink>Technologies</a>
                     <ng-template ngbNavContent>
 
-                      <input type="checkbox" id="allWork">
-                      <label for="allWork"> Export all work </label>
-  
+                        <input  type="checkbox" value="" id="technologyCheck">
+                        <label for="technologyCheck" style="color: brown; font-weight: bold">
+                          Export technologies
+                        </label>
+    
+
                       <span *ngFor="let tech of student.technologies"> {{ tech }} </span>
                     </ng-template>
                 </li>
