@@ -33,7 +33,6 @@
 </div>
 
 <div id="facts">
-
     <h6 id="funFactsHeader">Fun facts:</h6>
     <br>
     <li>The first computer weighed more than 27 tons.</li>
@@ -51,42 +50,45 @@
 </div>
 
 <!-- <div id="news">
-    <h6 id="newsHeader">Computer science news</h6>
-
-    <div id="first">
-        <img src="../../assets/news_machine_learning.jpg" alt="machine-learning" width="200" height="200" >
-        <br><br>
-        <u><h3>Using machine learning to predict high-impact research</h3></u>
-        <br>
-        <p>An artificial intelligence framework built by MIT researchers can give an "early-alert" signal for future high-impact technologies,
-            by learning from patterns gleaned from previous scientific publications. Read more on <a href="https://techxplore.com/news/2021-05-machine-high-impact.html">link.</a></p>
-    </div>
-    
-    <div id="second">
-        <img src="../../assets/making-ai-algorithms-s.jpg" alt="ai-algorithms" width="400" height="200" >
-        <br><br>
-        <u><h3>Making AI algorithms show their work</h3></u>
-        <br>
-        <p>Artificial intelligence (AI) learning machines can be trained to solve problems and puzzles on their own instead of using rules that we made for them. But often, researchers do not know what rules the machines make for themselves.
-            Cold Spring Harbor Laboratory (CSHL) Assistant Professor Peter Koo developed a new method that quizzes a machine-learning program to figure out what rules it learned on its own and if they are the right ones. Read more on <a href="https://techxplore.com/news/2021-05-ai-algorithms.html">link.</a></p>
-    </div>
-
-    <div id="third">
-        <img src="../../assets/digitalmedia.jpg" alt="digitalmedia" width="400" height="200" >
-        <br><br>
-        
-        <u><h3>Scientists develop interactive typeface for digital text</h3></u>
-        <br>
-        <p>Language is without doubt the most pervasive medium for exchanging knowledge between humans. However, spoken language or abstract text need to be made visible in order to be read, be it in print or on screen. 
-            The team of researchers from TU Darmstadt now developed a system that leaves font design to the user's visual system. Read more on <a href="https://techxplore.com/news/2021-05-scientists-interactive-typeface-digital-text.html">link.</a></p>
-    </div>
+    <h6 id="newsHeader">Latest computer science news</h6>
+    <script src='https://p3k.org/rss/main.js?align=initial&amp;boxFillColor=%23ffead2&amp;
+    compact=false&amp;fontFace=10pt%20sans-serif&amp;frameColor=%23b3a28e&amp;headless=false&amp;height=200&amp;
+    linkColor=%232c7395&amp;maxItems=7&amp;radius=5&amp;showXmlButton=true&amp;textColor=%2395412b&amp;
+    titleBarColor=%2390a8b3&amp;titleBarTextColor=%23ffead2&amp;
+    url=https%3A%2F%2Ftechxplore.com%2Frss-feed%2Fcomputer-sciences-news%2F&amp;width=400'></script>
 </div> -->
 
 <div id="news">
     <h6 id="newsHeader">Latest computer science news</h6>
-    <script async defer src='https://p3k.org/rss/main.js?align=initial&amp;boxFillColor=%23ffead2&amp;
-    compact=false&amp;fontFace=10pt%20sans-serif&amp;frameColor=%23b3a28e&amp;headless=false&amp;height=400&amp;
-    linkColor=%232c7395&amp;maxItems=7&amp;radius=5&amp;showXmlButton=true&amp;textColor=%2395412b&amp;
-    titleBarColor=%2390a8b3&amp;titleBarTextColor=%23ffead2&amp;
-    url=https%3A%2F%2Ftechxplore.com%2Frss-feed%2Fcomputer-sciences-news%2F&amp;width=700'></script>
+
+    <!-- <script>
+        const RSS_URL='https://www1.cbn.com/app_feeds/rss/news/rss.php?section=us';
+
+        fetch(RSS_URL)
+            .then(response => response.text())
+            .then(str => new window.DOMParser().parseFromString(str, "text/xml"))
+            .then(data => {
+                
+                const items = data.querySelectorAll("item");
+                let html = ``;
+                items.forEach(el => {
+                html += `
+                    <article>
+                    <img src="${el.querySelector("link").innerHTML}/image/large.png" alt="">
+                    <h2>
+                        <a href="${el.querySelector("link").innerHTML}" target="_blank" rel="noopener">
+                        ${el.querySelector("title").innerHTML}
+                        </a>
+                    </h2>
+                    </article>
+                `;
+                });
+                document.body.insertAdjacentHTML("beforeend", html);
+        })
+        .catch(err => {
+            console.log("greska");
+        });
+    </script> -->
+
+    <script src="rss-to_json.mjs"></script>
 </div>

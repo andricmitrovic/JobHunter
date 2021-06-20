@@ -18,6 +18,7 @@ import {CommonModule} from '@angular/common';
 import { UserFormUpdateComponent } from './user/user-form-update/user-form-update.component';
 import { CompanyProfileComponent } from './user/company-profile/company-profile.component';
 import { CompanyFormUpdateComponent } from './user/company-form-update/company-form-update.component'
+import { InterestingFactsComponent } from './interesting-facts/interesting-facts.component';
 
 @NgModule({
   imports: [
@@ -37,7 +38,8 @@ import { CompanyFormUpdateComponent } from './user/company-form-update/company-f
     AdminLayoutComponent,
     AuthLayoutComponent,
     CompanyProfileComponent,
-    CompanyFormUpdateComponent
+    CompanyFormUpdateComponent,
+    InterestingFactsComponent
   ],
   providers: [],
   bootstrap: [AppComponent]
