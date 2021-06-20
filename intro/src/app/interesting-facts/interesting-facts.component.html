@@ -49,46 +49,8 @@
     <li>Computers might soon be able to tell what dogs think.</li>
 </div>
 
-<!-- <div id="news">
-    <h6 id="newsHeader">Latest computer science news</h6>
-    <script src='https://p3k.org/rss/main.js?align=initial&amp;boxFillColor=%23ffead2&amp;
-    compact=false&amp;fontFace=10pt%20sans-serif&amp;frameColor=%23b3a28e&amp;headless=false&amp;height=200&amp;
-    linkColor=%232c7395&amp;maxItems=7&amp;radius=5&amp;showXmlButton=true&amp;textColor=%2395412b&amp;
-    titleBarColor=%2390a8b3&amp;titleBarTextColor=%23ffead2&amp;
-    url=https%3A%2F%2Ftechxplore.com%2Frss-feed%2Fcomputer-sciences-news%2F&amp;width=400'></script>
-</div> -->
-
 <div id="news">
     <h6 id="newsHeader">Latest computer science news</h6>
 
-    <!-- <script>
-        const RSS_URL='https://www1.cbn.com/app_feeds/rss/news/rss.php?section=us';
-
-        fetch(RSS_URL)
-            .then(response => response.text())
-            .then(str => new window.DOMParser().parseFromString(str, "text/xml"))
-            .then(data => {
-                
-                const items = data.querySelectorAll("item");
-                let html = ``;
-                items.forEach(el => {
-                html += `
-                    <article>
-                    <img src="${el.querySelector("link").innerHTML}/image/large.png" alt="">
-                    <h2>
-                        <a href="${el.querySelector("link").innerHTML}" target="_blank" rel="noopener">
-                        ${el.querySelector("title").innerHTML}
-                        </a>
-                    </h2>
-                    </article>
-                `;
-                });
-                document.body.insertAdjacentHTML("beforeend", html);
-        })
-        .catch(err => {
-            console.log("greska");
-        });
-    </script> -->
-
-    <script src="rss-to_json.mjs"></script>
+    <!-- <script src="rss-to_json.mjs"></script> -->
 </div>
