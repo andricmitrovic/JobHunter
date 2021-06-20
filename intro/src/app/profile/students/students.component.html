@@ -96,7 +96,7 @@
 
 
               <div class="ui container" style="padding-block: 15px;">
-              <input type="checkbox" id="allWork">
+              <input #selectAllCheck type="checkbox" id="allWork" (change)="selectAll(selectAllCheck.checked)">
               <label for="allWork" class="heading-small" style="font-weight: bolder; color:brown; font-size: medium"> Select all informations </label>
              
 
@@ -108,7 +108,8 @@
     
                     <div class="form-group">
 
-                        <input  type="checkbox" value="" id="personalInfoCheck">
+                        <input #personalInfo CheckBox type="checkbox" value="" id="personalInfoCheck" [checked]="pivalue" 
+                        (change)="checked(personalInfo.checked, 'p')">
                         <label  for="personalInfoCheck" style="color: brown; font-weight: bold">
                           Export all personal info
                         </label>
@@ -129,11 +130,13 @@
                   <ng-template ngbNavContent>
                       <br>
 
-                      <input type="checkbox" value="" id="contactInfoCheck">
-                      <label for="contactInfoCheck" style="color: brown; font-weight: bold">
-                        Export all contact info
-                      </label>
+                      <input #contactInfo  type="checkbox" value="" id="contactInfoCheck" [checked]="civalue" 
+                      (change)="checked(contactInfo.checked, 'c')">
+                      <label  for="contactInfoCheck" style="color: brown; font-weight: bold">
+                          Export all contact info
+                        </label>
                     
+
                     <br>
                     <p *ngIf="student.email"> Email: {{student.email}} </p>
                     <p *ngIf="student.portfolio.gitHub"> GitHub: {{student.portfolio.gitHub}} </p>
@@ -147,15 +150,19 @@
                     
                     <ng-template ngbNavContent>
 
+                    <br>
 
-                    <input  type="checkbox" value="" id="educationCheck">
-                    <label for="educationCheck" style="color: brown; font-weight: bold">
-                      Export education
-                    </label>
 
-                        <div *ngIf="student.education.university"> <input type="checkbox">  <label> University: </label> {{student.education.university}} </div>
-                        <div *ngIf="student.education.faculty"> <input type="checkbox">  <label> Faculty: </label> {{student.education.faculty}} </div>
-                        <div *ngIf="student.education.gpa"> <input type="checkbox">  <label> GPA: </label> {{student.education.gpa}} </div>
+                    <input #educationInfo  type="checkbox" value="" id="educationInfoCheck" [checked]="evalue" 
+                    (change)="checked(educationInfo.checked, 'e')">
+                    <label  for="educationInfoCheck" style="color: brown; font-weight: bold">
+                        Export education
+                      </label>
+                  
+
+                        <p *ngIf="student.education.university">   University:  {{student.education.university}} </p>
+                        <p *ngIf="student.education.faculty">  Faculty: {{student.education.faculty}} </p>
+                        <p *ngIf="student.education.gpa"> GPA: {{student.education.gpa}} </p>
                     </ng-template>
                 </li>
                 <li ngbNavItem>
@@ -164,14 +171,19 @@
                         <br>
 
                         <div *ngIf="student.experience">
-                            <input  type="checkbox" value="" id="workExpirienceCheck">
-                            <label for="workExpirienceCheck" style="color: brown; font-weight: bold">
-                              Export work experience
+                          
+                          <input #workInfo  type="checkbox" value="" id="workInfoCheck" [checked]="wvalue" 
+                            (change)="checked(workInfo.checked, 'w')">
+                            <label  for="workInfoCheck" style="color: brown; font-weight: bold">
+                                Export work experience
                             </label>
         
+
                         </div>
 
 
+
+                        
 
                         <br>
                         <div *ngFor="let exp of student.experience" class="form-control">
@@ -190,12 +202,15 @@
                 <li ngbNavItem>
                     <a ngbNavLink>Technologies</a>
                     <ng-template ngbNavContent>
+                        <br>
 
-                        <input  type="checkbox" value="" id="technologyCheck">
-                        <label for="technologyCheck" style="color: brown; font-weight: bold">
-                          Export technologies
-                        </label>
-    
+
+                        <input #technologiesInfo  type="checkbox" value="" id="technologyCheck" [checked]="tvalue" 
+                        (change)="checked(technologiesInfo.checked, 't')">
+                        <label  for="technologyCheck" style="color: brown; font-weight: bold">
+                            Export technologies
+                          </label>
+
 
                       <span *ngFor="let tech of student.technologies"> {{ tech }} </span>
                     </ng-template>

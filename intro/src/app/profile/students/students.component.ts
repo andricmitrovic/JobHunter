@@ -20,14 +20,20 @@ import { image } from 'html2canvas/dist/types/css/types/image';
 export class StudentsComponent implements OnInit {
 
 
-  // Promenljive
   closeResult : string = '';
   showTemplate : boolean;
   dataToExport = {"PersonalInfo":[], "ContactInfo":[], "Education":[]};
   formCV : FormGroup;
+  pivalue: boolean;
+  civalue: boolean;
+  evalue: boolean;
+  wvalue: boolean;
+  tvalue: boolean;
+  
 
   @Input() student!: Student;
   @ViewChild('pdfTable') pdfTable: ElementRef;
+
   
   constructor(private sS: StudentService, private modalService: NgbModal, private formBuilder: FormBuilder) {
     this.showTemplate = true;
@@ -55,8 +61,10 @@ export class StudentsComponent implements OnInit {
     doc.setFontSize(12);
     doc.setTextColor(156);
 
-    // TODO, dinamicki se pravi niz objekata u zavisnosti od check vrednosti
-    autoTable(doc, {
+
+    
+
+    this.pivalue ? autoTable(doc, {
       body: [
         { FullName: this.student.personalInfo.fullName, Gender: this.student.personalInfo.gender, DateOfBirth: String(this.student.personalInfo.dateOfBirth), Address: this.student.personalInfo.adress, About : this.student.about },
       ],
@@ -66,9 +74,9 @@ export class StudentsComponent implements OnInit {
         { header: 'DateOfBirth', dataKey: 'DateOfBirth' },
         { header: 'Adress', dataKey: 'Adress' },
         { header: 'About', dataKey: 'About' }
-      ]})
+      ]}) : '';
 
-      autoTable(doc, {
+      this.civalue ? autoTable(doc, {
         body: [
           { Email: this.student.email, GitHub: this.student.portfolio.gitHub, LinkedIn: this.student.portfolio.linkedin }
         ],
@@ -76,9 +84,9 @@ export class StudentsComponent implements OnInit {
           { header: 'Email', dataKey: 'Email' },
           { header: 'GitHub', dataKey: 'GitHub' },
           { header: 'LinkedIn', dataKey: 'LinkedIn' }
-        ]})
+        ]}) : '';
   
-        autoTable(doc, {
+        this.evalue ? autoTable(doc, {
           body: [
             { University: this.student.education.university, Faculty: this.student.education.faculty, GPA: this.student.education.gpa }
           ],
@@ -86,7 +94,7 @@ export class StudentsComponent implements OnInit {
             { header: 'University', dataKey: 'University' },
             { header: 'Faculty', dataKey: 'Faculty' },
             { header: 'GPA', dataKey: 'GPA' }
-          ]})
+          ]}) : '';
     
           let body_expirience = [];
           for (let expirience of this.student.experience) {
@@ -95,24 +103,24 @@ export class StudentsComponent implements OnInit {
             body_expirience.push(expirience);
           }
 
-          autoTable(doc, {
+          this.wvalue ? autoTable(doc, {
             body: body_expirience,
             columns: [
               { header: 'Company', dataKey: 'company' },
               { header: 'Position', dataKey: 'position' },
               { header: 'Length', dataKey: 'length' }
-            ]})
+            ]}) : '';
     
             let body_tehnologies = [];
           for (let tehnology of this.student.technologies) {
             body_tehnologies.push({"tehnologies" : tehnology});
           }
 
-            autoTable(doc, {
+          this.tvalue ? autoTable(doc, {
               body: body_tehnologies,
               columns: [
                 { header: 'Tehnologies', dataKey: 'tehnologies' }
-              ]})
+              ]}) : '';
       
 
     doc.output('dataurlnewwindow');
@@ -123,518 +131,533 @@ export class StudentsComponent implements OnInit {
     } else {
 
 
-      const pdfTable = this.pdfTable.nativeElement;
-      const htmlimg = pdfTable.innerHTML;
+      // const pdfTable = this.pdfTable.nativeElement;
+      // const htmlimg = pdfTable.innerHTML;
+
+      // var html = htmlToPdfmake(htmlimg);
+
+    let contactInfoBlock = {
+      layout: {
+        defaultBorder: false,
+        hLineWidth: function(i, node) {
+          return 1;
+        },
+        vLineWidth: function(i, node) {
+          return 1;
+        },
+        hLineColor: function(i, node) {
+          if (i === 1 || i === 0) {
+            return '#bfdde8';
+          }
+          return '#eaeaea';
+        },
+        vLineColor: function(i, node) {
+          return '#eaeaea';
+        },
+        hLineStyle: function(i, node) {
+          // if (i === 0 || i === node.table.body.length) {
+          return null;
+          //}
+        },
+        // vLineStyle: function (i, node) { return {dash: { length: 10, space: 4 }}; },
+        paddingLeft: function(i, node) {
+          return 10;
+        },
+        paddingRight: function(i, node) {
+          return 10;
+        },
+        paddingTop: function(i, node) {
+          return 2;
+        },
+        paddingBottom: function(i, node) {
+          return 2;
+        },
+        fillColor: function(rowIndex, node, columnIndex) {
+          return '#fff';
+        },
+      },
+      table: {
+        headerRows: 1,
+        widths: ['*', 120],
+        body: [
+          [
+            {
+              text: 'CONTACT INFO',
+              fillColor: 'white',
+              color: '#aaaaab',
+              border: [false, true, false, true],
+              margin: [0, 5, 0, 5],
+              alignment: 'left',
+              textTransform: 'uppercase',
+            },
+            {
+              text: '',
+              border: [false, true, false, true],
+              alignment: 'right',
+              fillColor: 'white',
+              margin: [0, 5, 0, 5],
+              textTransform: 'uppercase',
+            },
+          ],
+          [
+            {
+              text: 'Email',
+              border: [false, false, false, true],
+              margin: [0, 5, 0, 5],
+              alignment: 'left',
+            },
+            {
+              border: [false, false, false, true],
+              text: this.student.email,
+              fillColor: '#f5f5f5',
+              alignment: 'right',
+              margin: [0, 5, 0, 5],
+            },
+          ],
+          [
+            {
+              text: 'LinkedIn',
+              border: [false, false, false, true],
+              margin: [0, 5, 0, 5],
+              alignment: 'left',
+            },
+            {
+              border: [false, false, false, true],
+              text: this.student.portfolio.linkedin,
+              fillColor: '#f5f5f5',
+              alignment: 'right',
+              margin: [0, 5, 0, 5],
+            },
+          ],
+          [
+            {
+              text: 'GitHub',
+              border: [false, false, false, true],
+              margin: [0, 5, 0, 5],
+              alignment: 'left',
+            },
+            {
+              border: [false, false, false, true],
+              text: this.student.portfolio.gitHub,
+              fillColor: '#f5f5f5',
+              alignment: 'right',
+              margin: [0, 5, 0, 5],
+            },
+          ],
+        ],
+      },
+      
+    }
+      
+
+    let educationBlock = {
+      layout: {
+        defaultBorder: false,
+        hLineWidth: function(i, node) {
+          return 1;
+        },
+        vLineWidth: function(i, node) {
+          return 1;
+        },
+        hLineColor: function(i, node) {
+          if (i === 1 || i === 0) {
+            return '#bfdde8';
+          }
+          return '#eaeaea';
+        },
+        vLineColor: function(i, node) {
+          return '#eaeaea';
+        },
+        hLineStyle: function(i, node) {
+          // if (i === 0 || i === node.table.body.length) {
+          return null;
+          //}
+        },
+        // vLineStyle: function (i, node) { return {dash: { length: 10, space: 4 }}; },
+        paddingLeft: function(i, node) {
+          return 10;
+        },
+        paddingRight: function(i, node) {
+          return 10;
+        },
+        paddingTop: function(i, node) {
+          return 2;
+        },
+        paddingBottom: function(i, node) {
+          return 2;
+        },
+        fillColor: function(rowIndex, node, columnIndex) {
+          return '#fff';
+        },
+      },
+      table: {
+        headerRows: 1,
+        widths: ['*', 120],
+        body: [
+          [
+            {
+              text: 'EDUCATIONS',
+              fillColor: 'white',
+              color: '#aaaaab',
+              border: [false, true, false, true],
+              margin: [0, 5, 0, 5],
+              alignment: 'left',
+              textTransform: 'uppercase',
+            },
+            {
+              text: '',
+              border: [false, true, false, true],
+              alignment: 'right',
+              fillColor: 'white',
+              margin: [0, 5, 0, 5],
+              textTransform: 'uppercase',
+            },
+          ],
+          [
+            {
+              text: 'University',
+              border: [false, false, false, true],
+              margin: [0, 5, 0, 5],
+              alignment: 'left',
+            },
+            {
+              border: [false, false, false, true],
+              text: this.student.education.university,
+              fillColor: '#f5f5f5',
+              alignment: 'right',
+              margin: [0, 5, 0, 5],
+            },
+          ],
+          [
+            {
+              text: 'Faculty',
+              border: [false, false, false, true],
+              margin: [0, 5, 0, 5],
+              alignment: 'left',
+            },
+            {
+              border: [false, false, false, true],
+              text: this.student.education.faculty,
+              fillColor: '#f5f5f5',
+              alignment: 'right',
+              margin: [0, 5, 0, 5],
+            },
+          ],
+          [
+            {
+              text: 'GPA',
+              border: [false, false, false, true],
+              margin: [0, 5, 0, 5],
+              alignment: 'left',
+            },
+            {
+              border: [false, false, false, true],
+              text: this.student.education.gpa,
+              fillColor: '#f5f5f5',
+              alignment: 'right',
+              margin: [0, 5, 0, 5],
+            },
+          ],
+        ],
+      },
+      
+    }
 
 
+    let workExpirienceBlock = {
+      layout: {
+        defaultBorder: false,
+        hLineWidth: function(i, node) {
+          return 1;
+        },
+        vLineWidth: function(i, node) {
+          return 1;
+        },
+        hLineColor: function(i, node) {
+          if (i === 1 || i === 0) {
+            return '#bfdde8';
+          }
+          return '#eaeaea';
+        },
+        vLineColor: function(i, node) {
+          return '#eaeaea';
+        },
+        hLineStyle: function(i, node) {
+          // if (i === 0 || i === node.table.body.length) {
+          return null;
+          //}
+        },
+        // vLineStyle: function (i, node) { return {dash: { length: 10, space: 4 }}; },
+        paddingLeft: function(i, node) {
+          return 10;
+        },
+        paddingRight: function(i, node) {
+          return 10;
+        },
+        paddingTop: function(i, node) {
+          return 2;
+        },
+        paddingBottom: function(i, node) {
+          return 2;
+        },
+        fillColor: function(rowIndex, node, columnIndex) {
+          return '#fff';
+        },
+      },
+      table: {
+        headerRows: 1,
+        widths: ['*', 120],
+        body: [
+          [
+            {
+              text: 'WORK EXPIRIENCE',
+              fillColor: 'white',
+              color: '#aaaaab',
+              border: [false, true, false, true],
+              margin: [0, 5, 0, 5],
+              alignment: 'left',
+              textTransform: 'uppercase',
+            },
+            {
+              text: '',
+              border: [false, true, false, true],
+              alignment: 'right',
+              fillColor: 'white',
+              margin: [0, 5, 0, 5],
+              textTransform: 'uppercase',
+            },
+          ],
+          [
+            {
+              text: this.student.experience[0] ? this.student.experience[0].company : "",
+              border: [false, false, false, true],
+              margin: [0, 5, 0, 5],
+              alignment: 'left',
+            },
+            {
+              border: [false, false, false, true],
+              text: this.student.experience[0] ? this.student.experience[0].position : '' + ' ' + this.student.experience[0] ? this.student.experience[0].length : '',
+              fillColor: '#f5f5f5',
+              alignment: 'right',
+              margin: [0, 5, 0, 5],
+            },
+          ],
+        ],
+      },
+      
+    }
+    
 
-      var html = htmlToPdfmake(htmlimg);
+    let allTehnologies = '';
+    for (let tehnology of this.student.technologies) {
+      allTehnologies = allTehnologies + ' ' + tehnology; 
+    }
 
-      let allTehnologies = '';
-      for (let tehnology of this.student.technologies) {
-        allTehnologies = allTehnologies + ' ' + tehnology; 
-      }
-      var docDefinition = {
-        content: [
-          
-          {
-            columns: [
+
+    let technologiesBlock = {
+      layout: {
+        defaultBorder: false,
+        hLineWidth: function(i, node) {
+          return 1;
+        },
+        vLineWidth: function(i, node) {
+          return 1;
+        },
+        hLineColor: function(i, node) {
+          if (i === 1 || i === 0) {
+            return '#bfdde8';
+          }
+          return '#eaeaea';
+        },
+        vLineColor: function(i, node) {
+          return '#eaeaea';
+        },
+        hLineStyle: function(i, node) {
+          // if (i === 0 || i === node.table.body.length) {
+          return null;
+          //}
+        },
+        // vLineStyle: function (i, node) { return {dash: { length: 10, space: 4 }}; },
+        paddingLeft: function(i, node) {
+          return 10;
+        },
+        paddingRight: function(i, node) {
+          return 10;
+        },
+        paddingTop: function(i, node) {
+          return 2;
+        },
+        paddingBottom: function(i, node) {
+          return 2;
+        },
+        fillColor: function(rowIndex, node, columnIndex) {
+          return '#fff';
+        },
+      },
+      table: {
+        headerRows: 1,
+        widths: ['*', 120],
+        body: [
+          [
+            {
+              text: 'TEHNOLOGIES',
+              fillColor: 'white',
+              color: '#aaaaab',
+              border: [false, true, false, true],
+              margin: [0, 5, 0, 5],
+              alignment: 'left',
+              textTransform: 'uppercase',
+            },
+            {
+              text: '',
+              border: [false, true, false, true],
+              alignment: 'right',
+              fillColor: 'white',
+              margin: [0, 5, 0, 5],
+              textTransform: 'uppercase',
+            },
+          ],
+          [
+            {
+              text: 'Programming language ',
+              border: [false, false, false, true],
+              margin: [0, 5, 0, 5],
+              alignment: 'left',
+            },
+            {
+              border: [false, false, false, true],
+              text: allTehnologies,
+              fillColor: '#f5f5f5',
+              alignment: 'right',
+              margin: [0, 5, 0, 5],
+            },
+          ],
+        ],
+      },
+      
+    }
+
+
+    let personalInfoBlock = {
+      columns: [
 //               {
 //                 image:
 // 'data:image/jpeg;base64,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',
 //  width: 150,
 //               },
-              [
-                {
-                  text: this.student.personalInfo.fullName+' CV',
-                  color: 'black',
-                  width: '*',
-                  fontSize: 28,
-                  bold: true,
-                  alignment: 'right',
-                  margin: [50, 20, 0, 15],
-                  fontFamily: 'verdana'
-                },
-                {
-                  stack: [
-                    {
-                      columns: [
-                        {
-                          text: 'Addres: ',
-                          color: '#aaaaab',
-                          bold: true,
-                          width: '*',
-                          fontSize: 12,
-                          alignment: 'right',
-                        },
-                        {
-                          text: this.student.personalInfo.adress,
-                          bold: true,
-                          color: '#333333',
-                          fontSize: 12,
-                          alignment: 'right',
-                          width: 100,
-                        },
-                      ],
-                    },
-                    {
-                      columns: [
-                        {
-                          text: 'Date of birth',
-                          color: '#aaaaab',
-                          bold: true,
-                          width: '*',
-                          fontSize: 12,
-                          alignment: 'right',
-                        },
-                        {
-                          text: String(this.student.personalInfo.dateOfBirth).substr(0, 10),
-                          bold: true,
-                          color: '#333333',
-                          fontSize: 12,
-                          alignment: 'right',
-                          width: 100,
-                        },
-                      ],
-                    },{
-                      columns: [
-                        {
-                          text: 'Gender',
-                          color: '#aaaaab',
-                          bold: true,
-                          width: '*',
-                          fontSize: 12,
-                          alignment: 'right',
-                        },
-                        {
-                          text: this.student.personalInfo.gender,
-                          bold: true,
-                          color: '#333333',
-                          fontSize: 12,
-                          alignment: 'right',
-                          width: 100,
-                        },
-                      ],
-                    },
-                    {
-                      columns: [
-                        {
-                          text: 'About me: ',
-                          color: '#aaaaab',
-                          bold: true,
-                          fontSize: 12,
-                          alignment: 'right',
-                          width: '*',
-                        },
-                        {
-                          text: this.student.about,
-                          bold: true,
-                          fontSize: 14,
-                          alignment: 'right',
-                          color: 'green',
-                          width: 100,
-                        },
-                      ],
-                    },
-                  ],
-                },
-              ],
+        [
+          {
+            text: this.student.personalInfo.fullName+' CV',
+            color: 'black',
+            width: '*',
+            fontSize: 28,
+            bold: true,
+            alignment: 'right',
+            margin: [50, 20, 0, 15],
+            fontFamily: 'verdana'
+          },
+          {
+            stack: [
+              {
+                columns: [
+                  {
+                    text: 'Addres: ',
+                    color: '#aaaaab',
+                    bold: true,
+                    width: '*',
+                    fontSize: 12,
+                    alignment: 'right',
+                  },
+                  {
+                    text: this.student.personalInfo.adress,
+                    bold: true,
+                    color: '#333333',
+                    fontSize: 12,
+                    alignment: 'right',
+                    width: 100,
+                  },
+                ],
+              },
+              {
+                columns: [
+                  {
+                    text: 'Date of birth',
+                    color: '#aaaaab',
+                    bold: true,
+                    width: '*',
+                    fontSize: 12,
+                    alignment: 'right',
+                  },
+                  {
+                    text: String(this.student.personalInfo.dateOfBirth).substr(0, 10),
+                    bold: true,
+                    color: '#333333',
+                    fontSize: 12,
+                    alignment: 'right',
+                    width: 100,
+                  },
+                ],
+              },{
+                columns: [
+                  {
+                    text: 'Gender',
+                    color: '#aaaaab',
+                    bold: true,
+                    width: '*',
+                    fontSize: 12,
+                    alignment: 'right',
+                  },
+                  {
+                    text: this.student.personalInfo.gender,
+                    bold: true,
+                    color: '#333333',
+                    fontSize: 12,
+                    alignment: 'right',
+                    width: 100,
+                  },
+                ],
+              },
+              {
+                columns: [
+                  {
+                    text: 'About me: ',
+                    color: '#aaaaab',
+                    bold: true,
+                    fontSize: 12,
+                    alignment: 'right',
+                    width: '*',
+                  },
+                  {
+                    text: this.student.about,
+                    bold: true,
+                    fontSize: 14,
+                    alignment: 'right',
+                    color: 'green',
+                    width: 100,
+                  },
+                ],
+              },
             ],
           },
+        ],
+      ],
+    }
+
+
+      var docDefinition = {
+        content: [
+          
+          this.pivalue ? personalInfoBlock : {},
                    '\n\n',
-          {
-            layout: {
-              defaultBorder: false,
-              hLineWidth: function(i, node) {
-                return 1;
-              },
-              vLineWidth: function(i, node) {
-                return 1;
-              },
-              hLineColor: function(i, node) {
-                if (i === 1 || i === 0) {
-                  return '#bfdde8';
-                }
-                return '#eaeaea';
-              },
-              vLineColor: function(i, node) {
-                return '#eaeaea';
-              },
-              hLineStyle: function(i, node) {
-                // if (i === 0 || i === node.table.body.length) {
-                return null;
-                //}
-              },
-              // vLineStyle: function (i, node) { return {dash: { length: 10, space: 4 }}; },
-              paddingLeft: function(i, node) {
-                return 10;
-              },
-              paddingRight: function(i, node) {
-                return 10;
-              },
-              paddingTop: function(i, node) {
-                return 2;
-              },
-              paddingBottom: function(i, node) {
-                return 2;
-              },
-              fillColor: function(rowIndex, node, columnIndex) {
-                return '#fff';
-              },
-            },
-            table: {
-              headerRows: 1,
-              widths: ['*', 120],
-              body: [
-                [
-                  {
-                    text: 'CONTACT INFO',
-                    fillColor: 'white',
-                    color: '#aaaaab',
-                    border: [false, true, false, true],
-                    margin: [0, 5, 0, 5],
-                    alignment: 'left',
-                    textTransform: 'uppercase',
-                  },
-                  {
-                    text: '',
-                    border: [false, true, false, true],
-                    alignment: 'right',
-                    fillColor: 'white',
-                    margin: [0, 5, 0, 5],
-                    textTransform: 'uppercase',
-                  },
-                ],
-                [
-                  {
-                    text: 'Email',
-                    border: [false, false, false, true],
-                    margin: [0, 5, 0, 5],
-                    alignment: 'left',
-                  },
-                  {
-                    border: [false, false, false, true],
-                    text: this.student.email,
-                    fillColor: '#f5f5f5',
-                    alignment: 'right',
-                    margin: [0, 5, 0, 5],
-                  },
-                ],
-                [
-                  {
-                    text: 'LinkedIn',
-                    border: [false, false, false, true],
-                    margin: [0, 5, 0, 5],
-                    alignment: 'left',
-                  },
-                  {
-                    border: [false, false, false, true],
-                    text: this.student.portfolio.linkedin,
-                    fillColor: '#f5f5f5',
-                    alignment: 'right',
-                    margin: [0, 5, 0, 5],
-                  },
-                ],
-                [
-                  {
-                    text: 'GitHub',
-                    border: [false, false, false, true],
-                    margin: [0, 5, 0, 5],
-                    alignment: 'left',
-                  },
-                  {
-                    border: [false, false, false, true],
-                    text: this.student.portfolio.gitHub,
-                    fillColor: '#f5f5f5',
-                    alignment: 'right',
-                    margin: [0, 5, 0, 5],
-                  },
-                ],
-              ],
-            },
-            
-          },
+          this.civalue ? contactInfoBlock : {},
           '\n',
           '\n\n',
-          {
-            layout: {
-              defaultBorder: false,
-              hLineWidth: function(i, node) {
-                return 1;
-              },
-              vLineWidth: function(i, node) {
-                return 1;
-              },
-              hLineColor: function(i, node) {
-                if (i === 1 || i === 0) {
-                  return '#bfdde8';
-                }
-                return '#eaeaea';
-              },
-              vLineColor: function(i, node) {
-                return '#eaeaea';
-              },
-              hLineStyle: function(i, node) {
-                // if (i === 0 || i === node.table.body.length) {
-                return null;
-                //}
-              },
-              // vLineStyle: function (i, node) { return {dash: { length: 10, space: 4 }}; },
-              paddingLeft: function(i, node) {
-                return 10;
-              },
-              paddingRight: function(i, node) {
-                return 10;
-              },
-              paddingTop: function(i, node) {
-                return 2;
-              },
-              paddingBottom: function(i, node) {
-                return 2;
-              },
-              fillColor: function(rowIndex, node, columnIndex) {
-                return '#fff';
-              },
-            },
-            table: {
-              headerRows: 1,
-              widths: ['*', 120],
-              body: [
-                [
-                  {
-                    text: 'EDUCATIONS',
-                    fillColor: 'white',
-                    color: '#aaaaab',
-                    border: [false, true, false, true],
-                    margin: [0, 5, 0, 5],
-                    alignment: 'left',
-                    textTransform: 'uppercase',
-                  },
-                  {
-                    text: '',
-                    border: [false, true, false, true],
-                    alignment: 'right',
-                    fillColor: 'white',
-                    margin: [0, 5, 0, 5],
-                    textTransform: 'uppercase',
-                  },
-                ],
-                [
-                  {
-                    text: 'University',
-                    border: [false, false, false, true],
-                    margin: [0, 5, 0, 5],
-                    alignment: 'left',
-                  },
-                  {
-                    border: [false, false, false, true],
-                    text: this.student.education.university,
-                    fillColor: '#f5f5f5',
-                    alignment: 'right',
-                    margin: [0, 5, 0, 5],
-                  },
-                ],
-                [
-                  {
-                    text: 'Faculty',
-                    border: [false, false, false, true],
-                    margin: [0, 5, 0, 5],
-                    alignment: 'left',
-                  },
-                  {
-                    border: [false, false, false, true],
-                    text: this.student.education.faculty,
-                    fillColor: '#f5f5f5',
-                    alignment: 'right',
-                    margin: [0, 5, 0, 5],
-                  },
-                ],
-                [
-                  {
-                    text: 'GPA',
-                    border: [false, false, false, true],
-                    margin: [0, 5, 0, 5],
-                    alignment: 'left',
-                  },
-                  {
-                    border: [false, false, false, true],
-                    text: this.student.education.gpa,
-                    fillColor: '#f5f5f5',
-                    alignment: 'right',
-                    margin: [0, 5, 0, 5],
-                  },
-                ],
-              ],
-            },
-            
-          }, 
+          this.evalue ? educationBlock : {}, 
           '\n',
           '\n\n',
-          {
-            layout: {
-              defaultBorder: false,
-              hLineWidth: function(i, node) {
-                return 1;
-              },
-              vLineWidth: function(i, node) {
-                return 1;
-              },
-              hLineColor: function(i, node) {
-                if (i === 1 || i === 0) {
-                  return '#bfdde8';
-                }
-                return '#eaeaea';
-              },
-              vLineColor: function(i, node) {
-                return '#eaeaea';
-              },
-              hLineStyle: function(i, node) {
-                // if (i === 0 || i === node.table.body.length) {
-                return null;
-                //}
-              },
-              // vLineStyle: function (i, node) { return {dash: { length: 10, space: 4 }}; },
-              paddingLeft: function(i, node) {
-                return 10;
-              },
-              paddingRight: function(i, node) {
-                return 10;
-              },
-              paddingTop: function(i, node) {
-                return 2;
-              },
-              paddingBottom: function(i, node) {
-                return 2;
-              },
-              fillColor: function(rowIndex, node, columnIndex) {
-                return '#fff';
-              },
-            },
-            table: {
-              headerRows: 1,
-              widths: ['*', 120],
-              body: [
-                [
-                  {
-                    text: 'WORK EXPIRIENCE',
-                    fillColor: 'white',
-                    color: '#aaaaab',
-                    border: [false, true, false, true],
-                    margin: [0, 5, 0, 5],
-                    alignment: 'left',
-                    textTransform: 'uppercase',
-                  },
-                  {
-                    text: '',
-                    border: [false, true, false, true],
-                    alignment: 'right',
-                    fillColor: 'white',
-                    margin: [0, 5, 0, 5],
-                    textTransform: 'uppercase',
-                  },
-                ],
-                [
-                  {
-                    text: this.student.experience[0] ? this.student.experience[0].company : "",
-                    border: [false, false, false, true],
-                    margin: [0, 5, 0, 5],
-                    alignment: 'left',
-                  },
-                  {
-                    border: [false, false, false, true],
-                    text: this.student.experience[0] ? this.student.experience[0].position : '' + ' ' + this.student.experience[0] ? this.student.experience[0].length : '',
-                    fillColor: '#f5f5f5',
-                    alignment: 'right',
-                    margin: [0, 5, 0, 5],
-                  },
-                ],
-              ],
-            },
-            
-          },
+          this.wvalue ? workExpirienceBlock : {},
           '\n\n',
-          {
-            layout: {
-              defaultBorder: false,
-              hLineWidth: function(i, node) {
-                return 1;
-              },
-              vLineWidth: function(i, node) {
-                return 1;
-              },
-              hLineColor: function(i, node) {
-                if (i === 1 || i === 0) {
-                  return '#bfdde8';
-                }
-                return '#eaeaea';
-              },
-              vLineColor: function(i, node) {
-                return '#eaeaea';
-              },
-              hLineStyle: function(i, node) {
-                // if (i === 0 || i === node.table.body.length) {
-                return null;
-                //}
-              },
-              // vLineStyle: function (i, node) { return {dash: { length: 10, space: 4 }}; },
-              paddingLeft: function(i, node) {
-                return 10;
-              },
-              paddingRight: function(i, node) {
-                return 10;
-              },
-              paddingTop: function(i, node) {
-                return 2;
-              },
-              paddingBottom: function(i, node) {
-                return 2;
-              },
-              fillColor: function(rowIndex, node, columnIndex) {
-                return '#fff';
-              },
-            },
-            table: {
-              headerRows: 1,
-              widths: ['*', 120],
-              body: [
-                [
-                  {
-                    text: 'TEHNOLOGIES',
-                    fillColor: 'white',
-                    color: '#aaaaab',
-                    border: [false, true, false, true],
-                    margin: [0, 5, 0, 5],
-                    alignment: 'left',
-                    textTransform: 'uppercase',
-                  },
-                  {
-                    text: '',
-                    border: [false, true, false, true],
-                    alignment: 'right',
-                    fillColor: 'white',
-                    margin: [0, 5, 0, 5],
-                    textTransform: 'uppercase',
-                  },
-                ],
-                [
-                  {
-                    text: 'Programming language ',
-                    border: [false, false, false, true],
-                    margin: [0, 5, 0, 5],
-                    alignment: 'left',
-                  },
-                  {
-                    border: [false, false, false, true],
-                    text: allTehnologies,
-                    fillColor: '#f5f5f5',
-                    alignment: 'right',
-                    margin: [0, 5, 0, 5],
-                  },
-                ],
-              ],
-            },
-            
-          },
+          this.tvalue ? technologiesBlock : {},
           {
             text: 'JH',
             style: 'notesTitle',
@@ -667,16 +690,16 @@ export class StudentsComponent implements OnInit {
         ]
       };
       
-      var pdfDocGenerator = pdfMake.createPdf(docDefinition).download();
+      pdfMake.createPdf(docDefinition).download();
     }
   }
 
     open(content) {
       this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
         this.SavePDF();
-        // this.closeResult = `Closed with: ${result}`;
+        this.showTemplate = true;
       }, (reason) => {
-        // this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+        this.showTemplate = true;
       });
     }
 
@@ -695,32 +718,26 @@ export class StudentsComponent implements OnInit {
       }
     }
 
-    public back() : void {                                                                                                                                                                                                                                                                                                             
+    public back() : void {                                                                                                                                                                                                                                                                                                     
       this.showTemplate = true;
     }
 
+    public selectAll(checkedvalue: boolean) : void {
+      this.pivalue = checkedvalue;
+      this.civalue = checkedvalue;
+      this.evalue = checkedvalue;
+      this.wvalue = checkedvalue;
+      this.tvalue = checkedvalue;
+    }
+
+    public checked(checkedvalue: boolean, typecheck: string) :void {
+      switch (typecheck) {
+        case 'p':       this.pivalue = checkedvalue; break;
+        case 'c':       this.civalue = checkedvalue; break;
+        case 'e':       this.evalue = checkedvalue; break;
+        case 'w':       this.wvalue = checkedvalue; break;
+        case 't':       this.tvalue = checkedvalue; break;
+      }
+    }
 }
 
-
-
-/*import { Component, OnInit, Input } from '@angular/core';
-
-export class StudentInfoComponent implements OnInit {
-
-  @Input() student!: Student;
-  showProfile : boolean;
-  constructor() {
-    this.showProfile = false;
-  }
-
-  ngOnInit(): void {
-    console.log(this.student)
-  }
-  onNameClick(){
-
-    this.showProfile = !this.showProfile;
-
-  }
-
-}
-*/
