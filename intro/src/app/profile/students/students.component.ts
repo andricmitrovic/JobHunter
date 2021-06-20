@@ -1,14 +1,13 @@
 import { StudentService } from './../../students/services/student.service';
 import { Student } from './../../students/models/student';
 import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
-import pdfMake from 'pdfmake/build/pdfmake';
-import pdfFonts from 'pdfmake/build/vfs_fonts';
-pdfMake.vfs = pdfFonts.pdfMake.vfs;
 import htmlToPdfmake from 'html-to-pdfmake';
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 import jsPDF from 'jspdf';
 import autoTable from 'jspdf-autotable';
 import { FormControl, FormGroup, FormBuilder } from '@angular/forms';
+import pdfMake from 'pdfmake/build/pdfmake';
+import pdfFonts from 'pdfmake/build/vfs_fonts';
 
 @Component({
   selector: 'app-students',
@@ -22,7 +21,7 @@ export class StudentsComponent implements OnInit {
   // Promenljive
   closeResult : string = '';
   showTemplate : boolean;
-  dataToExport = {};
+  dataToExport = {"PersonalInfo":[], "ContactInfo":[], "Education":[]};
   formCV : FormGroup;
 
   @Input() student!: Student;
@@ -42,32 +41,85 @@ export class StudentsComponent implements OnInit {
   
   public SavePDF(): void {
     
-    let doc = new jsPDF();
-    let templateType = 'templatedCV';
 
+    if (this.dataToExport['viewtype'] === "tableview") {
+
+
+      
+    let doc = new jsPDF('portrait');
+    
     doc.setFontSize(18);
-    doc.text(`CV ${this.student.personalInfo.fullName}`, 11, 8);
+    doc.text(`CV ${this.student.personalInfo.fullName}`, 50, 8);
     doc.setFontSize(11);
     doc.setTextColor(156);
 
-
-    //  TODO popuniti tabelu podacima iz 
+    // TODO, dinamicki se pravi niz objekata u zavisnosti od check vrednosti
     autoTable(doc, {
-      // columnStyles: { europe: { halign: 'center' } }, 
       body: [
-        { PersonalInfo: 'Kristina', WorkExpirience: 'Google 9m', ContactInfo: 'kpetrovic134@gmail.com' },
-        { PersonalInfo: 'Marija', WorkExpirience: 'Canada', ContactInfo: 'mi15110@gmail.com' },
+        { FullName: this.student.personalInfo.fullName, Gender: this.student.personalInfo.gender, DateOfBirth: String(this.student.personalInfo.dateOfBirth), Address: this.student.personalInfo.adress, About : this.student.about },
       ],
       columns: [
-        { header: 'PersonalInfo', dataKey: 'PersonalInfo' },
-        { header: 'WorkExpirience', dataKey: 'WorkExpirience' },
-        { header: 'ContactInfo', dataKey: 'ContactInfo' },
+        { header: 'FullName', dataKey: 'FullName' },
+        { header: 'Gender', dataKey: 'Gender' },
+        { header: 'DateOfBirth', dataKey: 'DateOfBirth' },
+        { header: 'Adress', dataKey: 'Adress' },
+        { header: 'About', dataKey: 'About' }
       ]})
+
+      autoTable(doc, {
+        body: [
+          { Email: this.student.email, GitHub: this.student.portfolio.gitHub, LinkedIn: this.student.portfolio.linkedin }
+        ],
+        columns: [
+          { header: 'Email', dataKey: 'Email' },
+          { header: 'GitHub', dataKey: 'GitHub' },
+          { header: 'LinkedIn', dataKey: 'LinkedIn' }
+        ]})
+  
+        autoTable(doc, {
+          body: [
+            { University: this.student.education.university, Faculty: this.student.education.faculty, GPA: this.student.education.gpa }
+          ],
+          columns: [
+            { header: 'University', dataKey: 'University' },
+            { header: 'Faculty', dataKey: 'Faculty' },
+            { header: 'GPA', dataKey: 'GPA' }
+          ]})
+    
+          let body_expirience = [];
+          for (let expirience of this.student.experience) {
+            var prop = "_id";
+            delete expirience[prop]; 
+            body_expirience.push(expirience);
+          }
+
+          autoTable(doc, {
+            body: body_expirience,
+            columns: [
+              { header: 'Company', dataKey: 'company' },
+              { header: 'Position', dataKey: 'position' },
+              { header: 'Length', dataKey: 'length' }
+            ]})
+    
+            let body_tehnologies = [];
+          for (let tehnology of this.student.technologies) {
+            body_tehnologies.push({"tehnologies" : tehnology});
+          }
+
+            autoTable(doc, {
+              body: body_tehnologies,
+              columns: [
+                { header: 'Tehnologies', dataKey: 'tehnologies' }
+              ]})
+      
 
     doc.output('dataurlnewwindow');
 
     doc.save(`${this.student.personalInfo.fullName}_CV.pdf`);
-    }
+    
+
+    }    
+  }
 
 
     open(content) {
