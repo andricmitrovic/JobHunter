@@ -1,5 +1,5 @@
 function getNews(){
-    fetch("https://newsapi.org/v2/top-headlines?sources=techcrunch&apiKey=5335c510da7f4699b8fd78d85be8250c")
+    fetch("https://newsapi.org/v2/top-headlines?country=us&category=technology&apiKey=5335c510da7f4699b8fd78d85be8250c")
         .then(function (response){
             return response.json();
         })
@@ -7,7 +7,7 @@ function getNews(){
             appendData(data);
         })
         .catch(function (err){
-            console.log('error: '+err);
+            console.log('error: ' + err);
         });
 
     function appendData(data){
