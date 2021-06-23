@@ -5,15 +5,11 @@ import { Injectable } from '@angular/core';
 import { Observable, of, Subject} from 'rxjs';
 import { StudentPagination } from './models/student-pagination';
 import { catchError, map } from "rxjs/operators";
-import { error } from 'selenium-webdriver';
 
 @Injectable({
   providedIn: 'root'
 })
 export class StudentService {
-
-
-
   public readonly studentSubject : Subject<Student> = new Subject<Student>();
   public readonly tokenJwt = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhZG1pblVzZXJuYW1lIjoiYWRtaW4iLCJhZG1pblBhc3N3b3JkIjoiYWRtaW5wYXNzIiwiaWF0IjoxNjE3NzM4NzEzLCJleHAiOjE2MjAzMzA3MTN9.h-H96EdSvm_q6PFrKrjPoi-c5akNVgDynrrq1bTblIw';
 

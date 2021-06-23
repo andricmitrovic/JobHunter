@@ -1,7 +1,6 @@
 const mongoose = require('mongoose');
 const Company = require('../models/companies');
 
-
 const getAllCompanies = async () => {
   const companies = await Company.find({}).exec();
   return companies;
@@ -84,7 +83,6 @@ const changePassword = async (email, oldPassword, newPassword) => {
 const deleteCompany = async (email) => {
   await Company.findOneAndDelete({ email: email}).exec();
 };
-
 
 module.exports = {
   paginateThroughCompanies,

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+//import { RssToJsonService } from './rss_to_json';
 
 @Component({
   selector: 'app-interesting-facts',
@@ -6,10 +7,18 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./interesting-facts.component.css']
 })
 export class InterestingFactsComponent implements OnInit {
+  //showDivWithNews : boolean;
+  //rssToJson : RssToJsonService;
 
-  constructor() { }
+  constructor() {
+      //this.showDivWithNews=false;
+  }
 
   ngOnInit(): void {
   }
+
+  // public convertRssUrlToJson(){
+  //   this.rssToJson.getJsonFromXml();
+  // };
 
 }

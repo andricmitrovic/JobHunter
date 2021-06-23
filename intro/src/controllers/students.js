@@ -5,8 +5,6 @@ const { json } = require('body-parser');
 const Student = require('../models/students');
 const Jwtsecret = process.env.JWT_SECRET || 'masasavic'
 
-
-
 const getAllStudents = async (req, res, next) => {
   try {
 
@@ -44,7 +42,6 @@ const getStudentByEmail = async (req, res, next) => {
     next(error);
   }
 };
-
 
 const changeUserPassword = async (req, res, next) => {
   const email = req.params.email;
@@ -84,7 +81,6 @@ const changeUserPassword = async (req, res, next) => {
   }
 };
 
-
 const Login = async (req, res, next) => {
 
   const email = req.body.email;
@@ -110,7 +106,6 @@ const Login = async (req, res, next) => {
     next(error);
   }
 };
-
 
 module.exports = {
   getStudentByEmail,

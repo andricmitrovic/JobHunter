@@ -1,7 +1,6 @@
 const mongoose = require('mongoose')
 const User = require('./models/students.js')
 
-
 async function listAllUsers() {
   return await User.find({})
 }
@@ -18,7 +17,6 @@ const uri = "mongodb+srv://pzveb:pzveb@cluster0.r6adq.mongodb.net/JobHunter?retr
   let user = await connector.then(async () => {
     return listAllUsers({});
 })
-
 
   console.log(user)
   process.exit(0)

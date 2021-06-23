@@ -1,4 +1,3 @@
-import { JwtService } from './../../../services/jwt.service';
 import { CompanyService } from './../../companies/services/company.service';
 import { Company } from './../register/company/models/company';
 import { StudentService } from './../../students/services/student.service';
@@ -6,13 +5,12 @@ import { Student } from './../../students/models/student';
 import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Observable, Subject, Subscription } from 'rxjs';
-import { query } from '@angular/animations';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-
 
 export class LoginComponent implements OnInit, OnDestroy {
 

@@ -1,8 +1,6 @@
 const mongoose = require('mongoose');
 const Student = require('../models/students');
 
-
-
 const getAllStudents = async () => {
   const students = await Student.find({}).exec();
   return students;
@@ -35,7 +33,6 @@ async function paginateThroughStudents(page = 1, limit = 10, adress = "all", req
   return await Student.paginate(query, { page, limit, populate: 'owner', sort: 'timestamp', projection: '-timestamp' });
 }
 
-
 const getStudentByEmail = async (email) => {
   const student = await Student.findOne({ email: email }).exec();
   return student;
@@ -58,7 +55,6 @@ const addNewStudent = async (email, personalInfo, education, experience,
 
   await newStudent.save();
   return newStudent;
-
 };
 
 const changePassword = async (email, oldPassword, newPassword) => {
@@ -85,7 +81,6 @@ const changePassword = async (email, oldPassword, newPassword) => {
             'experience': experience});
   return await Student.findOne({email:email});
  };
-
 
 const deleteStudent = async (email) => {
   await Student.findOneAndDelete({ email: email}).exec();

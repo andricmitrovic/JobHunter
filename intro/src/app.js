@@ -8,12 +8,10 @@ const registerCompanyRouter = require('./routes/api/registrationCompany');
 const changePasswordRouter = require('./routes/api/changePassword');
 const changePasswordCompanyRouter = require('./routes/api/changePasswordCompany');
 
-
 const { urlencoded, json } = require('body-parser');
 const mongoose = require('mongoose');
 
 const app = express();
-
 
 const databaseString = "mongodb+srv://pzveb:pzveb@cluster0.r6adq.mongodb.net/JobHunter?retryWrites=true&w=majority";
 
@@ -35,7 +33,6 @@ mongoose.connection.on('error', (error) => {
     console.log('Greska: ', error);
 });
 
-
 app.use(json());
 
 app.use(urlencoded({ extended: false }));
@@ -54,7 +51,6 @@ app.use(function (req, res, next) {
     next();
   });
 
-
 app.use('/api/students', studentsRouter);
 app.use('/api/companies', companiesRouter);
 app.use('/api/profile', profileRouter);
@@ -63,7 +59,6 @@ app.use('/api/registration', registerRouter);
 app.use('/api/registrationCompany', registerCompanyRouter);
 app.use('/api/changePassword', changePasswordRouter);
 app.use('/api/changePasswordCompany', changePasswordCompanyRouter);
-
 
 app.use(function (req, res, next) {
     const error = new Error('Zahtev nije podrzan!');

@@ -1,10 +1,8 @@
 import { Subscription } from 'rxjs';
 import { StudentService } from './../../students/services/student.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { JwtService } from './../../../services/jwt.service';
 import { Student } from './../../students/models/student';
 import { Component, OnInit, Input, OnDestroy} from '@angular/core';
-import { HtmlParser } from '@angular/compiler';
 
 @Component({
   selector: 'app-student-profile',
@@ -36,9 +34,7 @@ export class StudentProfileComponent implements OnInit, OnDestroy{
 
    }
 
-
   ngOnInit(): void {
-
   }
 
   ngOnDestroy() : void {
